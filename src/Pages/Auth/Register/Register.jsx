@@ -1,8 +1,58 @@
-import React from 'react';
+import React, { use, useState } from 'react';
 import SideImage from "/Login.avif"
 import { Link } from 'react-router';
+import { AuthContext } from '../../../Components/Context/AuthContext';
 
 const Register = () => {
+    const { createEmailAccount } = use(AuthContext)
+
+    const handelEmailRegister = (e) => {
+        e.preventDefault()
+
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+
+        const image_file = new FormData();
+        image_file.append("image", e.target.image_file.files[0]); // use .files[0]
+
+
+        const accountType = e.target.accountType.value;
+        const password = e.target.password.value;
+
+        fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_ImageBB_Creds}`, {
+            method: "POST",
+            body: image_file
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                const userData = {
+                    name: name,
+                    email: email,
+                    image: data.data.url,
+                    accountType: accountType,
+                }
+
+                // createEmailAccount(email, password)
+                //     .then(res => res.json())
+                //     .then(data => console.log("User Data:", data))
+                //     .catch(err => console.log("Register Error:", err))
+
+                createEmailAccount(email, password)
+                    .then(data => {
+                        console.log("User Data:", data.user);
+                    })
+                    .catch(err => {
+                        console.log("Register Error:", err);
+                    });
+
+                console.log(userData)
+            })
+
+
+        // console.log(usserData)
+    }
+
     return (
         <div className="h-[80vh] flex items-center">
             <div className='mx-auto w-fit max-w-[700px] bg-white shadow-xl flex justify-center items-center rounded-xl overflow-hidden'>
@@ -21,7 +71,7 @@ const Register = () => {
                         <div className="card w-full max-w-sm shrink-0 ">
                             <h1 className='text-2xl font-bold theme-text-black'>Hello There!</h1>
                             <div className="card-body">
-                                <form>
+                                <form onSubmit={handelEmailRegister}>
                                     <fieldset className="fieldset gap-2">
                                         <label className="label">Full Name</label>
                                         <input name='name' type="text" className="input" placeholder="Name" required />
@@ -32,7 +82,7 @@ const Register = () => {
                                         <div className="text-left">
                                             {/* <legend className="label">Account Type</legend> */}
                                             <label className="label mb-2">Account Type</label>
-                                            <select defaultValue="buyer" className="select theme-text-black" required>
+                                            <select name='accountType' defaultValue="buyer" className="select theme-text-black" required>
                                                 {/* <option disabled={true}>Account Type</option> */}
                                                 <option>Buyer</option>
                                                 <option>Manager</option>

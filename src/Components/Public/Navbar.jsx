@@ -1,5 +1,5 @@
 import React, { use, useContext, useState } from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import ThemeToggle from './ThemeToggle';
 import Logo from '/Logo2.png';
 import Logo2 from '/Logo3.png';
@@ -9,17 +9,31 @@ const Navbar = () => {
 
     const [theme, setTheme] = useState("light");
 
-    const { userInfo } = useContext(AuthContext);
+    const { userInfo, userSignOut } = use(AuthContext);
 
     console.log(userInfo ? `Logged in as ${userInfo}` : "Not logged in")
 
     const allLiks = <>
+
         <li><NavLink>Home</NavLink></li>
         <li><NavLink>All Product</NavLink></li>
-        <li><NavLink>About Us</NavLink></li>
-        <li><NavLink>Contact</NavLink></li>
-        <li><NavLink className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn" to={"/Login"}>Login</NavLink></li>
-        <li><NavLink className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn" to={"/Register"}>Register</NavLink></li>
+        {
+            !userInfo && <>
+                <li><NavLink>About Us</NavLink></li>
+                <li><NavLink>Contact</NavLink></li>
+                <li><NavLink className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn" to={"/Login"}>Login</NavLink></li>
+                <li><NavLink className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn"  to={"/Register"}>Register</NavLink></li>
+            </>
+        }
+
+        {
+            userInfo && <>
+                <li><NavLink>Dashboard</NavLink></li>
+                <li><Link className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn" onClick={userSignOut}>Log Out</Link></li>
+            </>
+        }
+
+
     </>
 
     return (
