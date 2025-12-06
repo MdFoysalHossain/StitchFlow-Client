@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+
+.theme-btn, .dark .theme-btn{
+    @apply bg-purple-600 text-white
+}
+
+.theme-text, .dark .theme-text{
+    @apply text-purple-600
+}
+.theme-text-black, .dark .theme-text-black{
+    @apply text-black
+}
+.theme-text-white, .dark .theme-text-white{
+    @apply text-white
+}
+
+.theme-div{
+    @apply bg-white;
+}
+
+body label{
+    @apply text-gray-500;
+}
+body input{
+    @apply placeholder:text-gray-500;
+}
+
+
+
+/* Normal mode */
+body {
+  @apply bg-[#f4f4f4] text-gray-900 h-screen;
+}
+
+body a{
+    @apply text-purple-600;
+}
+
+
+/* Dark mode */
+.dark body {
+  @apply bg-[#121212] text-gray-100 h-full h-screen;
+}
+
+.dark body a{
+    @apply text-white;
+}
+
+.dark body{
+    @apply text-white;
+}
+
+
+.dark .theme-div{
+    @apply bg-[#1B1B1B];
+}
