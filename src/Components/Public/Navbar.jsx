@@ -16,7 +16,7 @@ const Navbar = () => {
     const allLiks = <>
 
         <li><NavLink>Home</NavLink></li>
-        <li><NavLink>All Product</NavLink></li>
+        <li><NavLink to={"/AllProducts"}>All Product</NavLink></li>
         {
             !userInfo && <>
                 <li><NavLink>About Us</NavLink></li>

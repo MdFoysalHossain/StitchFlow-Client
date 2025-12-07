@@ -7,6 +7,7 @@ import Register from "../../Pages/Auth/Register/Register";
 import CreatePost from "../../Pages/CreatePost/CreatePost";
 import PrivateRoute from "./PrivateRoute";
 import ManagerRoute from "./ManagerRoute";
+import AllProducts from "../../Pages/AllProducts/AllProducts";
 
 export const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
             {
                 path: "/Register",
                 element: <Register />,
+            },
+            {
+                path: "/AllProducts",
+                element: <AllProducts />,
             },
             {
                 path: "/CreatePost",
