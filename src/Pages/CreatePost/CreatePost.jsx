@@ -1,9 +1,200 @@
 import React from 'react';
+import { ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
+import { use } from 'react';
+import { AuthContext } from '../../Components/Context/AuthContext';
 
 const CreatePost = () => {
+    const {userInfo} = use(AuthContext)
+    const [images, setImages] = useState([]);
+    const [dataPosting, setDataPosting] = useState(false)
+    const handleImageChange = (e) => {
+        const files = Array.from(e.target.files);
+
+        // Limit to max 4 images
+        if (files.length > 4) {
+            alert("You can upload a maximum of 4 images.");
+            return;
+        }
+
+        const imagePreviews = files.map((file) => URL.createObjectURL(file));
+        setImages(imagePreviews);
+    };
+
+
+
+    const uploadImagesToImgBB = async (files) => {
+        const uploadedUrls = [];
+        setDataPosting(true)
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            try {
+                const formData = new FormData();
+                formData.append("image", file);
+
+                const res = await fetch(
+                    `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_ImageBB_Creds}`,
+                    { method: "POST", body: formData }
+                );
+
+                const data = await res.json();
+                console.log("ImgBB response:", data);
+
+                if (data.success && data.data?.url) {
+                    uploadedUrls.push(data.data.url);
+                } else {
+                    console.error(`Failed to upload file: ${file.name}`, data.error?.message);
+                }
+            } catch (err) {
+                console.error(`Error uploading file: ${file.name}`, err);
+            }
+        }
+
+        return uploadedUrls;
+    };
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const files = e.target.images.files;
+        const urls = await uploadImagesToImgBB(Array.from(files));
+        
+        const now = new Date();
+        const type = e.target.type.value;
+        const PerPrice = Number(e.target.PerPrice.value);
+        const Available = Number(e.target.Available.value);
+        const Minimum = Number(e.target.Minimum.value);
+        const CashOnDelivery = e.target.CashOnDelivery.value === "on" ? true : false;
+        const OnlinePay = e.target.OnlinePay.value === "on" ? true : false;
+        const ShowHome = e.target.ShowHome.value === "on" ? true : false;
+        const Title = e.target.Title.value;
+        const description = e.target.description.value;
+
+        const procductDetails = {
+            category: type,
+            perPrice: PerPrice,
+            totalQuanity: Available,
+            availableQuanity: Available,
+            minimumOrder: Minimum,
+            cod: CashOnDelivery,
+            onlinePay: OnlinePay,
+            showHome: ShowHome,
+            title: Title,
+            description: description,
+            images: urls,
+            status: "normal",
+            createdBy: userInfo.email,
+            createdAt: now.toISOString()
+        };
+
+        setDataPosting(false)
+
+        console.log("FINAL PRODUCT:", procductDetails);
+    };
+
+
     return (
-        <div>
-            
+
+        <div className='max-w-[1440px] mx-auto flex items-center flex-col gap-2 mt-20 relative'>
+
+            <div className="flex justify-between w-[900px] items-center">
+                <h1 className='text-2xl font-semibold'>Create Post</h1>
+                <span className='text-sm flex items-center bg-white theme-text-black p-2 rounded-md shadow'>Home <ChevronRight size={16} /> Create Post</span>
+            </div>
+
+            <div className="flex gap-3 flex-wrap">
+                <PhotoProvider>
+                    {images.map((img, index) => (
+                        <PhotoView src={img}>
+                            <img
+                                key={index}
+                                src={img}
+                                alt="preview"
+                                className="w-24 h-24 object-cover rounded-md border"
+                            />
+                        </PhotoView>
+
+                    ))}
+                </PhotoProvider>
+            </div>
+
+            <div className="card-body bg-white w-fit rounded-lg shadow">
+                <form className=' text-left' onSubmit={handleSubmit}>
+                    <div className="flex gap-10">
+                        <fieldset className="fieldset">
+                            <label className="label">Banner Image</label>
+                            <input onChange={handleImageChange} name="images" type="file" multiple accept="image/*" className="file-input theme-text-black font-normal" />
+
+                            <label className="label">Select Category</label>
+                            <select name='type' className="select theme-text-black">
+                                <option disabled selected>Pick a Category</option>
+                                <option>Shirt</option>
+                                <option>Pant</option>
+                                <option>T-Shirt</option>
+                                <option>Hoodie</option>
+                                <option>Jacket</option>
+                                <option>Jeans</option>
+                                <option>Formal Shirt</option>
+                                <option>Sweater</option>
+                            </select>
+
+                            <label className="label">Price Per Item (USD)</label>
+                            <input name='PerPrice' type="number" className="input theme-text-black" placeholder="10$" />
+
+                            <label className="label">Avaiable Quantity</label>
+                            <input name='Available' type="number" className="input theme-text-black" placeholder="1000/5000/10000" />
+
+                            <label className="label">Minimum Order Quantity</label>
+                            <input name='Minimum' type="number" className="input theme-text-black" placeholder="100/500/1000" />
+
+
+                            <label className="label mt-2">Allowed Payment Methode</label>
+                            <div className="flex gap-5">
+                                <div className="">
+                                    <label className="label">
+                                        <input name="CashOnDelivery" type="checkbox" defaultChecked className="checkbox" />
+                                        Cash On Delivery
+                                    </label>
+                                </div>
+                                <div className="">
+                                    <label className="label">
+                                        <input name="OnlinePay" type="checkbox" defaultChecked className="checkbox" />
+                                        Online Pay
+                                    </label>
+                                </div>
+
+                            </div>
+
+                            <div className="">
+                                <label className="label">
+                                    <input name="ShowHome" type="checkbox" defaultChecked className="checkbox" />
+                                    Show on Home "/"
+                                </label>
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset className="fieldset">
+
+                            <label className="label">Title</label>
+                            <input name='Title' type="text" className="input w-[500px] theme-text-black" placeholder="Title Text" />
+
+
+                            <label className="label">Description</label>
+                            <textarea name='description' className="textarea min-h-80 w-[500px] theme-text-black" placeholder="Product Description"></textarea>
+                        </fieldset>
+                    </div>
+                    <button className="btn theme-btn text-left mt-4 px-10">Submit</button>
+                </form>
+            </div>
+
+            <div className={` ${dataPosting ? "visible" : "hidden"} absolute inset-0 rounded-2xl bg-white/30 backdrop-blur-md flex justify-center items-center`}>
+                <span className="loading loading-spinner text-purple-600 scale-200"></span>
+            </div>
+
         </div>
     );
 };

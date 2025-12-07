@@ -4,6 +4,8 @@ import Root from "../../Pages/Root/Root";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Auth/Login/Login";
 import Register from "../../Pages/Auth/Register/Register";
+import CreatePost from "../../Pages/CreatePost/CreatePost";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +24,10 @@ export const router = createBrowserRouter([
             {
                 path: "/Register",
                 element: <Register />,
+            },
+            {
+                path: "/CreatePost",
+                element: <PrivateRoute> <CreatePost /></PrivateRoute>,
             },
         ]
     },

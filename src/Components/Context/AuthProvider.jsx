@@ -7,6 +7,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 const AuthProvider = ({children}) => {
     const provider = new GoogleAuthProvider();
     const [userInfo, setUserInfo] = useState(null)
+    const [dbUserInfo, setDbUserInfo] = useState(null)
     const [loading, setLoading] = useState(true)
     const backServerUrl = "http://localhost:3000";
 
@@ -39,6 +40,10 @@ const AuthProvider = ({children}) => {
                 console.log("Unsubscribe:", user)
                 setUserInfo(user)
                 setLoading(false)
+
+                // fetch(`${backServerUrl}/FindUser?email=${user.email}`)
+                // console.log(`${backServerUrl}/FindUser?email=${user.email}`)
+
             }else{
                 setUserInfo(null)
                 setLoading(false)

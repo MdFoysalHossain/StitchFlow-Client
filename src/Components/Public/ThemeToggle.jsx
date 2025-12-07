@@ -11,13 +11,12 @@ const ThemeToggle = ({theme, setTheme}) => {
         const isDark = e.target.checked;
         const newTheme = isDark ? "dark" : "light"; 
         setTheme(newTheme);
-        console.log(newTheme)
 
         document.documentElement.classList.toggle("dark", newTheme === "dark")
     };
 
     return (
-        <div>
+        <div className='relative'>
             <label className="toggle text-base-content scale-120">
                 <input
                     type="checkbox"
@@ -50,3 +49,4 @@ const ThemeToggle = ({theme, setTheme}) => {
 };
 
 export default ThemeToggle;
+ 
