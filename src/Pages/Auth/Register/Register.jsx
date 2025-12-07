@@ -42,7 +42,7 @@ const Register = () => {
         const email = e.target.email.value;
 
         const image_file = new FormData();
-        image_file.append("image", e.target.image_file.files[0]); // use .files[0]
+        image_file.append("image", e.target.image_file.files[0]);
 
 
         const accountType = e.target.accountType.value;
@@ -77,11 +77,6 @@ const Register = () => {
                     accountType: accountType,
                 }
 
-                // createEmailAccount(email, password)
-                //     .then(res => res.json())
-                //     .then(data => console.log("User Data:", data))
-                //     .catch(err => console.log("Register Error:", err))
-
                 createEmailAccount(email, password)
                     .then(data => {
                         console.log("User Data:", data.user);
@@ -107,7 +102,6 @@ const Register = () => {
             })
 
 
-        // console.log(usserData)
     }
 
     return (

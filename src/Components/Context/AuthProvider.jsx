@@ -41,12 +41,20 @@ const AuthProvider = ({children}) => {
                 setUserInfo(user)
                 setLoading(false)
 
-                // fetch(`${backServerUrl}/FindUser?email=${user.email}`)
-                // console.log(`${backServerUrl}/FindUser?email=${user.email}`)
+                fetch(`${backServerUrl}/FindUser?email=${user.email}`, {
+                    method: "GET"
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("DB User Data Loaded:", data)
+                    setDbUserInfo(data)
+                })
+                
 
             }else{
                 setUserInfo(null)
                 setLoading(false)
+                setDbUserInfo(null)
                 console.log("Unsubscribe: No User")
             }
         })
@@ -58,6 +66,7 @@ const AuthProvider = ({children}) => {
     const allValue = {
         loading,
         userInfo,
+        dbUserInfo,
         createEmailAccount,
         signInEmail,
         userSignOut,
