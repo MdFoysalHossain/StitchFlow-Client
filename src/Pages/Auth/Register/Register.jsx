@@ -1,10 +1,13 @@
 import React, { use, useState } from 'react';
 import SideImage from "/Login.avif"
-import { Link } from 'react-router';
+import { Link, useNavigate, } from 'react-router';
 import { AuthContext } from '../../../Components/Context/AuthContext';
 
 const Register = () => {
     const { createEmailAccount, backServerUrl, googleLogin } = use(AuthContext)
+    const navigate = useNavigate();
+
+    const [error, setError] = useState("");
 
 
     const handleGoogleRegistration = () => {
@@ -24,7 +27,10 @@ const Register = () => {
                     body: JSON.stringify(userData)
                 })
                     .then(res => res.json())
-                    .then(data2 => console.log("Successfully Updated to DB:", data2))
+                    .then(data2 => {
+                        console.log("Successfully Updated to DB:", data2)
+                        navigate("/")
+                    })
                     .catch(err => console.log("Server Store Error:", err))
             })
     }
@@ -41,6 +47,21 @@ const Register = () => {
 
         const accountType = e.target.accountType.value;
         const password = e.target.password.value;
+
+        if (!/[A-Z]/.test(password)) {
+            setError("Password must contain at least one uppercase letter.");
+            return;
+        }
+        if (!/[a-z]/.test(password)) {
+            setError("Password must contain at least one lowercase letter.");
+            return;
+        }
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters long.");
+            return;
+        }
+
+        setError("");
 
         fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_ImageBB_Creds}`, {
             method: "POST",
@@ -71,7 +92,10 @@ const Register = () => {
                             body: JSON.stringify(userData)
                         })
                             .then(res => res.json())
-                            .then(data2 => console.log("Successfully Updated to DB:", data2))
+                            .then(data2 => {
+                                console.log("Successfully Updated to DB:", data2)
+                                navigate("/")
+                            })
                             .catch(err => console.log("Server Store Error:", err))
 
                     })
@@ -127,7 +151,7 @@ const Register = () => {
 
                                         <label className="label">Password</label>
                                         <input name='password' type="password" className="input theme-text-black" placeholder="Password" required />
-
+                                        <p className='text-red-500'>{error}</p>
                                         <button className="btn theme-btn mt-0">Register</button>
                                     </fieldset>
                                 </form>

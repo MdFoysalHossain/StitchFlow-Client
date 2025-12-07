@@ -1,10 +1,11 @@
 import React, { use } from 'react';
 import SideImage from "/Login.avif"
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../../Components/Context/AuthContext';
 
 const Login = () => {
     const { backServerUrl, googleLogin, signInEmail } = use(AuthContext)
+    const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
         googleLogin()
@@ -23,7 +24,10 @@ const Login = () => {
                     body: JSON.stringify(userData)
                 })
                     .then(res => res.json())
-                    .then(data2 => console.log("Successfully Updated to DB:", data2))
+                    .then(data2 => {
+                        console.log("Successfully Updated to DB:", data2)
+                        navigate("/")
+                    })
                     .catch(err => console.log("Server Store Error:", err))
             })
     }
@@ -36,6 +40,7 @@ const Login = () => {
         signInEmail(email, password)
             .then(res => {
                 console.log("User Logged In:", res)
+                navigate("/")
             })
             .catch(err => console.log("Login Error:", err))
     }

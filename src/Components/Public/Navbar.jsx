@@ -29,6 +29,7 @@ const Navbar = () => {
         {
             userInfo && <>
                 <li><NavLink>Dashboard</NavLink></li>
+                <li><NavLink to={"/CreatePost"}>Create Post</NavLink></li>
                 <li><Link className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn" onClick={userSignOut}>Log Out</Link></li>
             </>
         }
