@@ -10,10 +10,11 @@ const PrivateRoute = ({ children }) => {
     if (loading) {
         return <div><span className="loading loading-spinner text-purple-600"></span></div>
     }
-
-    if (!userInfo){
+    
+    if (!loading && !userInfo){
         return navigate("/Login")
     }
+
 
     return children;
 };

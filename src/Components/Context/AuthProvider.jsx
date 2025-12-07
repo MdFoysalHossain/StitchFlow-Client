@@ -9,15 +9,18 @@ const AuthProvider = ({children}) => {
     const [userInfo, setUserInfo] = useState(null)
     const [dbUserInfo, setDbUserInfo] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [loadingDbInfo, setLoadingDbInfo] = useState(true)
     const backServerUrl = "http://localhost:3000";
 
     const createEmailAccount = (email, password) => {
         setLoading(false)
+        setLoadingDbInfo(false)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const signInEmail = (email, password) => {
         setLoading(false)
+        setLoadingDbInfo(false)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -27,6 +30,7 @@ const AuthProvider = ({children}) => {
         return signOut(auth).then(res => {
             setUserInfo(null)
             setLoading(false)
+            setLoadingDbInfo(false)
         })
     }
 
@@ -40,6 +44,7 @@ const AuthProvider = ({children}) => {
                 console.log("Unsubscribe:", user)
                 setUserInfo(user)
                 setLoading(false)
+                
 
                 fetch(`${backServerUrl}/FindUser?email=${user.email}`, {
                     method: "GET"
@@ -48,12 +53,14 @@ const AuthProvider = ({children}) => {
                 .then(data => {
                     console.log("DB User Data Loaded:", data)
                     setDbUserInfo(data)
+                    setLoadingDbInfo(false)
                 })
                 
 
             }else{
                 setUserInfo(null)
                 setLoading(false)
+                setLoadingDbInfo(false)
                 setDbUserInfo(null)
                 console.log("Unsubscribe: No User")
             }
@@ -65,6 +72,7 @@ const AuthProvider = ({children}) => {
 
     const allValue = {
         loading,
+        loadingDbInfo,
         userInfo,
         dbUserInfo,
         createEmailAccount,

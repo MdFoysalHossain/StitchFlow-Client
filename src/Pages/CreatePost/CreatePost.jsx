@@ -5,9 +5,11 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { use } from 'react';
 import { AuthContext } from '../../Components/Context/AuthContext';
+import Swal from 'sweetalert2'
+// or via CommonJS
 
 const CreatePost = () => {
-    const {userInfo,backServerUrl} = use(AuthContext)
+    const { userInfo, dbUserInfo, backServerUrl } = use(AuthContext)
     const [images, setImages] = useState([]);
     const [dataPosting, setDataPosting] = useState(false)
     const handleImageChange = (e) => {
@@ -59,17 +61,45 @@ const CreatePost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (dbUserInfo.status !== "normal") {
+            Swal.fire({
+                icon: "error",
+                title: "Account Pending Error",
+                text: "Your account is not approved to create post, wait for Admin to approve it.",
+            });
+            return;
+        }
+
+        // 🔥 WAIT for user choice
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, submit it!"
+        });
+
+        if (!result.isConfirmed) {
+            console.log("User cancelled");
+            return;
+        }
+
+
+
         const files = e.target.images.files;
         const urls = await uploadImagesToImgBB(Array.from(files));
-        
+
         const now = new Date();
         const type = e.target.type.value;
         const PerPrice = Number(e.target.PerPrice.value);
         const Available = Number(e.target.Available.value);
         const Minimum = Number(e.target.Minimum.value);
-        const CashOnDelivery = e.target.CashOnDelivery.value === "on" ? true : false;
-        const OnlinePay = e.target.OnlinePay.value === "on" ? true : false;
-        const ShowHome = e.target.ShowHome.value === "on" ? true : false;
+        const CashOnDelivery = e.target.CashOnDelivery.checked;
+        const OnlinePay = e.target.OnlinePay.checked;
+        const ShowHome = e.target.ShowHome.checked;
         const Title = e.target.Title.value;
         const description = e.target.description.value;
 
@@ -83,32 +113,40 @@ const CreatePost = () => {
             onlinePay: OnlinePay,
             showHome: ShowHome,
             title: Title,
-            description: description,
+            description,
             images: urls,
             status: "normal",
             createdBy: userInfo.email,
             createdAt: now.toISOString()
         };
 
-        fetch(`${backServerUrl}/CreatePost`, {
-            method: "POST",
-            headers: {"content-type": "application/json"},
-            body: JSON.stringify(procductDetails)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log("Data Posted:", data)
-        })
-        .catch(err => {
-            console.log("Got Error While Posting:", err)
-        })
+        // POST to backend
+        try {
+            const res = await fetch(`${backServerUrl}/CreatePost`, {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(procductDetails)
+            });
 
-        setDataPosting(false)
+            const data = await res.json();
+            console.log("Data Posted:", data);
+            // 🟢 User confirmed → continue
+            Swal.fire({
+                title: "Submitted!",
+                text: "Posting product...",
+                icon: "success"
+            });
+            setImages([])
+            e.target.reset();
 
+        } catch (err) {
+            console.log("Got Error While Posting:", err);
+        }
+
+        setDataPosting(false);
         console.log("FINAL PRODUCT:", procductDetails);
-
-
     };
+
 
 
     return (
@@ -140,30 +178,31 @@ const CreatePost = () => {
                 <form className=' text-left' onSubmit={handleSubmit}>
                     <div className="flex gap-10">
                         <fieldset className="fieldset">
-                            <label className="label">Banner Image</label>
-                            <input onChange={handleImageChange} name="images" type="file" multiple accept="image/*" className="file-input theme-text-black font-normal" />
+                            <label className="label">Banner Image*</label>
+                            <input required onChange={handleImageChange} name="images" type="file" multiple accept="image/*" className="file-input theme-text-black font-normal" />
 
-                            <label className="label">Select Category</label>
-                            <select name='type' className="select theme-text-black">
-                                <option disabled selected>Pick a Category</option>
-                                <option>Shirt</option>
-                                <option>Pant</option>
-                                <option>T-Shirt</option>
-                                <option>Hoodie</option>
-                                <option>Jacket</option>
-                                <option>Jeans</option>
-                                <option>Formal Shirt</option>
-                                <option>Sweater</option>
+                            <label className="label">Select Category*</label>
+                            <select name="type" className="select theme-text-black" required defaultValue="">
+                                <option value="" disabled>Pick a Category</option>
+                                <option value="Shirt">Shirt</option>
+                                <option value="Pant">Pant</option>
+                                <option value="T-Shirt">T-Shirt</option>
+                                <option value="Hoodie">Hoodie</option>
+                                <option value="Jacket">Jacket</option>
+                                <option value="Jeans">Jeans</option>
+                                <option value="Formal Shirt">Formal Shirt</option>
+                                <option value="Sweater">Sweater</option>
                             </select>
 
-                            <label className="label">Price Per Item (USD)</label>
-                            <input name='PerPrice' type="number" className="input theme-text-black" placeholder="10$" />
 
-                            <label className="label">Avaiable Quantity</label>
-                            <input name='Available' type="number" className="input theme-text-black" placeholder="1000/5000/10000" />
+                            <label className="label">Price Per Item (USD)*</label>
+                            <input required name='PerPrice' type="number" className="input theme-text-black" placeholder="10$" />
 
-                            <label className="label">Minimum Order Quantity</label>
-                            <input name='Minimum' type="number" className="input theme-text-black" placeholder="100/500/1000" />
+                            <label className="label">Avaiable Quantity*</label>
+                            <input required name='Available' type="number" className="input theme-text-black" placeholder="1000/5000/10000" />
+
+                            <label className="label">Minimum Order Quantity*</label>
+                            <input required name='Minimum' type="number" className="input theme-text-black" placeholder="100/500/1000" />
 
 
                             <label className="label mt-2">Allowed Payment Methode</label>
@@ -194,12 +233,12 @@ const CreatePost = () => {
 
                         <fieldset className="fieldset">
 
-                            <label className="label">Title</label>
-                            <input name='Title' type="text" className="input w-[500px] theme-text-black" placeholder="Title Text" />
+                            <label className="label">Title*</label>
+                            <input required name='Title' type="text" className="input w-[500px] theme-text-black" placeholder="Title Text" />
 
 
-                            <label className="label">Description</label>
-                            <textarea name='description' className="textarea min-h-80 w-[500px] theme-text-black" placeholder="Product Description"></textarea>
+                            <label className="label">Description*</label>
+                            <textarea required name='description' className="textarea min-h-80 w-[500px] theme-text-black" placeholder="Product Description"></textarea>
                         </fieldset>
                     </div>
                     <button className="btn theme-btn text-left mt-4 px-10">Submit</button>

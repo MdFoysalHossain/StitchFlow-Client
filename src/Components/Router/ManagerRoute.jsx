@@ -1,12 +1,13 @@
 import React from 'react';
 import { use } from 'react';
 import { AuthContext } from '../Context/AuthContext';
-import { Navigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const ManagerRoute = ({ children }) => {
-    const { loading, dbUserInfo, userInfo } = use(AuthContext);
+    const { loading, dbUserInfo, userInfo, loadingDbInfo } = use(AuthContext);
+    const navigation = useNavigate()
 
-    if (loading) {
+    if (loading || loadingDbInfo) {
         return (
             <div>
                 <span className="loading loading-spinner text-purple-600"></span>
@@ -15,11 +16,11 @@ const ManagerRoute = ({ children }) => {
     }
 
     if (!userInfo || !dbUserInfo) {
-        return <Navigate to="/Login" replace />;
+        return navigation("/Login")
     }
 
     if (dbUserInfo.accountType !== "Manager" && dbUserInfo.accountType !== "Admin") {
-        return <Navigate to="/" replace />;
+        return navigation("/");
     }
 
     return children;
