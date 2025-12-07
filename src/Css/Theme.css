@@ -9,7 +9,7 @@
     @apply text-purple-600
 }
 .theme-text-black, .dark .theme-text-black{
-    @apply text-black
+    @apply text-black 
 }
 .theme-text-white, .dark .theme-text-white{
     @apply text-white

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { auth } from '../../Firebase/firebase.init';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { GoogleAuthProvider } from "firebase/auth";
 
 const AuthProvider = ({children}) => {
+    const provider = new GoogleAuthProvider();
     const [userInfo, setUserInfo] = useState(null)
     const [loading, setLoading] = useState(true)
+    const backServerUrl = "http://localhost:3000";
 
     const createEmailAccount = (email, password) => {
         setLoading(false)
@@ -24,6 +27,10 @@ const AuthProvider = ({children}) => {
             setUserInfo(null)
             setLoading(false)
         })
+    }
+
+    const googleLogin = () => {
+        return signInWithPopup(auth, provider)
     }
 
     useEffect(() => {
@@ -48,7 +55,9 @@ const AuthProvider = ({children}) => {
         userInfo,
         createEmailAccount,
         signInEmail,
-        userSignOut
+        userSignOut,
+        googleLogin,
+        backServerUrl
     }
 
     return (
