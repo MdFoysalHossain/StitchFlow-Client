@@ -6,6 +6,7 @@ import Login from "../../Pages/Auth/Login/Login";
 import Register from "../../Pages/Auth/Register/Register";
 import CreatePost from "../../Pages/CreatePost/CreatePost";
 import PrivateRoute from "./PrivateRoute";
+import ManagerRoute from "./ManagerRoute";
 
 export const router = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/CreatePost",
-                element: <PrivateRoute> <CreatePost /></PrivateRoute>,
+                element: <ManagerRoute> <CreatePost /></ManagerRoute>,
             },
         ]
     },

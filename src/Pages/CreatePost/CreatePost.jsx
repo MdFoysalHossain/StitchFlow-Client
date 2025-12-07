@@ -7,7 +7,7 @@ import { use } from 'react';
 import { AuthContext } from '../../Components/Context/AuthContext';
 
 const CreatePost = () => {
-    const {userInfo} = use(AuthContext)
+    const {userInfo,backServerUrl} = use(AuthContext)
     const [images, setImages] = useState([]);
     const [dataPosting, setDataPosting] = useState(false)
     const handleImageChange = (e) => {
@@ -90,9 +90,24 @@ const CreatePost = () => {
             createdAt: now.toISOString()
         };
 
+        fetch(`${backServerUrl}/CreatePost`, {
+            method: "POST",
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(procductDetails)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("Data Posted:", data)
+        })
+        .catch(err => {
+            console.log("Got Error While Posting:", err)
+        })
+
         setDataPosting(false)
 
         console.log("FINAL PRODUCT:", procductDetails);
+
+
     };
 
 
