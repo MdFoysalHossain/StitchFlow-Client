@@ -224,7 +224,7 @@ const CreatePost = () => {
 
                             <div className="">
                                 <label className="label">
-                                    <input name="ShowHome" type="checkbox" defaultChecked className="checkbox" />
+                                    <input name="ShowHome" type="checkbox" defaultChecked={false} className="checkbox" />
                                     Show on Home "/"
                                 </label>
                             </div>

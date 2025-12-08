@@ -18,3 +18,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+pre{
+  font-family: "Outfit", sans-serif;
+}

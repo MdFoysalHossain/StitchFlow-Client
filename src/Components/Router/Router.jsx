@@ -8,6 +8,7 @@ import CreatePost from "../../Pages/CreatePost/CreatePost";
 import PrivateRoute from "./PrivateRoute";
 import ManagerRoute from "./ManagerRoute";
 import AllProducts from "../../Pages/AllProducts/AllProducts";
+import SingleProduct from "../../Pages/SingleProduct/SingleProduct";
 
 export const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
             {
                 path: "/CreatePost",
                 element: <ManagerRoute> <CreatePost /></ManagerRoute>,
+            },
+            {
+                path: "/SingleProduct/:id",
+                element: <PrivateRoute> <SingleProduct /></PrivateRoute>,
             },
         ]
     },
