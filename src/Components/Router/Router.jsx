@@ -10,6 +10,8 @@ import ManagerRoute from "./ManagerRoute";
 import AllProducts from "../../Pages/AllProducts/AllProducts";
 import SingleProduct from "../../Pages/SingleProduct/SingleProduct";
 import OrderPage from "../../Pages/OrderPage/OrderPage";
+import PaymentSuccess from "../../Pages/Payment/PaymentSuccess";
+import PaymentFailed from "../../Pages/Payment/PaymentFailed";
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
             {
                 path: "/OrderProduct/:id",
                 element: <PrivateRoute> <OrderPage /></PrivateRoute>,
+            },
+            {
+                path: "/Payment/Payment-successful",
+                element: <PaymentSuccess />,
+            },
+            {
+                path: "/Payment/Payment-canceled",
+                element: <PaymentFailed />,
             },
         ]
     },

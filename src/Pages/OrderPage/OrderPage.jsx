@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../../Components/Context/AuthContext';
 import { ChevronRight } from 'lucide-react';
+import Swal from 'sweetalert2'
 
 const OrderPage = () => {
     const { id } = useParams();
@@ -45,12 +46,97 @@ const OrderPage = () => {
         console.log("Total quantity:", quantity, "\nPer Price:", productData?.perPrice, "\nTotal:", total, "\nTotal Counted", totalCounted)
     }
 
-    const handleCodChange = (e) => {
+    const handleCodChange = () => {
         setPaymentType("cod")
     }
 
-    const handleOnlinePay = (e) => {
+    const handleOnlinePay = () => {
         setPaymentType("stripe")
+    }
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+
+        const productId = id;
+        const productTitle = productData?.title;
+        const productPerPrice = productData?.perPrice;
+        const productOrderQuantity = minOrder;
+        const productTotalPrice = totalCounted;
+
+        const userFirstName = e.target.firstName.value;
+        const userLastName = e.target.lastName.value;
+        const userEmail = dbUserInfo?.email;
+        const userContact = e.target.contactNumber.value;
+        const userAddress = e.target.address.value;
+        const userNote = e.target.note.valye;
+
+        const allData = {
+            productId: productId,
+            title: productTitle,
+            perPrice: productPerPrice,
+            total: productTotalPrice,
+            minimumOrder: productOrderQuantity,
+            firstName: userFirstName,
+            lastName: userLastName,
+            email: userEmail,
+            contact: userContact,
+            address: userAddress,
+            note: userNote
+        }
+        console.log(allData)
+
+        if (!paymentType) {
+            Swal.fire({
+                icon: "error",
+                title: "Payment Methode",
+                text: "Please select a payment methode to place the order.",
+            });
+            return;
+        }
+
+        // 🔥 WAIT for user choice
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Place Order!"
+        });
+
+        if (!result.isConfirmed) {
+            console.log("User cancelled");
+            return;
+        }
+
+
+
+
+        if (paymentType === "stripe") {
+            console.log("Stripe Pay Started");
+
+            fetch(`${backServerUrl}/create-checkout-session`, {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(allData)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.url) {
+                        console.log(data.url)
+                        window.location.href = data.url;
+                    } else {
+                        console.error("Stripe session creation failed:", data);
+                    }
+                })
+                .catch(err => {
+                    console.error("Error:", err);
+                });
+        }
+
     }
 
     return (
@@ -61,7 +147,7 @@ const OrderPage = () => {
                 <span className='text-sm flex items-center bg-white theme-text-black p-2 rounded-md shadow'>Home <ChevronRight size={16} /> Product <ChevronRight size={16} /> Order</span>
             </div>
             <div className="card-body bg-white w-fit rounded-lg shadow">
-                <form className=' text-left w-[860px]'>
+                <form onSubmit={handleSubmit} className=' text-left w-[860px]'>
                     <div className="flex justify-between gap-10">
                         <fieldset className="fieldset">
                             <label className="label">Product Id</label>
@@ -124,11 +210,11 @@ const OrderPage = () => {
                             <div className="flex gap-5">
                                 <div className="">
                                     <label className="label">First Name</label>
-                                    <input required name='prodcutId' type="text" className="input theme-text-black" placeholder='First Name' />
+                                    <input required name='firstName' type="text" className="input theme-text-black" placeholder='First Name' />
                                 </div>
                                 <div className="">
                                     <label className="label">Last Name</label>
-                                    <input required name='prodcutId' type="text" className="input theme-text-black" placeholder="Last Name" />
+                                    <input required name='lastName' type="text" className="input theme-text-black" placeholder="Last Name" />
                                 </div>
 
                             </div>
@@ -136,13 +222,13 @@ const OrderPage = () => {
                             <input required name='pricePerProduct' type="text" readOnly className="input w-full theme-text-black" defaultValue={dbUserInfo?.email} />
 
                             <label className="label">Contact Number</label>
-                            <input required name='pricePerProduct' type="number" className="input w-full theme-text-black" placeholder='+8801912345678' />
+                            <input required name='contactNumber' type="number" className="input w-full theme-text-black" placeholder='+8801912345678' />
 
                             <label className="label">Delivery Address</label>
-                            <input required name='pricePerProduct' type="text" className="input  w-full theme-text-black" placeholder='City, Road No, House No' />
+                            <input required name='address' type="text" className="input  w-full theme-text-black" placeholder='City, Road No, House No' />
 
                             <label className="label">Additional Notes / Instructions</label>
-                            <textarea className="textarea w-full min-h-[110px]" placeholder="Additional Notes / Instructions"></textarea>
+                            <textarea name='note' className="textarea w-full min-h-[110px]" placeholder="Additional Notes / Instructions"></textarea>
 
 
                         </fieldset>
