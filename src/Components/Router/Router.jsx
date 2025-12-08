@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import ManagerRoute from "./ManagerRoute";
 import AllProducts from "../../Pages/AllProducts/AllProducts";
 import SingleProduct from "../../Pages/SingleProduct/SingleProduct";
+import OrderPage from "../../Pages/OrderPage/OrderPage";
 
 export const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
             {
                 path: "/SingleProduct/:id",
                 element: <PrivateRoute> <SingleProduct /></PrivateRoute>,
+            },
+            {
+                path: "/OrderProduct/:id",
+                element: <PrivateRoute> <OrderPage /></PrivateRoute>,
             },
         ]
     },

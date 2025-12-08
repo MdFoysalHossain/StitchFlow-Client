@@ -114,7 +114,7 @@ const SingleProduct = () => {
                             </div>
                         </div>
 
-                        <Link
+                        <Link to={`/OrderProduct/${id}`}
                             className="theme-btn text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition-all duration-200"
                         >
                             Order Now
