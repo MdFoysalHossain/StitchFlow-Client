@@ -1,4 +1,4 @@
-import React, { use, useContext, useState } from 'react';
+import React, { use, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import ThemeToggle from './ThemeToggle';
 import Logo from '/Logo2.png';
@@ -9,7 +9,7 @@ const Navbar = () => {
 
     const [theme, setTheme] = useState("light");
 
-    const { userInfo, userSignOut } = use(AuthContext);
+    const { userInfo, userSignOut, dbUserInfo  } = use(AuthContext);
 
     console.log(userInfo ? `Logged in as ${userInfo}` : "Not logged in")
 
@@ -28,8 +28,7 @@ const Navbar = () => {
 
         {
             userInfo && <>
-                <li><NavLink>Dashboard</NavLink></li>
-                <li><NavLink to={"/CreatePost"}>Create Post</NavLink></li>
+                <li><NavLink to={dbUserInfo?.accountType === "Manager" ? "/Dashboard/Manager" : ""}>Dashboard</NavLink></li>
                 <li><Link className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn" onClick={userSignOut}>Log Out</Link></li>
             </>
         }
@@ -61,9 +60,6 @@ const Navbar = () => {
                     <ThemeToggle theme={theme} setTheme={setTheme} />
                 </ul>
             </div>
-            {/* <div className="navbar-end">
-                <a className="btn">Button</a>
-            </div> */}
         </div>
     );
 };
