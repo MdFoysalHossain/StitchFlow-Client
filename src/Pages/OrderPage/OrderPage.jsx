@@ -57,10 +57,23 @@ const OrderPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        function getRandomText(length) {
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        const randomText = getRandomText(15);
+
+
 
 
         const productId = id;
         const productTitle = productData?.title;
+        const sellerEmail = productData?.createdBy;
         const productPerPrice = productData?.perPrice;
         const productOrderQuantity = minOrder;
         const productTotalPrice = totalCounted;
@@ -71,6 +84,7 @@ const OrderPage = () => {
         const userContact = e.target.contactNumber.value;
         const userAddress = e.target.address.value;
         const userNote = e.target.note.valye;
+        const paymentStatus = paymentType === "cod" ? "Cash On Delivery" : "Paid"
 
         const allData = {
             productId: productId,
@@ -83,7 +97,11 @@ const OrderPage = () => {
             email: userEmail,
             contact: userContact,
             address: userAddress,
-            note: userNote
+            note: userNote,
+            checkPrevOrder: randomText,
+            paymentStatus: paymentStatus,
+            status: "pending",
+            sellerEmail: sellerEmail
         }
         console.log(allData)
 

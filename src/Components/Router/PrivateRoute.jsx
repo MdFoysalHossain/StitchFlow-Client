@@ -1,7 +1,7 @@
 import React from 'react';
 import { use } from 'react';
 import { AuthContext } from '../Context/AuthContext';
-import { useNavigate } from 'react-router';
+import { Navigate, useNavigate } from 'react-router';
 
 const PrivateRoute = ({ children }) => {
     const { loading, userInfo } = use(AuthContext)
@@ -11,8 +11,9 @@ const PrivateRoute = ({ children }) => {
         return <div><span className="loading loading-spinner text-purple-600"></span></div>
     }
     
-    if (!loading && !userInfo){
-        return navigate("/Login")
+    if (!userInfo){
+        return <Navigate to={"/Login"}></Navigate>
+        // return navigate("/Login")
     }
 
 

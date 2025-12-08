@@ -1,7 +1,7 @@
 import React from 'react';
 import { use } from 'react';
 import { AuthContext } from '../Context/AuthContext';
-import { useNavigate } from 'react-router';
+import { Navigate, useNavigate } from 'react-router';
 
 const ManagerRoute = ({ children }) => {
     const { loading, dbUserInfo, userInfo, loadingDbInfo } = use(AuthContext);
@@ -16,11 +16,11 @@ const ManagerRoute = ({ children }) => {
     }
 
     if (!userInfo || !dbUserInfo) {
-        return navigation("/Login")
+        return <Navigate to={"/Login"}></Navigate>
     }
 
     if (dbUserInfo.accountType !== "Manager" && dbUserInfo.accountType !== "Admin") {
-        return navigation("/");
+        return <Navigate to={"/"}></Navigate>
     }
 
     return children;
