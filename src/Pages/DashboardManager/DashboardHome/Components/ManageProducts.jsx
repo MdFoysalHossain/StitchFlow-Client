@@ -3,6 +3,7 @@ import { use } from 'react';
 import { useEffect } from 'react';
 import { AuthContext } from '../../../../Components/Context/AuthContext';
 import { useState } from 'react';
+import SingleManageProduct from './SingleManageProduct';
 
 const ManageProducts = () => {
 
@@ -13,7 +14,7 @@ const ManageProducts = () => {
 
 
     useEffect(() => {
-        fetch(`${backServerUrl}/GetProductsStats?email=${userInfo?.email}&limit=8`, {
+        fetch(`${backServerUrl}/GetProductsStats?email=${userInfo?.email}&limit=16`, {
             method: "GET"
         }).then(res => res.json()).then(data => {
             setProducts(data)
@@ -30,8 +31,30 @@ const ManageProducts = () => {
     }
 
     return (
-        <div>
-            This is the Product
+        <div className='mt-5'>
+
+            <h2 className='text-left mb-5 font-semibold text-2xl'>All Products ({products.length})</h2>
+
+            <table className="table w-full theme-div-white text-black">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price Per Product</th>
+                        <th>Minimum Order</th>
+                        <th>Available Qualtity</th>
+                        <th>Payment Mode</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                        {
+                            products.map((item, index) => <SingleManageProduct key={index} item={item} />)
+                        }
+                </tbody>
+
+            </table>
         </div>
     );
 };

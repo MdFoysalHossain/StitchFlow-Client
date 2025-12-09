@@ -16,6 +16,7 @@ import DashboardRoot from "../../Pages/Root/DashboardManagerRoot";
 import DashboardManagerRoot from "../../Pages/Root/DashboardManagerRoot";
 import DashboardHome from "../../Pages/DashboardManager/DashboardHome/DashboardHome";
 import ManageProducts from "../../Pages/DashboardManager/DashboardHome/Components/ManageProducts";
+import UpdateProduct from "../../Pages/DashboardManager/UpdateProduct/UpdateProduct";
 
 export const router = createBrowserRouter([
     {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
             {
                 path: "/Dashboard/Manager/ManagePoducts",
                 element: <PrivateRoute><ManagerRoute> <ManageProducts /></ManagerRoute></PrivateRoute>,
+            },
+            {
+                path: "/Dashboard/Manager/UpdateProduct/:id",
+                element: <PrivateRoute><ManagerRoute> <UpdateProduct /></ManagerRoute></PrivateRoute>,
             }
         ]
     },

@@ -9,6 +9,13 @@
   @apply bg-purple-600 text-white;
 }
 
+.white-text{
+  color: white !important;
+}
+.black-text{
+  color: black !important;
+}
+
 .theme-text,
 .dark .theme-text {
   @apply text-purple-600;
