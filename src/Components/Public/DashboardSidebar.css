@@ -6,3 +6,24 @@
     /* color: #272727; */
     
 }
+
+.dark .DasbhoardLinks a.active{
+    /* @apply text-purple-600 */
+    @apply bg-[#272727]  font-semibold;
+    /* color: #272727; */
+    
+}
+
+body .theme-body-dashboard{
+     @apply bg-[#f4f4f4]
+}
+
+body .theme-body-dashboard-nav{
+     @apply bg-[#f1f1f1]
+}
+body .dark .theme-body-dashboard-nav{
+     @apply bg-[#292828]
+}
+body .dark .theme-body-dashboard{
+     @apply bg-[#1B1B1B]
+}
