@@ -8,10 +8,12 @@ const PrivateRoute = ({ children }) => {
     const navigate = useNavigate()
 
     if (loading) {
-        return <div><span className="loading loading-spinner text-purple-600"></span></div>
+        return <div className='w-full h-[60vh] flex justify-center items-center'>
+            <span className="loading loading-spinner text-purple-600"></span>
+        </div>
     }
-    
-    if (!userInfo){
+
+    if (!userInfo) {
         return <Navigate to={"/Login"}></Navigate>
         // return navigate("/Login")
     }

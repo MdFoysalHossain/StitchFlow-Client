@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DashboardStats from './Components/DashboardStats';
+import RecentPosts from './Components/RecentPosts';
 
 const DashboardHome = () => {
+    const [allProducts, setAllProducts] = useState([])
+
     return (
-        <div>
-            <DashboardStats/>
-            
+        <div className='max-w-[1440px] mx-auto'>
+            <DashboardStats setAllProducts={setAllProducts}/>
+
+            <RecentPosts allProducts={allProducts}/>
         </div>
     );
 };
