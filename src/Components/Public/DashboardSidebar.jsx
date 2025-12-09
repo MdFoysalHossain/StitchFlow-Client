@@ -49,6 +49,11 @@ const DashboardSidebar = () => {
                         </NavLink>
                     </li>
                     <li>
+                        <NavLink to="/AllProducts" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
+                            My Profile
+                        </NavLink>
+                    </li>
+                    <li>
                         <button
                             className="btn shadow-none border border-purple-600 bg-purple-600 text-white w-full mt-2"
                             onClick={userSignOut}
