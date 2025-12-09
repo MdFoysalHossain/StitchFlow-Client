@@ -10,6 +10,7 @@ const AuthProvider = ({children}) => {
     const [dbUserInfo, setDbUserInfo] = useState(null)
     const [loading, setLoading] = useState(true)
     const [loadingDbInfo, setLoadingDbInfo] = useState(true)
+    const [theme, setTheme] = useState("light");
     const backServerUrl = "http://localhost:3000";
 
     const createEmailAccount = (email, password) => {
@@ -79,7 +80,9 @@ const AuthProvider = ({children}) => {
         signInEmail,
         userSignOut,
         googleLogin,
-        backServerUrl
+        backServerUrl,
+        theme,
+        setTheme
     }
 
     return (

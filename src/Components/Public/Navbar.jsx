@@ -7,7 +7,8 @@ import { AuthContext } from '../Context/AuthContext';
 
 const Navbar = () => {
 
-    const [theme, setTheme] = useState("light");
+    const {theme, setTheme} = use(AuthContext)
+    // const [theme, setTheme] = useState("light");
 
     const { userInfo, userSignOut, dbUserInfo  } = use(AuthContext);
 

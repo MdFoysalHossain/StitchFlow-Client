@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+.dark .DasbhoardLinks a:hover{
+    /* @apply text-purple-600 */
+    @apply bg-[#272727];
+    /* color: #272727; */
+    
+}

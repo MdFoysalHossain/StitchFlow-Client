@@ -1,12 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, use } from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import ThemeToggle from './ThemeToggle';
 import Logo from '/Logo2.png';
 import Logo2 from '/Logo3.png';
 import { AuthContext } from '../Context/AuthContext';
+import "./DashboardSidebar.css"
 
 const DashboardSidebar = () => {
-    const [theme, setTheme] = useState("light");
+    // const [theme, setTheme] = useState("light");
+    const {theme, setTheme} = use(AuthContext)
     const [isOpen, setIsOpen] = useState(true); // sidebar toggle for small screens
 
     const { userInfo, userSignOut } = useContext(AuthContext);
@@ -120,7 +122,7 @@ const DashboardSidebar = () => {
                 </div>
 
                 {/* Menu Links */}
-                <ul className="flex-1 p-4 space-y-2 text-gray-800 dark:text-gray-100">{links}</ul>
+                <ul className="flex-1 p-4 space-y-2 text-gray-800 dark:text-gray-100 DasbhoardLinks">{links}</ul>
 
                 {/* Theme Toggle */}
                 <div className="p-4 border-t border-gray-200 dark:border-gray-700">
