@@ -8,7 +8,7 @@ import "./DashboardSidebar.css"
 
 const DashboardSidebar = () => {
     const { theme, setTheme } = use(AuthContext)
-    const [isOpen, setIsOpen] = useState(false); 
+    const [isOpen, setIsOpen] = useState(false);
 
     const { userInfo, userSignOut } = useContext(AuthContext);
 
@@ -34,7 +34,7 @@ const DashboardSidebar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/AllProducts" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
+                        <NavLink to="/Dashboard/Manager/ManagePoducts" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
                             Manage Products
                         </NavLink>
                     </li>
@@ -67,17 +67,20 @@ const DashboardSidebar = () => {
     );
 
     return (
-
         <div className="flex h-screen">
+
+            {/* PC SCREEN */}
+
             <div
                 className={`
-                    theme-body-dashboard lg:border-r lg:border-dashed shadow-lg w-64 flex flex-col fixed top-0 left-0 h-full
+                    flex
+                    theme-body-dashboard lg:border-r lg:border-dashed shadow-lg w-64 flex-col fixed top-0 left-0 h-full
                     transition-transform duration-300 z-50
                     ${isOpen ? "translate-x-0" : "-translate-x-64"}
-                    md:translate-x-0
+                    lg:translate-x-0
                 `}
             >
-                <div className="flex  items-center justify-center py-4 border-b  dark:border-gray-700 theme-div">
+                <div className="flex items-center justify-center py-4 border-b dark:border-gray-700 theme-div">
                     <img src={theme === "light" ? Logo : Logo2} alt="Logo" className="w-10 h-10 mr-2" />
                     <span className="text-xl font-bold theme-text">StitchFlow</span>
                     <button
@@ -108,6 +111,9 @@ const DashboardSidebar = () => {
                 </div>
             </div>
 
+
+
+
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-black opacity-50 z-40 md:hidden"
@@ -115,8 +121,9 @@ const DashboardSidebar = () => {
                 ></div>
             )}
 
-            <div className="flex-1 theme-div  ml-0 md:ml-64  p-4 overflow-auto h-screen">
+            <div className="flex-1 theme-div  ml-0 lg:ml-64  p-4 overflow-auto h-screen">
 
+                {/* MOBILE SCREEN */}
                 <div className="border-b dark:border-gray-700   fixed lg:hidden -m-[5px] top-0 py-3 px-2 pt-4 left-1 z-1 w-full theme-div flex justify-left items-center">
 
 

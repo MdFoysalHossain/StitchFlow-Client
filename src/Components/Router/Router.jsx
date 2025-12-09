@@ -15,6 +15,7 @@ import PaymentFailed from "../../Pages/Payment/PaymentFailed";
 import DashboardRoot from "../../Pages/Root/DashboardManagerRoot";
 import DashboardManagerRoot from "../../Pages/Root/DashboardManagerRoot";
 import DashboardHome from "../../Pages/DashboardManager/DashboardHome/DashboardHome";
+import ManageProducts from "../../Pages/DashboardManager/DashboardHome/Components/ManageProducts";
 
 export const router = createBrowserRouter([
     {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
             {
                 path: "/Dashboard/Manager",
                 element: <PrivateRoute><ManagerRoute> <DashboardHome /></ManagerRoute></PrivateRoute>,
+            },
+            {
+                path: "/Dashboard/Manager/ManagePoducts",
+                element: <PrivateRoute><ManagerRoute> <ManageProducts /></ManagerRoute></PrivateRoute>,
             }
         ]
     },
