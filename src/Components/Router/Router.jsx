@@ -17,6 +17,7 @@ import DashboardManagerRoot from "../../Pages/Root/DashboardManagerRoot";
 import DashboardHome from "../../Pages/DashboardManager/DashboardHome/DashboardHome";
 import ManageProducts from "../../Pages/DashboardManager/DashboardHome/Components/ManageProducts";
 import UpdateProduct from "../../Pages/DashboardManager/UpdateProduct/UpdateProduct";
+import PendingApprove from "../../Pages/DashboardManager/PendingApprove/PendingApprove";
 
 export const router = createBrowserRouter([
     {
@@ -81,7 +82,11 @@ export const router = createBrowserRouter([
             {
                 path: "/Dashboard/Manager/UpdateProduct/:id",
                 element: <PrivateRoute><ManagerRoute> <UpdateProduct /></ManagerRoute></PrivateRoute>,
-            }
+            },
+            {
+                path: "/Dashboard/Manager/PendingApprove",
+                element: <PrivateRoute><ManagerRoute> <PendingApprove /></ManagerRoute></PrivateRoute>,
+            },
         ]
     },
 ]);

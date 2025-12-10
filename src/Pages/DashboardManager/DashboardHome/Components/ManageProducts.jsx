@@ -50,7 +50,7 @@ const ManageProducts = () => {
 
                 <tbody>
                         {
-                            products.map((item, index) => <SingleManageProduct key={index} item={item} />)
+                            products.map((item, index) => <SingleManageProduct key={index} item={item} products={products} setProducts={setProducts} />)
                         }
                 </tbody>
 

@@ -1,0 +1,118 @@
+import React from 'react';
+import { use } from 'react';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../../../Components/Context/AuthContext';
+import { Link } from 'react-router';
+import { useState } from 'react';
+
+const SinglePending = ({ item, setProducts, products }) => {
+
+    // const { backServerUrl } = use(AuthContext);
+    const postedAt = item.postedAt && item.postedAt.split("T")[0];
+    const [selectedOrder, setSelectedOrder] = useState(null);
+
+    {
+        console.log(item)
+    }
+
+
+    // Unique modal ID for every item (important!)
+    const modalId = `infoModal_${item._id}`;
+
+    // const handleOnDelete = async ({ item }) => {
+
+    //     const result = await Swal.fire({
+    //         title: "Are you sure?",
+    //         text: "You won't be able to revert this!",
+    //         icon: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         confirmButtonText: "Yes, submit it!"
+    //     });
+
+    //     if (!result.isConfirmed) return;
+
+    //     // DELETE logic here
+    // };
+
+    return (
+        <>
+            <tr key={item._id}>
+                <td>{item._id}</td>
+                <td>{item.firstName} {item.lastName}</td>
+                <td>{item.title}</td>
+                <td>{item.minimumOrder}</td>
+                <td>{postedAt || "Date Not Set"}</td>
+                <td>
+                    <div className="flex gap-2">
+
+                        {/* 🔥 Opens the modal */}
+                        <button
+                            onClick={() => setSelectedOrder(item)}
+                            className="btn btn-sm theme-btn shadow p-4"
+                        >
+                            View Details
+                        </button>
+
+                    </div>
+
+                    {selectedOrder && (
+                        <>
+                            <input type="checkbox" id="orderModal" className="modal-toggle" checked readOnly />
+
+                            <div className="modal" role="dialog">
+                                <div className="modal-box">
+
+                                    <h3 className="font-bold text-lg">Order Details</h3>
+
+                                    <div className="space-y-1 mt-2">
+                                        <p><b>Title:</b> <Link to={`/SingleProduct/${item.productId}`} className='underline'>{selectedOrder.title} </Link></p>
+                                        <p><b>Ordered By:</b> {selectedOrder.firstName} {selectedOrder.lastName}</p>
+                                        <p><b>Contact:</b> {selectedOrder.contact}</p>
+                                        <p><b>Address:</b> {selectedOrder.address}</p>
+                                        <p><b>Email:</b> {selectedOrder.email}</p>
+                                        <p><b>Price:</b> ${selectedOrder.perPrice}</p>
+                                        <p><b>Total Order:</b> {selectedOrder.minimumOrder} Peice</p>
+                                        <p><b>Total Paid:</b> {selectedOrder.total}$</p>
+                                        <p><b>Status:</b> {selectedOrder.paymentStatus}</p>
+                                        <p><b>Payment Methode:</b> {selectedOrder.paymentStatus === "Paid" ? "Online Paymnet" : "Cash On Delivery"}</p>
+                                    </div>
+
+
+
+
+
+                                    <div className="modal-action flex justify-between">
+                                        <div className="">
+                                            <button
+                                                className="btn btn-sm theme-btn shadow p-4 mr-5"
+                                            >
+                                                Accept
+                                            </button>
+                                            <button
+                                                className="btn btn-sm bg-red-500  p-4 text-white shadow"
+                                            >
+                                                Reject
+                                            </button>
+                                        </div>
+                                        <button
+                                            className="btn btn-sm"
+                                            onClick={() => setSelectedOrder(null)}
+                                        >
+                                            Close
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </>
+                    )}
+                </td>
+
+            </tr>
+        </>
+    );
+};
+
+export default SinglePending;

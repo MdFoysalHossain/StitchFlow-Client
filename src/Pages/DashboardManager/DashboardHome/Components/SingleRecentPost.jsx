@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const SingleRecentPost = ({ item }) => {
     const paymentMode = item.cod && item.onlinePay
@@ -9,9 +10,6 @@ const SingleRecentPost = ({ item }) => {
                 ? "Online Pay"
                 : "N/A";
 
-    const onDelete = () => {
-
-    }
 
     return (
         <div className="w-full flex items-center justify-between p-4 theme-dashboard-card rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition">
@@ -34,18 +32,20 @@ const SingleRecentPost = ({ item }) => {
 
             {/* Actions */}
             <div className="flex items-center gap-2">
-                <button
+                <Link
+                    to={`/Dashboard/Manager/UpdateProduct/${item._id}`}
                     onClick={() => onDelete(item._id)}
-                    className="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 transition"
+                    className="btn btn-sm btn-success black-text transition"
                 >
                     Update
-                </button>
-                <button
+                </Link>
+                <Link
+                    to={`/SingleProduct/${item._id}`}
                     onClick={() => onDelete(item._id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 transition"
+                    className="btn btn-sm theme-btn py-4 px-5 transition"
                 >
-                    Delete
-                </button>
+                    View
+                </Link>
             </div>
         </div>
     );

@@ -40,11 +40,6 @@ const DashboardStats = ({setAllProducts, allProducts}) => {
             setConfirmedProducts(data)
         })
 
-        fetch(`${backServerUrl}/GetApprovedStats?email=${userInfo?.email}&limit=8`, {
-            method: "GET"
-        }) .then (res => res.json()) .then(data => {
-            setConfirmedProducts(data)
-        })
     }, [backServerUrl, userInfo?.email])
 
     if(!allLoaded){
