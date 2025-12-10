@@ -17,7 +17,7 @@ const SinglePending = ({ item, setProducts, products }) => {
 
 
     // Unique modal ID for every item (important!)
-    const modalId = `infoModal_${item._id}`;
+    // const modalId = `infoModal_${item._id}`;
 
     // const handleOnDelete = async ({ item }) => {
 

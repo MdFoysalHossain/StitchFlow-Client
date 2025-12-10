@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { Navigate, useNavigate, useParams } from 'react-router';
 import { AuthContext } from '../../Components/Context/AuthContext';
 import { ChevronRight } from 'lucide-react';
 import Swal from 'sweetalert2'
@@ -130,7 +130,21 @@ const OrderPage = () => {
             return;
         }
 
-
+        if (paymentType === "cod") {
+            console.log("Entered COD")
+            fetch(`${backServerUrl}/create-checkout-session`, {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(allData)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    return navigate(`/Payment/Payment-successful`)
+                })
+                .catch(err => {
+                    console.error("Error:", err);
+                });
+        }
 
 
         if (paymentType === "stripe") {

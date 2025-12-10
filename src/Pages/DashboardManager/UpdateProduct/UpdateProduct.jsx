@@ -6,7 +6,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 import { use } from 'react';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../../../Components/Context/AuthContext';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useEffect } from 'react';
 
 const UpdateProduct = () => {
@@ -17,6 +17,7 @@ const UpdateProduct = () => {
     const [dataPosting, setDataPosting] = useState(false)
     const [cod, setCod] = useState(false)
     const [onPay, setOnPay] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
             fetch(`${backServerUrl}/SingleProduct/${id}`)
@@ -155,12 +156,13 @@ const UpdateProduct = () => {
             const data = await res.json();
             console.log("Data Posted:", data);
             Swal.fire({
-                title: "Submitted!",
-                text: "Posting product...",
+                title: "Update!",
+                text: "Product has been successfully updated!",
                 icon: "success"
             });
             setImages([])
             e.target.reset();
+            navigate("/Dashboard/Manager")
 
         } catch (err) {
             console.log("Got Error While Posting:", err);
@@ -202,7 +204,7 @@ const UpdateProduct = () => {
                     <div className="flex gap-10">
                         <fieldset className="fieldset">
                             <label className="label">Banner Image*</label>
-                            <input required onChange={handleImageChange} name="images" type="file" multiple accept="image/*" className="file-input theme-text-black font-normal" />
+                            <input  required onChange={handleImageChange} name="images" type="file" multiple accept="image/*" className="file-input theme-text-black font-normal" />
 
                             <label className="label">Select Category*</label>
                             <select name="type" className="select theme-text-black" required defaultValue={productData.category}>

@@ -13,13 +13,15 @@ const PaymentSuccess = () => {
 
 
     useEffect(() => {
-        fetch(`${backServerUrl}/payment-success?session_id=${sessionId}`, {
-            method: "POST"
-        })
-            .then(res => res.json())
-            .then(data => {
-                setProductData(data)
+        if(sessionId !== null){
+            fetch(`${backServerUrl}/payment-success?session_id=${sessionId}`, {
+                method: "POST"
             })
+                .then(res => res.json())
+                .then(data => {
+                    setProductData(data)
+                })
+        }
 
     }, [backServerUrl])
 
@@ -47,7 +49,7 @@ const PaymentSuccess = () => {
                 </div>
 
                 <h2 className="text-2xl font-bold text-purple-600 mb-2">
-                    Payment Successful!
+                    {sessionId !== null? "Payment" : "Order"} Successful!
                 </h2>
 
                 <p className="text-base text-gray-600 mb-6">
