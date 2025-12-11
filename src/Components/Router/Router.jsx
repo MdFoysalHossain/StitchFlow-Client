@@ -20,6 +20,8 @@ import UpdateProduct from "../../Pages/DashboardManager/UpdateProduct/UpdateProd
 import PendingApprove from "../../Pages/DashboardManager/PendingApprove/PendingApprove";
 import ApprovedOrders from "../../Pages/DashboardManager/ApprovedOrders/ApprovedOrders";
 import MyProfile from "../../Pages/MyProfile/MyProfile";
+import MyOrders from "../../Pages/MyOrders/MyOrders";
+import MyOrderTrack from "../../Pages/MyOrderTrack/MyOrderTrack";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +44,14 @@ export const router = createBrowserRouter([
             {
                 path: "/AllProducts",
                 element: <AllProducts />,
+            },
+            {
+                path: "/MyOrders",
+                element: <PrivateRoute><MyOrders/> </PrivateRoute>,
+            },
+            {
+                path: "/TrackOrder/:id",
+                element: <PrivateRoute><MyOrderTrack/> </PrivateRoute>,
             },
             {
                 path: "/CreatePost",

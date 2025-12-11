@@ -21,7 +21,7 @@ const SingleApproved = ({ item, setProducts, products, setUpdateEffect }) => {
             "Cutting Completed": "cutting",
             "Sewing Started": "sewing",
             "Packed": "packed",
-            "Shipped": "shiped",
+            "Shipped": "shipped",
             "Out for Delivery": "delivery",
             "QC Checked": "qc",
             "Finishing": "finishing"
