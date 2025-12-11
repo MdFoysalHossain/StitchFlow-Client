@@ -28,7 +28,7 @@ const OrderPage = () => {
     }, [backServerUrl, id])
 
 
-    if (dbUserInfo?.accountType === "Admin") { // This Will be "Manager"
+    if (dbUserInfo?.accountType === "Manager") { // This Will be "Manager"
         return navigate(`/SingleProduct/${id}`)
     }
 

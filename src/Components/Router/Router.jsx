@@ -19,6 +19,7 @@ import ManageProducts from "../../Pages/DashboardManager/DashboardHome/Component
 import UpdateProduct from "../../Pages/DashboardManager/UpdateProduct/UpdateProduct";
 import PendingApprove from "../../Pages/DashboardManager/PendingApprove/PendingApprove";
 import ApprovedOrders from "../../Pages/DashboardManager/ApprovedOrders/ApprovedOrders";
+import MyProfile from "../../Pages/MyProfile/MyProfile";
 
 export const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
             {
                 path: "/Payment/Payment-canceled",
                 element: <PaymentFailed />,
+            },
+            {
+                path: "/MyProfile",
+                element: <PrivateRoute> <MyProfile /></PrivateRoute>,
             },
         ]
     },

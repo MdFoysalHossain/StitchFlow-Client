@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../../Components/Context/AuthContext';
 
 const Login = () => {
-    const { backServerUrl, googleLogin, signInEmail } = use(AuthContext)
+    const { backServerUrl, googleLogin, signInEmail, userInfo } = use(AuthContext)
     const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
@@ -43,6 +43,10 @@ const Login = () => {
                 navigate("/")
             })
             .catch(err => console.log("Login Error:", err))
+    }
+
+    if(userInfo){
+        navigate("/")
     }
 
     return (

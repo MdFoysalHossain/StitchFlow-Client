@@ -4,7 +4,7 @@ import { Link, useNavigate, } from 'react-router';
 import { AuthContext } from '../../../Components/Context/AuthContext';
 
 const Register = () => {
-    const { createEmailAccount, backServerUrl, googleLogin } = use(AuthContext)
+    const { createEmailAccount, backServerUrl, googleLogin, userInfo } = use(AuthContext)
     const navigate = useNavigate();
 
     const [error, setError] = useState("");
@@ -102,6 +102,10 @@ const Register = () => {
             })
 
 
+    }
+
+    if(userInfo){
+        navigate("/")
     }
 
     return (
