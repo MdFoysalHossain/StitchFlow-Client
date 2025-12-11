@@ -18,6 +18,7 @@ import DashboardHome from "../../Pages/DashboardManager/DashboardHome/DashboardH
 import ManageProducts from "../../Pages/DashboardManager/DashboardHome/Components/ManageProducts";
 import UpdateProduct from "../../Pages/DashboardManager/UpdateProduct/UpdateProduct";
 import PendingApprove from "../../Pages/DashboardManager/PendingApprove/PendingApprove";
+import ApprovedOrders from "../../Pages/DashboardManager/ApprovedOrders/ApprovedOrders";
 
 export const router = createBrowserRouter([
     {
@@ -86,6 +87,10 @@ export const router = createBrowserRouter([
             {
                 path: "/Dashboard/Manager/PendingApprove",
                 element: <PrivateRoute><ManagerRoute> <PendingApprove /></ManagerRoute></PrivateRoute>,
+            },
+            {
+                path: "/Dashboard/Manager/ApprovedOrder",
+                element: <PrivateRoute><ManagerRoute> <ApprovedOrders /></ManagerRoute></PrivateRoute>,
             },
         ]
     },

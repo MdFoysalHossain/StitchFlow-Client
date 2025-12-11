@@ -44,7 +44,7 @@ const DashboardSidebar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/AllProducts" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
+                        <NavLink to="/Dashboard/Manager/ApprovedOrder" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
                             Approve Orders
                         </NavLink>
                     </li>

@@ -11,9 +11,9 @@ const SinglePending = ({ item, setProducts, products }) => {
     const postedAt = item.postedAt && item.postedAt.split("T")[0];
     const [selectedOrder, setSelectedOrder] = useState(null);
 
-    // {
-    //     console.log(item)
-    // }
+    {
+        console.log(item)
+    }
 
     const approveOrder = () => {
         setSelectedOrder(null)
@@ -30,6 +30,27 @@ const SinglePending = ({ item, setProducts, products }) => {
                 Swal.fire({
                     icon: "success",
                     title: "Order Was Approved",
+                    text: message,
+                });
+
+            })
+    }
+
+    const rejectOrder = () => {
+        setSelectedOrder(null)
+        fetch(`${backServerUrl}/ProductOrderReject/${item._id}`, {
+            method: "PATCH",
+            headers: { "content-type": "application/json" }
+        })
+            .then(res => {
+                const newProducts = products.filter(item2 => item2._id !== item._id)
+                console.log([newProducts])
+                setProducts([...newProducts])
+
+                const message = `Order  #${item.productId} was rejected successfully`
+                Swal.fire({
+                    icon: "error",
+                    title: "Order Was rejected",
                     text: message,
                 });
 
@@ -92,6 +113,7 @@ const SinglePending = ({ item, setProducts, products }) => {
                                                 Accept
                                             </button>
                                             <button
+                                                onClick={rejectOrder}
                                                 className="btn btn-sm bg-red-500  p-4 text-white shadow"
                                             >
                                                 Reject
