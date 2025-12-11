@@ -7,34 +7,34 @@ import { useState } from 'react';
 
 const SinglePending = ({ item, setProducts, products }) => {
 
-    // const { backServerUrl } = use(AuthContext);
+    const { backServerUrl } = use(AuthContext);
     const postedAt = item.postedAt && item.postedAt.split("T")[0];
     const [selectedOrder, setSelectedOrder] = useState(null);
 
-    {
-        console.log(item)
+    // {
+    //     console.log(item)
+    // }
+
+    const approveOrder = () => {
+        setSelectedOrder(null)
+        fetch(`${backServerUrl}/ProductOrderApprove/${item._id}`, {
+            method: "PATCH",
+            headers: { "content-type": "application/json" }
+        })
+            .then(res => {
+                const newProducts = products.filter(item2 => item2._id !== item._id)
+                console.log([newProducts])
+                setProducts([...newProducts])
+
+                const message = `Order  #${item.productId} was approved successfully`
+                Swal.fire({
+                    icon: "success",
+                    title: "Order Was Approved",
+                    text: message,
+                });
+
+            })
     }
-
-
-    // Unique modal ID for every item (important!)
-    // const modalId = `infoModal_${item._id}`;
-
-    // const handleOnDelete = async ({ item }) => {
-
-    //     const result = await Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "You won't be able to revert this!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Yes, submit it!"
-    //     });
-
-    //     if (!result.isConfirmed) return;
-
-    //     // DELETE logic here
-    // };
 
     return (
         <>
@@ -86,6 +86,7 @@ const SinglePending = ({ item, setProducts, products }) => {
                                     <div className="modal-action flex justify-between">
                                         <div className="">
                                             <button
+                                                onClick={approveOrder}
                                                 className="btn btn-sm theme-btn shadow p-4 mr-5"
                                             >
                                                 Accept

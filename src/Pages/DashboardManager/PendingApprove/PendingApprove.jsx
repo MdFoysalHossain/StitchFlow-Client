@@ -20,7 +20,7 @@ const PendingApprove = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setProducts(data)
                 setProdLoad(false)
             })
@@ -33,6 +33,7 @@ const PendingApprove = () => {
             <span className="loading scale-125 loading-spinner text-purple-600"></span>
         </div>
     }
+
 
     return (
         <div className='mt-5'>
