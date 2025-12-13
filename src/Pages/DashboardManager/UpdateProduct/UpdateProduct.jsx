@@ -10,9 +10,10 @@ import { useNavigate, useParams } from 'react-router';
 import { useEffect } from 'react';
 
 const UpdateProduct = () => {
-    const {id} = useParams()
+    const { id } = useParams()
     const { userInfo, dbUserInfo, backServerUrl } = use(AuthContext)
     const [productData, setProductData] = useState([])
+    const [prodLoaded, setProdLoaded] = useState(true)
     const [images, setImages] = useState([]);
     const [dataPosting, setDataPosting] = useState(false)
     const [cod, setCod] = useState(false)
@@ -20,16 +21,17 @@ const UpdateProduct = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-            fetch(`${backServerUrl}/SingleProduct/${id}`)
-                .then(res => res.json())
-                .then(data => {
-                    setProductData(data)
-                    setImages([...data.images])
-                    setCod(data.cod)
-                    setOnPay(data.onlinePay)
-                    console.log(data)
-                })
-        }, [backServerUrl, id])
+        fetch(`${backServerUrl}/SingleProduct/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                setProductData(data)
+                setImages([...data.images])
+                setCod(data.cod)
+                setOnPay(data.onlinePay)
+                console.log(data)
+                setProdLoaded(false)
+            })
+    }, [backServerUrl, id])
 
 
     const handleImageChange = (e) => {
@@ -162,7 +164,7 @@ const UpdateProduct = () => {
             });
             setImages([])
             e.target.reset();
-            navigate("/Dashboard/Manager")
+            navigate(backServerUrl?.accountType === "Manager" ? "/Dashboard/Manager" : "/Dashboard/Admin")
 
         } catch (err) {
             console.log("Got Error While Posting:", err);
@@ -172,6 +174,11 @@ const UpdateProduct = () => {
         console.log("FINAL PRODUCT:", procductDetails);
     };
 
+    if (prodLoaded) {
+        return <div className='w-full h-[100vh] flex justify-center items-center'>
+            <span className="loading scale-125 loading-spinner text-purple-600"></span>
+        </div>
+    }
 
 
     return (
@@ -186,7 +193,8 @@ const UpdateProduct = () => {
             <div className="flex gap-3 flex-wrap">
                 <PhotoProvider>
                     {images.map((img, index) => (
-                        <PhotoView src={img}>
+                        <PhotoView src={img} key={index}>
+
                             <img
                                 key={index}
                                 src={img}
@@ -204,7 +212,7 @@ const UpdateProduct = () => {
                     <div className="flex gap-10">
                         <fieldset className="fieldset">
                             <label className="label">Banner Image*</label>
-                            <input  required onChange={handleImageChange} name="images" type="file" multiple accept="image/*" className="file-input theme-text-black font-normal" />
+                            <input required onChange={handleImageChange} name="images" type="file" multiple accept="image/*" className="file-input theme-text-black font-normal" />
 
                             <label className="label">Select Category*</label>
                             <select name="type" className="select theme-text-black" required defaultValue={productData.category}>
@@ -227,7 +235,7 @@ const UpdateProduct = () => {
                             <input required name='Available' type="number" className="input theme-text-black" placeholder="1000/5000/10000" defaultValue={productData.availableQuanity} />
 
                             <label className="label">Minimum Order Quantity*</label>
-                            <input required name='Minimum' type="number" className="input theme-text-black" placeholder="100/500/1000" defaultValue={productData.minimumOrder}/>
+                            <input required name='Minimum' type="number" className="input theme-text-black" placeholder="100/500/1000" defaultValue={productData.minimumOrder} />
 
 
                             <label className="label mt-2">Allowed Payment Methode</label>
@@ -252,7 +260,7 @@ const UpdateProduct = () => {
 
                             <div className="">
                                 <label className="label">
-                                    <input name="ShowHome" type="checkbox" defaultChecked={false}  className="checkbox" />
+                                    <input name="ShowHome" type="checkbox" defaultChecked={false} className="checkbox" />
                                     Show on Home "/"
                                 </label>
                             </div>

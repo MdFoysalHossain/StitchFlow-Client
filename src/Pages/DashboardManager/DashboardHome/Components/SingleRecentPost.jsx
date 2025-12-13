@@ -34,14 +34,12 @@ const SingleRecentPost = ({ item }) => {
             <div className="flex items-center gap-2">
                 <Link
                     to={`/Dashboard/Manager/UpdateProduct/${item._id}`}
-                    onClick={() => onDelete(item._id)}
                     className="btn btn-sm btn-success black-text transition"
                 >
                     Update
                 </Link>
                 <Link
                     to={`/SingleProduct/${item._id}`}
-                    onClick={() => onDelete(item._id)}
                     className="btn btn-sm theme-btn py-4 px-5 transition"
                 >
                     View

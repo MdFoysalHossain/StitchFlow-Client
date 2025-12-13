@@ -7,10 +7,10 @@ import { AuthContext } from '../Context/AuthContext';
 
 const Navbar = () => {
 
-    const {theme, setTheme} = use(AuthContext)
+    const { theme, setTheme } = use(AuthContext)
     // const [theme, setTheme] = useState("light");
 
-    const { userInfo, userSignOut, dbUserInfo  } = use(AuthContext);
+    const { userInfo, userSignOut, dbUserInfo } = use(AuthContext);
 
     console.log(userInfo ? `Logged in as ${userInfo}` : "Not logged in")
 
@@ -23,13 +23,25 @@ const Navbar = () => {
                 <li><NavLink>About Us</NavLink></li>
                 <li><NavLink>Contact</NavLink></li>
                 <li><NavLink className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn" to={"/Login"}>Login</NavLink></li>
-                <li><NavLink className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn"  to={"/Register"}>Register</NavLink></li>
+                <li><NavLink className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn" to={"/Register"}>Register</NavLink></li>
             </>
         }
 
         {
             userInfo && <>
-                <li><NavLink to={dbUserInfo?.accountType === "Manager" ? "/Dashboard/Manager" : ""}>Dashboard</NavLink></li>
+
+                {
+                   dbUserInfo?.accountType === "Manager" && <li><NavLink to={"/Dashboard/Manager"}>Dashboard</NavLink></li>
+                }
+                {
+                   dbUserInfo?.accountType === "Admin" && <li><NavLink to={"/Dashboard/Admin"}>Dashboard</NavLink></li>
+                }
+                {
+                   dbUserInfo?.accountType === "buyer" && <li><NavLink to={"/MyOrders"}>My Orders</NavLink></li>
+                }
+                {
+                   dbUserInfo?.accountType === "buyer" && <li><NavLink to={"/MyProfile"}>My Profile</NavLink></li>
+                }
                 <li><Link className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn" onClick={userSignOut}>Log Out</Link></li>
             </>
         }

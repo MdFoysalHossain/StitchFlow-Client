@@ -10,7 +10,7 @@ const DashboardSidebar = () => {
     const { theme, setTheme } = use(AuthContext)
     const [isOpen, setIsOpen] = useState(false);
 
-    const { userInfo, userSignOut } = useContext(AuthContext);
+    const { userInfo, userSignOut, dbUserInfo } = useContext(AuthContext);
 
     const links = (
         <>
@@ -19,7 +19,7 @@ const DashboardSidebar = () => {
                     Home
                 </NavLink>
             </li>
-            {userInfo && (
+            {userInfo && dbUserInfo?.accountType === "Manager" && (
                 <>
 
                     <li>
@@ -51,6 +51,42 @@ const DashboardSidebar = () => {
                     <li>
                         <NavLink to="/MyProfile" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
                             My Profile
+                        </NavLink>
+                    </li>
+                    <li>
+                        <button
+                            className="btn shadow-none border border-purple-600 bg-purple-600 text-white w-full mt-2"
+                            onClick={userSignOut}
+                        >
+                            Log Out
+                        </button>
+                    </li>
+                </>
+            )}
+
+            
+            {userInfo && dbUserInfo?.accountType === "Admin" && (
+                <>
+
+                    <li>
+                        <NavLink className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center" to={"/Dashboard/Admin"}>Dashboard</NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/CreatePost"
+                            className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center"
+                        >
+                            Manage Users
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/Dashboard/Manager/PendingApprove" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
+                            All Products
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/Dashboard/Manager/ApprovedOrder" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
+                            All Orders
                         </NavLink>
                     </li>
                     <li>

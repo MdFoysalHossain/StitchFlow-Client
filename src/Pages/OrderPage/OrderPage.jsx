@@ -28,7 +28,7 @@ const OrderPage = () => {
     }, [backServerUrl, id])
 
 
-    if (dbUserInfo?.accountType === "Manager") { // This Will be "Manager"
+    if (dbUserInfo?.accountType === "Manager" || dbUserInfo?.accountType === "Admin") { // This Will be "Manager"
         return navigate(`/SingleProduct/${id}`)
     }
 
@@ -267,7 +267,7 @@ const OrderPage = () => {
 
 
                     </div>
-                    <button className="btn theme-btn text-left mt-4 px-10">Place Order</button>
+                    <button disabled={dbUserInfo?.status === "pending" || dbUserInfo?.status === "suspended"} className="btn theme-btn text-left mt-4 px-10">Place Order</button>
                 </form>
             </div>
 

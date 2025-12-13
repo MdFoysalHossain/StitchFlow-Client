@@ -22,6 +22,10 @@ import ApprovedOrders from "../../Pages/DashboardManager/ApprovedOrders/Approved
 import MyProfile from "../../Pages/MyProfile/MyProfile";
 import MyOrders from "../../Pages/MyOrders/MyOrders";
 import MyOrderTrack from "../../Pages/MyOrderTrack/MyOrderTrack";
+import DashboardAdminRoot from "../../Pages/Root/DashboardAdminRoot";
+import AdminHome from "../../Pages/DashboardAdmin/AdminHome";
+import AdminRoute from "./AdminRoute";
+import AdminAllProducts from "../../Pages/DashboardAdmin/AdminAllProducts/AdminAllProducts";
 
 export const router = createBrowserRouter([
     {
@@ -106,6 +110,23 @@ export const router = createBrowserRouter([
             {
                 path: "/Dashboard/Manager/ApprovedOrder",
                 element: <PrivateRoute><ManagerRoute> <ApprovedOrders /></ManagerRoute></PrivateRoute>,
+            },
+        ]
+    },
+    {
+        path: "/Dashboard/",
+        element: <DashboardAdminRoot />,
+        children: [
+            {
+                index: true,
+            },
+            {
+                path: "/Dashboard/Admin",
+                element: <PrivateRoute><AdminRoute> <AdminHome /></AdminRoute></PrivateRoute>,
+            },
+            {
+                path: "/Dashboard/Admin/AllProducts",
+                element: <PrivateRoute><AdminRoute> <AdminAllProducts /></AdminRoute></PrivateRoute>,
             },
         ]
     },
