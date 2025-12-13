@@ -37,10 +37,10 @@ const Navbar = () => {
                    dbUserInfo?.accountType === "Admin" && <li><NavLink to={"/Dashboard/Admin"}>Dashboard</NavLink></li>
                 }
                 {
-                   dbUserInfo?.accountType === "buyer" && <li><NavLink to={"/MyOrders"}>My Orders</NavLink></li>
+                   dbUserInfo?.accountType === "Buyer" && <li><NavLink to={"/MyOrders"}>My Orders</NavLink></li>
                 }
                 {
-                   dbUserInfo?.accountType === "buyer" && <li><NavLink to={"/MyProfile"}>My Profile</NavLink></li>
+                   dbUserInfo?.accountType === "Buyer" && <li><NavLink to={"/MyProfile"}>My Profile</NavLink></li>
                 }
                 <li><Link className="btn shadow-none border border-purple-600 bg-purple-600 text-white theme-btn" onClick={userSignOut}>Log Out</Link></li>
             </>

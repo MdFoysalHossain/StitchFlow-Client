@@ -32,17 +32,26 @@ const MyProfile = () => {
                     </div>
 
 
-                    <div className="grid grid-cols-2 gap-4 w-full text-sm mt-4">
-                        <div className="p-4  rounded-xl border border-gray-200 dark:border-gray-700">
-                            <p className="font-medium ">Account Type</p>
-                            <p className="text-lg font-semibold">{dbUserInfo.accountType}</p>
-                        </div>
+                    <div className="flex flex-col gap-4 w-full text-sm mt-4">
+                        <div className="flex gap-5">
+                            <div className="p-4 flex-1 rounded-xl border border-gray-200 dark:border-gray-700">
+                                <p className="font-medium ">Account Type</p>
+                                <p className="text-lg font-semibold">{dbUserInfo.accountType}</p>
+                            </div>
 
 
-                        <div className="p-4  rounded-xl border border-gray-200 dark:border-gray-700">
-                            <p className="font-medium ">Status</p>
-                            <p className="text-lg font-semibold capitalize">{dbUserInfo.status}</p>
-                        </div>
+                            <div className="p-4 flex-1 rounded-xl border border-gray-200 dark:border-gray-700">
+                                <p className="font-medium ">Status</p>
+                                <p className="text-lg font-semibold capitalize">{dbUserInfo.status}</p>
+                            </div></div>
+
+                        {
+                            dbUserInfo.status === "suspended" && <div className="p-4 text-left w-full rounded-xl border border-gray-200 dark:border-gray-700">
+                                <p className="font-medium mb-2">Feedback</p>
+                                <p className="text-lg font-semibold capitalize">{dbUserInfo.suspendedFeedback}</p>
+                            </div>
+                        }
+
                     </div>
 
 

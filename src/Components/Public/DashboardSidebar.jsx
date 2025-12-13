@@ -73,14 +73,14 @@ const DashboardSidebar = () => {
                     </li>
                     <li>
                         <NavLink
-                            to="/CreatePost"
+                            to="/Dashboard/Admin/"
                             className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center"
                         >
                             Manage Users
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/Dashboard/Manager/PendingApprove" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
+                        <NavLink to="/Dashboard/Admin/AllProducts" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
                             All Products
                         </NavLink>
                     </li>

@@ -171,6 +171,14 @@ const OrderPage = () => {
 
     }
 
+    const handleSuspended = () => {
+        Swal.fire({
+                title: "Account Suspended",
+                text: "Your account is suspended, please contant the admin for further details!",
+                icon: "error"
+            });
+    }
+
     return (
         <div className='max-w-[1440px] mx-auto flex items-center flex-col gap-2 mt-20 relative'>
 
@@ -268,6 +276,7 @@ const OrderPage = () => {
 
                     </div>
                     <button disabled={dbUserInfo?.status === "pending" || dbUserInfo?.status === "suspended"} className="btn theme-btn text-left mt-4 px-10">Place Order</button>
+                    <p className={` ${dbUserInfo?.status === "suspended" ? "visible" : "hidden"} text-red-500 mt-2`}>Your account is suspended, please contant the admin for further details!</p>
                 </form>
             </div>
 

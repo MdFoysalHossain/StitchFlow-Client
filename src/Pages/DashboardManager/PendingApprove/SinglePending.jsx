@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const SinglePending = ({ item, setProducts, products }) => {
 
-    const { backServerUrl } = use(AuthContext);
+    const { backServerUrl, dbUserInfo } = use(AuthContext);
     const postedAt = item.postedAt && item.postedAt.split("T")[0];
     const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -55,6 +55,15 @@ const SinglePending = ({ item, setProducts, products }) => {
                 });
 
             })
+    }
+
+
+    const handleSuspended = () => {
+        Swal.fire({
+                title: "Account Suspended!",
+                text: "Users account is suspended and can not accept or rejct new orders!",
+                icon: "error"
+            });
     }
 
     return (
@@ -107,13 +116,13 @@ const SinglePending = ({ item, setProducts, products }) => {
                                     <div className="modal-action flex justify-between">
                                         <div className="">
                                             <button
-                                                onClick={approveOrder}
+                                                onClick={ dbUserInfo.status === "suspended" ? handleSuspended : approveOrder}
                                                 className="btn btn-sm theme-btn shadow p-4 mr-5"
                                             >
                                                 Accept
                                             </button>
                                             <button
-                                                onClick={rejectOrder}
+                                                onClick={ dbUserInfo.status === "suspended" ? handleSuspended : rejectOrder}
                                                 className="btn btn-sm bg-red-500  p-4 text-white shadow"
                                             >
                                                 Reject
