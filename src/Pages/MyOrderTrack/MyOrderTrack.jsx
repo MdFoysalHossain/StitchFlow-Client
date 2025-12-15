@@ -12,7 +12,13 @@ const MyOrderTrack = () => {
     console.log(id)
 
     useEffect(() => {
-        fetch(`${backServerUrl}/GetSingleOrder/${id}`, { method: "GET" })
+        fetch(`${backServerUrl}/GetSingleOrder/${id}`, { 
+            method: "GET", 
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setProduct(data)

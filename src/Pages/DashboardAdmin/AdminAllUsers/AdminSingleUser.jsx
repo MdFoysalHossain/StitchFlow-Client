@@ -29,7 +29,10 @@ const AdminSingleUser = ({ item,}) => {
 
         fetch(`${backServerUrl}/AdminAccountStatusChange/${item._id}`, {
             method: "PATCH",
-            headers: { "content-type": "application/json" },
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
             body: JSON.stringify(update)
         }).then(res => {
 

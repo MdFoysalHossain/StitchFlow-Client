@@ -8,7 +8,13 @@ const AdminAllProducts = () => {
     const [prodLoading, setProdLoading] = useState(true)
 
     useEffect(() => {
-        fetch(`${backServerUrl}/AdminAllProducts`, { method: "GET" })
+        fetch(`${backServerUrl}/AdminAllProducts`, {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setAllProducts(data)

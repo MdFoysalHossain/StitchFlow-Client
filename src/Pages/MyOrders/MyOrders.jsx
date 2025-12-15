@@ -13,7 +13,11 @@ const MyOrders = () => {
 
     useEffect(() => {
         fetch(`${backServerUrl}/MyOrders?email=${userInfo?.email}&limit=16`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            }
         }).then(res => res.json()).then(data => {
             setProducts(data)
             setProdLoad(false)

@@ -14,21 +14,39 @@ const AdminHome = () => {
     const [usersLoading, setUsersLoading] = useState(true)
 
     useEffect(() => {
-        fetch(`${backServerUrl}/AdminAllProducts`, { method: "GET" })
+        fetch(`${backServerUrl}/AdminAllProducts`, { 
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            }
+         })
             .then(res => res.json())
             .then(data => {
                 setAllProducts(data)
                 setProdLoading(false)
             })
 
-        fetch(`${backServerUrl}/AdminAllOrders`, { method: "GET" })
+        fetch(`${backServerUrl}/AdminAllOrders`, { 
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            }
+         })
             .then(res => res.json())
             .then(data => {
                 setAllOrders(data)
                 setOrderLoading(false)
             })
 
-        fetch(`${backServerUrl}/AdminAllUsers`, { method: "GET" })
+        fetch(`${backServerUrl}/AdminAllUsers`, { 
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            }
+         })
             .then(res => res.json())
             .then(data => {
                 setAllUsers(data)

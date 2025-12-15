@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const AdminSingleOrder = ({item, setUpdateEffect}) => {
 
-    const { backServerUrl, dbUserInfo } = use(AuthContext);
+    const { backServerUrl, dbUserInfo, userInfo } = use(AuthContext);
     const postedAt = item.approvedTime && item.approvedTime.split("T")[0];
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [sellerUpdate, setSellerUpdate] = useState(false);
@@ -81,7 +81,10 @@ const AdminSingleOrder = ({item, setUpdateEffect}) => {
 
         fetch(`${backServerUrl}/ManagerUpdateApprovedProduct/${item._id}`, {
             method: "PATCH",
-            headers: { 'content-type': "application/json" },
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
             body: JSON.stringify(data)
         })
             .then(res => res.json())
@@ -105,7 +108,7 @@ const AdminSingleOrder = ({item, setUpdateEffect}) => {
                 <td className='capitalize'>{item.firstName} {item.lastName}</td>
                 <td className='capitalize'>{item.title}</td>
                 <td>{item.minimumOrder}</td>
-                <td className='capitalize'>{item.status}</td>
+                <td >{item.status}</td>
                 <td>{postedAt || "Not Approved Yet"}</td>
                 <td>
                     <div className="flex gap-2">

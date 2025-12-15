@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const SingleApproved = ({ item, setProducts, products, setUpdateEffect }) => {
 
-    const { backServerUrl, dbUserInfo } = use(AuthContext);
+    const { backServerUrl, dbUserInfo. userInfo } = use(AuthContext);
     const postedAt = item.approvedTime && item.approvedTime.split("T")[0];
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [sellerUpdate, setSellerUpdate] = useState(false);
@@ -78,7 +78,10 @@ const SingleApproved = ({ item, setProducts, products, setUpdateEffect }) => {
 
         fetch(`${backServerUrl}/ManagerUpdateApprovedProduct/${item._id}`, {
             method: "PATCH",
-            headers: { 'content-type': "application/json" },
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
             body: JSON.stringify(data)
         })
             .then(res => res.json())

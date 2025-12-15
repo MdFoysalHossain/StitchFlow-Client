@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 
 const SingleOrder = ({ item, setProducts, products}) => {
-    const { backServerUrl } = use(AuthContext)
+    const { backServerUrl, userInfo } = use(AuthContext)
 
 
     // console.log("Single Product:", item)
@@ -27,7 +27,11 @@ const SingleOrder = ({ item, setProducts, products}) => {
         }
 
         fetch(`${backServerUrl}/DeleteMyOrder/${item._id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            }
         }).then(res => {
             const newArr = products.filter(product => product._id !== item._id)
 

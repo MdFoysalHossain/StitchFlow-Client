@@ -8,7 +8,13 @@ const AdminAllUsers = () => {
     const [prodLoading, setProdLoading] = useState(true)
 
     useEffect(() => {
-        fetch(`${backServerUrl}/AdminAllUsers`, { method: "GET" })
+        fetch(`${backServerUrl}/AdminAllUsers`, {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setAllUsers(data)

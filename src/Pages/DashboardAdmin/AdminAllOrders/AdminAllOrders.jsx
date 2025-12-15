@@ -18,7 +18,11 @@ const AdminAllOrders = () => {
     useEffect(() => {
         if (updateEffect) {
             fetch(`${backServerUrl}/AdminAllOrders`, {
-                method: "GET"
+                method: "GET",
+                headers: {
+                    "content-type": "application/json",
+                    authorization: `Bearer ${userInfo.accessToken}`,
+                }
             })
                 .then(res => res.json())
                 .then(data => {
@@ -47,7 +51,11 @@ const AdminAllOrders = () => {
 
         // setProdLoad(true)
         fetch(`${backServerUrl}/AdminAllOrders?filter=${filterBy}`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            }
         })
             .then(res => res.json())
             .then(data => {

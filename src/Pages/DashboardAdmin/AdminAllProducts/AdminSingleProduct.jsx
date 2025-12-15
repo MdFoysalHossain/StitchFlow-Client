@@ -57,7 +57,10 @@ const AdminSingleProduct = ({ item, setAllProducts, allProducts }) => {
 
         fetch(`${backServerUrl}/AdminShowHomeChange`, {
             method: "PATCH",
-            headers: { "content-type": "application/json" },
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
             body: JSON.stringify(productData)
         }).then(res => res.json())
             .then(data => console.log("Updated"))
