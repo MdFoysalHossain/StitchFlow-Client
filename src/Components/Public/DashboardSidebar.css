@@ -7,12 +7,11 @@
     
 }
 
-.dark .DasbhoardLinks a.active{
-    /* @apply text-purple-600 */
+/* .dark .DasbhoardLinks a.active{
+    @apply text-purple-600
     @apply bg-[#272727]  font-semibold;
-    /* color: #272727; */
-    
-}
+    color: #272727;
+} */
 
 body .theme-body-dashboard{
      @apply bg-[#f4f4f4]

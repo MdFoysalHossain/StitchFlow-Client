@@ -75,13 +75,13 @@ const AdminSingleProduct = ({ item, setAllProducts, allProducts }) => {
                     className="w-16 h-16 rounded-lg object-cover"
                 />
             </td>
-            <td>{item.title}</td>
+            <td className='whitespace-nowrap'>{item.title}</td>
             <td>${item.perPrice}</td>
             <td>{item.category}</td>
             <td>{item.createdBy}</td>
             <td>
                 <div className="flex gap-4">
-                    <div className=" flex gap-2 items-center">
+                    <div className=" flex gap-2 items-center whitespace-nowrap">
                         <input onChange={handleOnCheck} className='checkbox' defaultChecked={item.showHome} type="checkbox" name="" id="" />
                         Show At Home
                     </div>

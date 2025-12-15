@@ -27,7 +27,7 @@ const AdminAllProducts = () => {
             <h2>All Products ({allProducts.length})</h2>
 
 
-            <div className="bg-white rounded-xl mt-5 overflow-hidden">
+            <div className="bg-white rounded-xl mt-5 overflow-x-auto md:overflow-x-visible">
 
                 <table className="table w-full  text-black">
                     <thead>

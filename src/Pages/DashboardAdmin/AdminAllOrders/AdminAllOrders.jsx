@@ -71,14 +71,13 @@ const AdminAllOrders = () => {
 
 
     return (
-        <div className='mt-5'>
-
+        <div className='mt-5 '>
             <div className=" flex justify-between items-center mb-5">
-                <h2 className='text-left mb-5 font-semibold text-2xl'>All Orders ({products.length})</h2>
+                <h2 className='text-left  font-semibold text-2xl'>All Orders ({products.length})</h2>
 
                 <div className=" text-left w-[200px]">
                     <p className='text-sm'>Filter By</p>
-                    <select onChange={handleFilter} defaultValue="all" className="select">
+                    <select onChange={handleFilter} defaultValue="all" className="select text-black">
                         <option value='all'>All</option>
                         <option value='pending'>Pending</option>
                         <option value='confirmed'>Accepted</option>
@@ -87,12 +86,14 @@ const AdminAllOrders = () => {
                 </div>
             </div>
 
+            <div className=" overflow-x-auto md:overflow-x-visible">
+
             <table className="table w-full theme-div-white text-black">
                 <thead>
                     <tr>
                         <th>Order ID</th>
                         <th>User </th>
-                        <th>Product </th>
+                        <th className=' w-min-[200px]'>Product </th>
                         <th>Quantity </th>
                         <th>Order Status</th>
                         <th>Approved Date</th>
@@ -100,13 +101,14 @@ const AdminAllOrders = () => {
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody className=''>
                     {
                         products.map((item, index) => <AdminSingleOrder key={index} setUpdateEffect={setUpdateEffect} item={item} products={products} setProducts={setProducts} />)
                     }
                 </tbody>
 
             </table>
+            </div>
         </div>
     );
 };

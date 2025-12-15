@@ -30,15 +30,15 @@ const AdminAllUsers = () => {
         if (filterBy === "all") {
             setFilteredUsers([])
         }
-        if(filterBy === "Buyer"){
+        if (filterBy === "Buyer") {
             const filterData = allUsers.filter(user => user.accountType === "Buyer")
             setFilteredUsers(filterData)
         }
-        if(filterBy === "Manager"){
+        if (filterBy === "Manager") {
             const filterData = allUsers.filter(user => user.accountType === "Manager")
             setFilteredUsers(filterData)
         }
-        if(filterBy === "Admin"){
+        if (filterBy === "Admin") {
             const filterData = allUsers.filter(user => user.accountType === "Admin")
             setFilteredUsers(filterData)
         }
@@ -54,8 +54,8 @@ const AdminAllUsers = () => {
 
                 <div className="w-40">
 
-                    <p className='text-sm'>Filter By</p>
-                    <select onChange={handleFilter} class="select">
+                    <p className='text-sm font-normal'>Filter By</p>
+                    <select onChange={handleFilter} className="select font-normal text-black">
                         <option value="all">All</option>
                         <option value="Buyer">Buyer</option>
                         <option value="Manager">Manager</option>
@@ -65,16 +65,16 @@ const AdminAllUsers = () => {
             </div>
 
 
-            <div className="bg-white rounded-xl mt-5 overflow-hidden">
+            <div className="bg-white rounded-xl mt-5 overflow-x-auto md:overflow-x-visible">
 
-                <table className="table w-full  text-black">
+                <table className="table w-full  text-black ">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
                             <th>Status</th>
-                            <th>Actions</th>
+                            <th >Actions</th>
                         </tr>
                     </thead>
 
@@ -87,6 +87,34 @@ const AdminAllUsers = () => {
 
                 </table>
             </div>
+
+
+            {/* <div className="bg-white rounded-xl mt-5">
+                <div className="overflow-x-auto md:overflow-x-visible">
+                    <table className="table w-full text-black min-w-[700px]">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {
+                                filteredUsers.length > 0
+                                    ? filteredUsers.map((item, index) => (
+                                        <AdminSingleUser key={item._id} index={index} item={item}/>))
+                                    : allUsers.map((item, index) => (
+                                        <AdminSingleUser key={item._id} index={index} item={item}/>))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div> */}
+
         </div>
     );
 };

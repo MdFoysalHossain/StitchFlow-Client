@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import { useState } from 'react';
 
 
-const AdminSingleOrder = ({item, setUpdateEffect}) => {
+const AdminSingleOrder = ({ item, setUpdateEffect }) => {
 
     const { backServerUrl, dbUserInfo, userInfo } = use(AuthContext);
     const postedAt = item.approvedTime && item.approvedTime.split("T")[0];
@@ -103,25 +103,23 @@ const AdminSingleOrder = ({item, setUpdateEffect}) => {
 
     return (
         <>
-            <tr key={item._id} >
+            <tr key={item._id} className='*:whitespace-nowrap' >
                 <td>{item._id}</td>
                 <td className='capitalize'>{item.firstName} {item.lastName}</td>
-                <td className='capitalize'>{item.title}</td>
+                <td className="capitalize ">
+                    {item.title}
+                </td>
+
                 <td>{item.minimumOrder}</td>
                 <td >{item.status === "confirmed" ? "Accepted" : item.status}</td>
                 <td>{postedAt || "Not Approved Yet"}</td>
-                <td>
-                    <div className="flex gap-2">
-
-                        {/* 🔥 Opens the modal */}
-                        <button
-                            onClick={() => setSelectedOrder(item)}
-                            className="btn btn-sm theme-btn shadow p-4"
-                        >
-                            View Details
-                        </button>
-
-                    </div>
+                <td className='text-left p-0'>
+                    <button
+                        onClick={() => setSelectedOrder(item)}
+                        className="btn btn-sm theme-btn shadow p-4 w-[100px]"
+                    >
+                        View Details
+                    </button>
 
                     {sellerUpdate && (
                         <>
@@ -195,8 +193,8 @@ const AdminSingleOrder = ({item, setUpdateEffect}) => {
                                 readOnly
                             />
 
-                            <div className="modal" role="dialog">
-                                <div className="modal-box max-w-4xl p-8 rounded-2xl">
+                            <div className="modal " role="dialog">
+                                <div className="modal-box py-5 max-w-4xl p-8 rounded-2xl">
 
                                     <h3 className="font-bold text-3xl mb-6 text-gray-800">
                                         Order Details
@@ -245,7 +243,7 @@ const AdminSingleOrder = ({item, setUpdateEffect}) => {
                                                 )}
                                             </div>
 
-                                            <div>
+                                            <div className='flex flex-col'>
                                                 <label className="label font-semibold mb-1">Select Stage</label>
                                                 <select className="select select-bordered w-full mb-4" onChange={hangleStageData}>
                                                     <option disabled selected>Select Stage</option>

@@ -57,14 +57,13 @@ const AdminSingleUser = ({ item,}) => {
     }
 
     return (
-        <tr key={item._id} className=''>
-
+        <tr key={item._id} className='*:whitespace-nowrap'>
             <td className='capitalize'>{item.name}</td>
             <td className='lowercase'>{item.email}</td>
             <td className='capitalize'>{item.accountType}</td>
             <td className='capitalize'>{statusChange ? statusChange : item.status}</td>
             <td>
-                <div className="flex gap-4">
+                <div className="flex gap-4 mr-10">
                     {/* <div className=" flex gap-2 items-center">
                         <input onChange={handleOnCheck} className='checkbox' defaultChecked={item.showHome} type="checkbox" name="" id="" />
                         Show At Home
