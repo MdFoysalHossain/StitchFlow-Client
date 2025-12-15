@@ -91,3 +91,9 @@ body a {
 .dark body a {
   @apply text-white;
 }
+
+
+footer .social-link, .dark footer .social-link{
+  /* @apply text-purple-600 hover:text-white; */
+  @apply p-2 bg-white text-purple-600 rounded-full hover:bg-purple-600 transition hover:text-white;
+}

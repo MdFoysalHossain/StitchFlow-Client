@@ -17,9 +17,9 @@ const Banner = () => {
         >
             <div className="bg-black/50 h-full w-full">
                 <div className="max-w-[1440px] mx-auto flex items-center h-full">
-                    <div className="text-left">
+                    <div className="text-left m-4">
                         <h1 className='text-purple-600 text-6xl font-bold mb-2'>StitchFlow</h1>
-                        <p className='text-2xl mb-4 w-[500px] text-white'>Track garment orders, manage every production stage, and deliver on time. All from one powerful platform built to support modern garment factories and growing businesses.</p>
+                        <p className='text-md lg:text-2xl mb-4 lg:w-[500px] text-white'>Track garment orders, manage every production stage, and deliver on time. All from one powerful platform built to support modern garment factories and growing businesses.</p>
                         <div className="">
                             <Link to={"/AllProducts"} className='btn theme-btn border-0 shadow-none'>View All Product</Link>
                         </div>

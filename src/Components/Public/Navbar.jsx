@@ -62,10 +62,10 @@ const Navbar = () => {
                         {allLiks}
                     </ul>
                 </div>
-                <a className="btn bg-transparent shadow-none border-0 text-xl flex items-center title">
+                <Link to={"/"} className="btn bg-transparent shadow-none border-0 text-xl flex items-center title">
                     <img src={theme === "light" ? Logo : Logo2} alt="" className='w-8 h-8 -mr-1' />
                     <p>StitchFlow</p>
-                </a>
+                </Link>
             </div>
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 text-[16px] gap-2 justify-end items-center font-semibold">
