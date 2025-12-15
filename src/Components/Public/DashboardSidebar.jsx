@@ -73,7 +73,7 @@ const DashboardSidebar = () => {
                     </li>
                     <li>
                         <NavLink
-                            to="/Dashboard/Admin/"
+                            to="/Dashboard/Admin/AllUsers"
                             className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center"
                         >
                             Manage Users
@@ -85,7 +85,7 @@ const DashboardSidebar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/Dashboard/Manager/ApprovedOrder" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
+                        <NavLink to="/Dashboard/Admin/AllOrders" className="rounded-lg hover:bg-purple-100 px-3 py-2 flex items-center">
                             All Orders
                         </NavLink>
                     </li>
