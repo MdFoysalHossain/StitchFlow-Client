@@ -37,16 +37,15 @@ const UpdateProduct = () => {
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
 
-        // Limit to max 4 images
         if (files.length > 4) {
-            // alert("You can upload a maximum of 4 images.");
             Swal.fire({
-                title: "Max 4 Images",
-                text: "Please add maximum 4 images.",
-                icon: "error"
+                icon: "error",
+                title: "Maximum 4 Photo",
+                text: "You can upload a maximum of 4 images.",
             });
             return;
         }
+        
 
         const imagePreviews = files.map((file) => URL.createObjectURL(file));
         setImages(imagePreviews);
@@ -128,6 +127,15 @@ const UpdateProduct = () => {
         const ShowHome = e.target.ShowHome.checked;
         const Title = e.target.Title.value;
         const description = e.target.description.value;
+
+        if (urls.length < 1) {
+            Swal.fire({
+                icon: "error",
+                title: "Minimum 1 Image",
+                text: "You need to upload minimum 1 image .",
+            });
+            return;
+        }
 
         const procductDetails = {
             id: id,

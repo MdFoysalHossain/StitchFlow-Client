@@ -14,10 +14,21 @@ const CreatePost = () => {
     const [dataPosting, setDataPosting] = useState(false)
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
-
-        // Limit to max 4 images
+        
         if (files.length > 4) {
-            alert("You can upload a maximum of 4 images.");
+            Swal.fire({
+                icon: "error",
+                title: "Maximum 4 Photo",
+                text: "You can upload a maximum of 4 images.",
+            });
+            return;
+        }
+        if (files.length < 1) {
+            Swal.fire({
+                icon: "error",
+                title: "Minimum 1 Image",
+                text: "You need to upload minimum 1 image .",
+            });
             return;
         }
 

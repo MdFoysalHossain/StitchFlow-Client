@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const SingleApproved = ({ item, setProducts, products, setUpdateEffect }) => {
 
-    const { backServerUrl, dbUserInfo. userInfo } = use(AuthContext);
+    const { backServerUrl, dbUserInfo, userInfo } = use(AuthContext);
     const postedAt = item.approvedTime && item.approvedTime.split("T")[0];
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [sellerUpdate, setSellerUpdate] = useState(false);

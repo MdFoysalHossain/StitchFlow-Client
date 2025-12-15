@@ -108,7 +108,7 @@ const AdminSingleOrder = ({item, setUpdateEffect}) => {
                 <td className='capitalize'>{item.firstName} {item.lastName}</td>
                 <td className='capitalize'>{item.title}</td>
                 <td>{item.minimumOrder}</td>
-                <td >{item.status}</td>
+                <td >{item.status === "confirmed" ? "Accepted" : item.status}</td>
                 <td>{postedAt || "Not Approved Yet"}</td>
                 <td>
                     <div className="flex gap-2">

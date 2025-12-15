@@ -5,6 +5,7 @@ import AdminSingleUser from './AdminSingleUser';
 const AdminAllUsers = () => {
     const { userInfo, backServerUrl } = use(AuthContext)
     const [allUsers, setAllUsers] = useState([])
+    const [filteredUsers, setFilteredUsers] = useState([])
     const [prodLoading, setProdLoading] = useState(true)
 
     useEffect(() => {
@@ -23,9 +24,45 @@ const AdminAllUsers = () => {
             })
     }, [])
 
+    const handleFilter = (e) => {
+        const filterBy = e.target.value;
+        console.log("Changed To:", filterBy)
+        if (filterBy === "all") {
+            setFilteredUsers([])
+        }
+        if(filterBy === "Buyer"){
+            const filterData = allUsers.filter(user => user.accountType === "Buyer")
+            setFilteredUsers(filterData)
+        }
+        if(filterBy === "Manager"){
+            const filterData = allUsers.filter(user => user.accountType === "Manager")
+            setFilteredUsers(filterData)
+        }
+        if(filterBy === "Admin"){
+            const filterData = allUsers.filter(user => user.accountType === "Admin")
+            setFilteredUsers(filterData)
+        }
+        // const filterData = allUsers.filter(user => user.accountType === e)
+        // setFilteredUsers(filterData)
+    }
+
     return (
         <div className='text-2xl text-left font-semibold mt-10'>
-            <h2>All Users ({allUsers.length})</h2>
+            <div className="flex justify-between items-center">
+                <h2>All Users ({allUsers.length})</h2>
+
+
+                <div className="w-40">
+
+                    <p className='text-sm'>Filter By</p>
+                    <select onChange={handleFilter} class="select">
+                        <option value="all">All</option>
+                        <option value="Buyer">Buyer</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+            </div>
 
 
             <div className="bg-white rounded-xl mt-5 overflow-hidden">
@@ -43,7 +80,8 @@ const AdminAllUsers = () => {
 
                     <tbody className=''>
                         {
-                            allUsers.map((item, index) => <AdminSingleUser key={index} index={index} item={item} setAllUsers={setAllUsers} allUsers={allUsers} />)
+                            filteredUsers.length > 0 ? filteredUsers.map((item, index) => <AdminSingleUser key={index} index={index} item={item} setAllUsers={setAllUsers} allUsers={allUsers} />)
+                                : allUsers.map((item, index) => <AdminSingleUser key={index} index={index} item={item} setAllUsers={setAllUsers} allUsers={allUsers} />)
                         }
                     </tbody>
 

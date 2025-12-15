@@ -81,7 +81,7 @@ const AdminAllOrders = () => {
                     <select onChange={handleFilter} defaultValue="all" className="select">
                         <option value='all'>All</option>
                         <option value='pending'>Pending</option>
-                        <option value='accepted'>Accepted</option>
+                        <option value='confirmed'>Accepted</option>
                         <option value='rejected'>Rejected</option>
                     </select>
                 </div>
