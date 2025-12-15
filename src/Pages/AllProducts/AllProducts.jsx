@@ -15,8 +15,8 @@ const AllProducts = () => {
     const [currentPages, setCurrentPages] = useState(0)
     const [loading, setLoading] = useState(true)
     const[skip, setSkip] = useState(0)
-    const skipBy = 1;
-    const limit = 4;
+    const skipBy = 9;
+    const limit = 9;
 
     useEffect(() => {
         fetch(`${backServerUrl}/AllProducts?limit=${limit}&skip=${skip}`)

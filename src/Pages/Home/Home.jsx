@@ -1,9 +1,13 @@
 import React from 'react';
+import Banner from './Components/Banner';
+import OurProducts from './Components/OurProducts';
 
 const Home = () => {
     return (
         <div className='h-full'>
-            This is Home
+            <title>Home - StitchFlow</title>
+            <Banner/>
+            <OurProducts/>
         </div>
     );
 };
