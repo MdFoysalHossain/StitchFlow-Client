@@ -8,7 +8,7 @@ import SingleApproved from './SingleApproved';
 const ApprovedOrders = () => {
 
 
-    const { userInfo, backServerUrl,  } = use(AuthContext)
+    const { userInfo, backServerUrl, } = use(AuthContext)
     const [products, setProducts] = useState([])
     const [prodLoad, setProdLoad] = useState(true)
     const [updateEffect, setUpdateEffect] = useState(true)
@@ -17,7 +17,11 @@ const ApprovedOrders = () => {
     useEffect(() => {
         if (updateEffect) {
             fetch(`${backServerUrl}/GetApprovedStats?email=${userInfo?.email}&limit=8`, {
-                method: "GET"
+                method: "GET",
+                headers: {
+                    "content-type": "application/json",
+                    authorization: `Bearer ${userInfo.accessToken}`,
+                },
             })
                 .then(res => res.json())
                 .then(data => {

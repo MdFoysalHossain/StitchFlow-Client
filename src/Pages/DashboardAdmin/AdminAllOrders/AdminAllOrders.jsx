@@ -86,6 +86,7 @@ const AdminAllOrders = () => {
                         <th>User </th>
                         <th>Product </th>
                         <th>Quantity </th>
+                        <th>Order Status</th>
                         <th>Approved Date</th>
                         <th>Actions</th>
                     </tr>

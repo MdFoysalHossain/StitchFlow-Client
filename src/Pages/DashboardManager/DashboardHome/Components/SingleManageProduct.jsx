@@ -4,13 +4,13 @@ import { Link } from "react-router";
 import { AuthContext } from "../../../../Components/Context/AuthContext";
 import Swal from 'sweetalert2'
 
-const ManageProductsTable = ({ item, setProducts, products}) => {
-    const { backServerUrl } = use(AuthContext)
+const ManageProductsTable = ({ item, setProducts, products }) => {
+    const { backServerUrl, userInfo } = use(AuthContext)
 
 
     // console.log("Single Product:", item)
 
-    const handleOnDelete = async() => {
+    const handleOnDelete = async () => {
         const result = await Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -27,7 +27,11 @@ const ManageProductsTable = ({ item, setProducts, products}) => {
         }
 
         fetch(`${backServerUrl}/DeletePost/${item._id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
         }).then(res => {
             const newArr = products.filter(product => product._id !== item._id)
 

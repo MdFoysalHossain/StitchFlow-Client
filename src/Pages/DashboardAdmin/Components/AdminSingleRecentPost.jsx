@@ -25,7 +25,11 @@ const AdminSingleRecentPost = ({ item, allProducts, index, setAllProducts }) => 
         }
 
         fetch(`${backServerUrl}/DeletePost/${item._id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
         }).then(res => {
             const newArr = allProducts.filter(product => product._id !== item._id)
 

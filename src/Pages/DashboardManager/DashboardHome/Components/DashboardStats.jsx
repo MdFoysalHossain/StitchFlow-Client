@@ -1,9 +1,9 @@
 import React, { use, useEffect, useState } from 'react';
-import { Package, ClipboardList, BadgeCheck , HandCoins, CreditCard  } from "lucide-react";
+import { Package, ClipboardList, BadgeCheck, HandCoins, CreditCard } from "lucide-react";
 import { AuthContext } from '../../../../Components/Context/AuthContext';
 
-const DashboardStats = ({setAllProducts, allProducts}) => {
-    const {userInfo, backServerUrl} = use(AuthContext)
+const DashboardStats = ({ setAllProducts, allProducts }) => {
+    const { userInfo, backServerUrl } = use(AuthContext)
     const [products, setProducts] = useState([])
     const [pendingProducts, setPendingProducts] = useState([])
     const [confirmedProducts, setConfirmedProducts] = useState([])
@@ -19,8 +19,12 @@ const DashboardStats = ({setAllProducts, allProducts}) => {
 
     useEffect(() => {
         fetch(`${backServerUrl}/GetProductsStats?email=${userInfo?.email}&limit=8`, {
-            method: "GET"
-        }) .then (res => res.json()) .then(data => {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
+        }).then(res => res.json()).then(data => {
             setAllProducts(data)
             setProducts(data)
             console.log("userInfo?.email:", userInfo?.email)
@@ -28,21 +32,29 @@ const DashboardStats = ({setAllProducts, allProducts}) => {
         })
 
         fetch(`${backServerUrl}/GetPendingStats?email=${userInfo?.email}&limit=8`, {
-            method: "GET"
-        }) .then (res => res.json()) .then(data => {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
+        }).then(res => res.json()).then(data => {
             setPendingProducts(data)
         })
 
 
         fetch(`${backServerUrl}/GetApprovedStats?email=${userInfo?.email}&limit=8`, {
-            method: "GET"
-        }) .then (res => res.json()) .then(data => {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
+        }).then(res => res.json()).then(data => {
             setConfirmedProducts(data)
         })
 
     }, [backServerUrl, userInfo?.email])
 
-    if(!allLoaded){
+    if (!allLoaded) {
         return <div className='w-full h-[100vh] flex justify-center items-center'>
             <span className="loading scale-125 loading-spinner text-purple-600"></span>
         </div>

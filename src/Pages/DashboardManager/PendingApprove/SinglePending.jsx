@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const SinglePending = ({ item, setProducts, products }) => {
 
-    const { backServerUrl, dbUserInfo } = use(AuthContext);
+    const { backServerUrl, dbUserInfo, userInfo } = use(AuthContext);
     const postedAt = item.postedAt && item.postedAt.split("T")[0];
     const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -19,7 +19,10 @@ const SinglePending = ({ item, setProducts, products }) => {
         setSelectedOrder(null)
         fetch(`${backServerUrl}/ProductOrderApprove/${item._id}`, {
             method: "PATCH",
-            headers: { "content-type": "application/json" }
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
         })
             .then(res => {
                 const newProducts = products.filter(item2 => item2._id !== item._id)
@@ -40,7 +43,10 @@ const SinglePending = ({ item, setProducts, products }) => {
         setSelectedOrder(null)
         fetch(`${backServerUrl}/ProductOrderReject/${item._id}`, {
             method: "PATCH",
-            headers: { "content-type": "application/json" }
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            }
         })
             .then(res => {
                 const newProducts = products.filter(item2 => item2._id !== item._id)
@@ -60,10 +66,10 @@ const SinglePending = ({ item, setProducts, products }) => {
 
     const handleSuspended = () => {
         Swal.fire({
-                title: "Account Suspended!",
-                text: "Users account is suspended and can not accept or rejct new orders!",
-                icon: "error"
-            });
+            title: "Account Suspended!",
+            text: "Users account is suspended and can not accept or rejct new orders!",
+            icon: "error"
+        });
     }
 
     return (
@@ -116,13 +122,13 @@ const SinglePending = ({ item, setProducts, products }) => {
                                     <div className="modal-action flex justify-between">
                                         <div className="">
                                             <button
-                                                onClick={ dbUserInfo.status === "suspended" ? handleSuspended : approveOrder}
+                                                onClick={dbUserInfo.status === "suspended" ? handleSuspended : approveOrder}
                                                 className="btn btn-sm theme-btn shadow p-4 mr-5"
                                             >
                                                 Accept
                                             </button>
                                             <button
-                                                onClick={ dbUserInfo.status === "suspended" ? handleSuspended : rejectOrder}
+                                                onClick={dbUserInfo.status === "suspended" ? handleSuspended : rejectOrder}
                                                 className="btn btn-sm bg-red-500  p-4 text-white shadow"
                                             >
                                                 Reject

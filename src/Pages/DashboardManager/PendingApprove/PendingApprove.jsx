@@ -16,7 +16,11 @@ const PendingApprove = () => {
     useEffect(() => {
 
         fetch(`${backServerUrl}/GetPendingStats?email=${userInfo?.email}&limit=8`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                    "content-type": "application/json",
+                    authorization: `Bearer ${userInfo.accessToken}`,
+                },
         })
             .then(res => res.json())
             .then(data => {

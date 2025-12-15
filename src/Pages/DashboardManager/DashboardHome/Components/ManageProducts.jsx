@@ -15,7 +15,11 @@ const ManageProducts = () => {
 
     useEffect(() => {
         fetch(`${backServerUrl}/GetProductsStats?email=${userInfo?.email}&limit=16`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
         }).then(res => res.json()).then(data => {
             setProducts(data)
             setProdLoad(false)
@@ -49,9 +53,9 @@ const ManageProducts = () => {
                 </thead>
 
                 <tbody>
-                        {
-                            products.map((item, index) => <SingleManageProduct key={index} item={item} products={products} setProducts={setProducts} />)
-                        }
+                    {
+                        products.map((item, index) => <SingleManageProduct key={index} item={item} products={products} setProducts={setProducts} />)
+                    }
                 </tbody>
 
             </table>

@@ -100,12 +100,13 @@ const AdminSingleOrder = ({item, setUpdateEffect}) => {
 
     return (
         <>
-            <tr key={item._id}>
+            <tr key={item._id} >
                 <td>{item._id}</td>
-                <td>{item.firstName} {item.lastName}</td>
-                <td>{item.title}</td>
+                <td className='capitalize'>{item.firstName} {item.lastName}</td>
+                <td className='capitalize'>{item.title}</td>
                 <td>{item.minimumOrder}</td>
-                <td>{postedAt || "Date Not Set"}</td>
+                <td className='capitalize'>{item.status}</td>
+                <td>{postedAt || "Not Approved Yet"}</td>
                 <td>
                     <div className="flex gap-2">
 

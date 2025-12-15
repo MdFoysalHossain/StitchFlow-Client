@@ -3,7 +3,7 @@ import { AuthContext } from '../../../Components/Context/AuthContext';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 
-const AdminSingleProduct = ({item, setAllProducts, allProducts}) => {
+const AdminSingleProduct = ({ item, setAllProducts, allProducts }) => {
 
     const { userInfo, backServerUrl } = use(AuthContext)
 
@@ -25,7 +25,11 @@ const AdminSingleProduct = ({item, setAllProducts, allProducts}) => {
         }
 
         fetch(`${backServerUrl}/DeletePost/${item._id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
         }).then(res => {
             const newArr = allProducts.filter(product => product._id !== item._id)
 
@@ -53,9 +57,9 @@ const AdminSingleProduct = ({item, setAllProducts, allProducts}) => {
 
         fetch(`${backServerUrl}/AdminShowHomeChange`, {
             method: "PATCH",
-            headers: {"content-type": "application/json"},
+            headers: { "content-type": "application/json" },
             body: JSON.stringify(productData)
-        }) .then(res => res.json())
+        }).then(res => res.json())
             .then(data => console.log("Updated"))
     }
 
@@ -75,7 +79,7 @@ const AdminSingleProduct = ({item, setAllProducts, allProducts}) => {
             <td>
                 <div className="flex gap-4">
                     <div className=" flex gap-2 items-center">
-                        <input onChange={handleOnCheck} className='checkbox' defaultChecked={item.showHome} type="checkbox" name="" id="" /> 
+                        <input onChange={handleOnCheck} className='checkbox' defaultChecked={item.showHome} type="checkbox" name="" id="" />
                         Show At Home
                     </div>
                     <Link to={`/SingleProduct/${item._id}`}

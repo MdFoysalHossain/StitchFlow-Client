@@ -46,9 +46,9 @@ const AuthProvider = ({children}) => {
                 setUserInfo(user)
                 setLoading(false)
                 
-
+                // console.log("==============",user.accessToken)
                 fetch(`${backServerUrl}/FindUser?email=${user.email}`, {
-                    method: "GET"
+                    method: "GET",
                 })
                 .then(res => res.json())
                 .then(data => {

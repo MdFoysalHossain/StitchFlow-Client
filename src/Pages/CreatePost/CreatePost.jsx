@@ -37,9 +37,10 @@ const CreatePost = () => {
                 const formData = new FormData();
                 formData.append("image", file);
 
-                const res = await fetch(
-                    `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_ImageBB_Creds}`,
-                    { method: "POST", body: formData }
+                const res = await fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_ImageBB_Creds}`, {
+                    method: "POST",
+                    body: formData
+                }
                 );
 
                 const data = await res.json();
@@ -124,7 +125,10 @@ const CreatePost = () => {
         try {
             const res = await fetch(`${backServerUrl}/CreatePost`, {
                 method: "POST",
-                headers: { "content-type": "application/json" },
+                headers: {
+                    "content-type": "application/json",
+                    authorization: `Bearer ${userInfo.accessToken}`,
+                },
                 body: JSON.stringify(procductDetails)
             });
 

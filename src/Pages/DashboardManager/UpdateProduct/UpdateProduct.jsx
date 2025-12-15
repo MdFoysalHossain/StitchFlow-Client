@@ -151,7 +151,10 @@ const UpdateProduct = () => {
         try {
             const res = await fetch(`${backServerUrl}/UpdatePost`, {
                 method: "PATCH",
-                headers: { "content-type": "application/json" },
+                headers: {
+                    "content-type": "application/json",
+                    authorization: `Bearer ${userInfo.accessToken}`,
+                },
                 body: JSON.stringify(procductDetails)
             });
 
