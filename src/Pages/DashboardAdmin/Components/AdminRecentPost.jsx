@@ -4,7 +4,7 @@ import AdminSingleRecentPost from './AdminSingleRecentPost';
 const AdminRecentPost = ({ allProducts, setAllProducts }) => {
     return (
         <div className='text-2xl text-left font-semibold mt-10'>
-            <h2>Recent Post ({allProducts.length} / 8)</h2>
+            <h2>Recent Post ({allProducts.length >=8 ? 8 : allProducts.length})</h2>
 
 
             <div className="bg-white rounded-xl mt-5 overflow-x-auto xl:overflow-x-visible">

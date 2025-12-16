@@ -173,91 +173,89 @@ const OrderPage = () => {
 
     const handleSuspended = () => {
         Swal.fire({
-                title: "Account Suspended",
-                text: "Your account is suspended, please contant the admin for further details!",
-                icon: "error"
-            });
+            title: "Account Suspended",
+            text: "Your account is suspended, please contant the admin for further details!",
+            icon: "error"
+        });
     }
 
     return (
-        <div className='max-w-[1440px] mx-auto flex items-center flex-col gap-2 mt-20 relative'>
+        <div className='max-w-[1440px] mx-auto flex items-center flex-col gap-4 mt-10 md:mt-16 lg:mt-20 relative px-4'>
 
-            <div className="flex justify-between w-[900px] items-center">
-                <h1 className='text-2xl font-semibold max-w-[500px] text-left'><span className='theme-text'>Order</span> - {productData?.title} Black & Gray Leather Women's Jacket</h1>
-                <span className='text-sm flex items-center bg-white theme-text-black p-2 rounded-md shadow'>Home <ChevronRight size={16} /> Product <ChevronRight size={16} /> Order</span>
+            <div className="flex flex-col md:flex-row justify-between w-full max-w-[900px] items-start md:items-center gap-3">
+                <h1 className='text-2xl font-semibold max-w-full md:max-w-[500px] text-left'>
+                    <span className='theme-text'>Order</span> - {productData?.title} Black & Gray Leather Women's Jacket
+                </h1>
+                <span className='text-sm flex items-center bg-white theme-text-black p-2 rounded-md shadow'>
+                    Home <ChevronRight size={16} /> Product <ChevronRight size={16} /> Order
+                </span>
             </div>
-            <div className="card-body bg-white w-fit rounded-lg shadow">
-                <form onSubmit={handleSubmit} className=' text-left w-[860px]'>
-                    <div className="flex justify-between gap-10">
-                        <fieldset className="fieldset">
+
+            <div className="card-body bg-white w-full max-w-[900px] rounded-lg shadow">
+                <form onSubmit={handleSubmit} className='text-left w-full'>
+                    <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
+
+                        {/* LEFT FIELDSET */}
+                        <fieldset className="fieldset w-full">
                             <label className="label">Product Id</label>
-                            <input required name='prodcutId' type="text" readOnly className="input w-[350px] theme-text-black" defaultValue={id} />
+                            <input required name='prodcutId' type="text" readOnly className="input w-full theme-text-black" defaultValue={id} />
+
                             <label className="label">Product Title</label>
-                            <input required name='prodcutTitle' type="text" readOnly className="input w-[350px] theme-text-black" defaultValue={productData?.title} />
+                            <input required name='prodcutTitle' type="text" readOnly className="input w-full theme-text-black" defaultValue={productData?.title} />
 
                             <label className="label">Price Per Product in $ (USD)</label>
-                            <input required name='pricePerProduct' type="text" readOnly className="input w-[350px] theme-text-black" defaultValue={productData?.perPrice} />
+                            <input required name='pricePerProduct' type="text" readOnly className="input w-full theme-text-black" defaultValue={productData?.perPrice} />
 
                             <label className="label">Order Quantity</label>
-                            <input onChange={handleQuantityChange} required name='Minimum' type="number" className="input w-[350px] theme-text-black" placeholder={`Min: ${productData?.minimumOrder} Available: ${productData?.availableQuanity}`} />
-                            <p className={`${quantityErr ? "visible" : "hidden"} text-red-500`}>{`Min: ${productData?.minimumOrder} Available: ${productData?.availableQuanity}`}</p>
-
+                            <input onChange={handleQuantityChange} required name='Minimum' type="number"
+                                className="input w-full theme-text-black" placeholder={`Min: ${productData?.minimumOrder} Available: ${productData?.availableQuanity}`}
+                            />
+                            <p className={`${quantityErr ? "visible" : "hidden"} text-red-500`}>
+                                {`Min: ${productData?.minimumOrder} Available: ${productData?.availableQuanity}`}
+                            </p>
 
                             <label className="label">Total Price in $ (USD)</label>
-                            <input name='CalculatedPrice' type="number" readOnly className="input w-[350px] theme-text-black " placeholder={totalCounted} />
+                            <input name='CalculatedPrice' type="number" readOnly className="input w-full theme-text-black" placeholder={totalCounted} />
 
                             <label className="label mt-2">Choose Payment Method</label>
-                            <div className="flex gap-5">
+                            <div className="flex gap-5 flex-wrap">
 
                                 {productData?.cod && (
-                                    <div>
-                                        <label className="label cursor-pointer gap-2">
-                                            <input
-                                                onChange={handleCodChange}
-                                                type="radio"
-                                                name="paymentMethod"
-                                                value="cod"
-                                                className="radio"
-                                            />
-                                            Cash On Delivery
-                                        </label>
-                                    </div>
+                                    <label className="label cursor-pointer gap-2">
+                                        <input onChange={handleCodChange} type="radio" name="paymentMethod" value="cod" className="radio" />
+                                        Cash On Delivery
+                                    </label>
                                 )}
 
                                 {productData?.onlinePay && (
-                                    <div>
-                                        <label className="label cursor-pointer gap-2">
-                                            <input
-                                                onChange={handleOnlinePay}
-                                                type="radio"
-                                                name="paymentMethod"
-                                                value="online"
-                                                className="radio"
-                                            />
-                                            Online Pay
-                                        </label>
-                                    </div>
+                                    <label className="label cursor-pointer gap-2">
+                                        <input onChange={handleOnlinePay} type="radio" name="paymentMethod" value="online" className="radio" />
+                                        Online Pay
+                                    </label>
                                 )}
 
                             </div>
 
-                            <p className={`${paymentType ? "hidden" : "visible"} text-red-500`}>Please Select Payment Methode</p>
-
+                            <p className={`${paymentType ? "hidden" : "visible"} text-red-500`}>
+                                Please Select Payment Methode
+                            </p>
                         </fieldset>
 
-                        <fieldset className="fieldset min-w-[300px]">
+                        {/* RIGHT FIELDSET */}
+                        <fieldset className="fieldset w-full">
 
-                            <div className="flex gap-5">
-                                <div className="">
+                            <div className="flex flex-col sm:flex-row gap-5">
+                                <div className="w-full">
                                     <label className="label">First Name</label>
-                                    <input required name='firstName' type="text" className="input theme-text-black" placeholder='First Name' />
-                                </div>
-                                <div className="">
-                                    <label className="label">Last Name</label>
-                                    <input required name='lastName' type="text" className="input theme-text-black" placeholder="Last Name" />
+                                    <input required name='firstName' type="text" className="input w-full theme-text-black" placeholder='First Name' />
                                 </div>
 
+                                <div className="w-full">
+                                    <label className="label">Last Name</label>
+                                    <input required name='lastName' type="text" className="input w-full theme-text-black" placeholder="Last Name" />
+                                </div>
                             </div>
+
                             <label className="label">Buyer Email</label>
                             <input required name='pricePerProduct' type="text" readOnly className="input w-full theme-text-black" defaultValue={dbUserInfo?.email} />
 
@@ -265,26 +263,28 @@ const OrderPage = () => {
                             <input required name='contactNumber' type="number" className="input w-full theme-text-black" placeholder='+8801912345678' />
 
                             <label className="label">Delivery Address</label>
-                            <input required name='address' type="text" className="input  w-full theme-text-black" placeholder='City, Road No, House No' />
+                            <input required name='address' type="text" className="input w-full theme-text-black" placeholder='City, Road No, House No' />
 
                             <label className="label">Additional Notes / Instructions</label>
                             <textarea name='note' className="textarea w-full min-h-[110px]" placeholder="Additional Notes / Instructions"></textarea>
 
-
                         </fieldset>
-
-
                     </div>
-                    <button disabled={dbUserInfo?.status === "pending" || dbUserInfo?.status === "suspended"} className="btn theme-btn text-left mt-4 px-10">Place Order</button>
-                    <p className={` ${dbUserInfo?.status === "suspended" ? "visible" : "hidden"} text-red-500 mt-2`}>Your account is suspended, please contant the admin for further details!</p>
+
+                    <button
+                        disabled={dbUserInfo?.status === "pending" || dbUserInfo?.status === "suspended"}
+                        className="btn theme-btn mt-4 px-10 w-full sm:w-fit"
+                    >
+                        Place Order
+                    </button>
+
+                    <p className={`${dbUserInfo?.status === "suspended" ? "visible" : "hidden"} text-red-500 mt-2`}>
+                        Your account is suspended, please contant the admin for further details!
+                    </p>
                 </form>
             </div>
-
-            {/* <div className={` ${dataPosting ? "visible" : "hidden"} absolute inset-0 rounded-2xl bg-white/30 backdrop-blur-md flex justify-center items-center`}>
-                <span className="loading loading-spinner text-purple-600 scale-200"></span>
-            </div> */}
-
         </div>
+
     );
 };
 
