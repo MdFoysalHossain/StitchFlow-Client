@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import AdminDashboardStats from './Components/AdminDashboardStats';
 import AdminRecentPost from './Components/AdminRecentPost';
 import { AuthContext } from '../../Components/Context/AuthContext';
+import DashboardCharts from './Components/DashboardCharts';
 
 const AdminHome = () => {
 
@@ -57,6 +58,7 @@ const AdminHome = () => {
         <div className='mx-auto max-w-[1440px]'>
             <title>Admin Dashboard</title>
             <AdminDashboardStats usersLoading={usersLoading} orderLoading={orderLoading} prodLoading={prodLoading} allUsers={allUsers} allOrders={allOrders} allProducts={allProducts} />
+            <DashboardCharts/>
             <AdminRecentPost allProducts={allProducts} setAllProducts={setAllProducts}/>
         </div>
     );

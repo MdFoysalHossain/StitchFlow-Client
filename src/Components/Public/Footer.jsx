@@ -1,4 +1,4 @@
-import { Facebook, Linkedin, Github, Twitter } from "lucide-react";
+import { Facebook, Linkedin, Github, X } from "lucide-react";
 import Logo from "/Logo2.png"
 import { Link } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
@@ -64,9 +64,6 @@ export default function Footer() {
                             </Link>
                             <Link to={"/"} className="social-link">
                                 <Github className="w-5 h-5" />
-                            </Link>
-                            <Link to={"/"} className="social-link">
-                                <Twitter className="w-5 h-5" />
                             </Link>
                         </div>
                     </div>

@@ -4,13 +4,13 @@ import { use } from 'react';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router';
 
-const SingleOrder = ({ item, setProducts, products}) => {
+const SingleOrder = ({ item, setProducts, products }) => {
     const { backServerUrl, userInfo } = use(AuthContext)
 
 
     // console.log("Single Product:", item)
 
-    const handleOnDelete = async() => {
+    const handleOnDelete = async () => {
         const result = await Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -58,13 +58,11 @@ const SingleOrder = ({ item, setProducts, products}) => {
                     >
                         View
                     </Link>
-                    <button
-                        onClick={handleOnDelete}
-                        // onClick={() => onDelete(item._id)}
-                        className="btn btn-sm btn-error black-text"
-                    >
-                        Cancel
-                    </button>
+
+                    {
+                        item.status === "pending" && <button onClick={handleOnDelete} className="btn btn-sm btn-error black-text" >Cancel</button>
+                    }
+
                 </div>
             </td>
         </tr>

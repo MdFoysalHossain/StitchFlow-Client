@@ -23,8 +23,9 @@ const ManageProducts = () => {
         })
             .then(res => res.json())
             .then(data => {
-                setProducts(data || []);
+                setProducts(data || []);    
                 setProdLoad(false);
+                console.log((data))
             })
             .catch(() => setProdLoad(false));
     }, [backServerUrl, userInfo?.email]);
@@ -79,7 +80,6 @@ const ManageProducts = () => {
                 </div>
             </div>
 
-            {/* Table */}
             <div className="overflow-x-auto xl:overflow-x-visible">
 
                 <table className="table w-full theme-div-white text-black">
