@@ -50,10 +50,10 @@ const Login = () => {
     }
 
     return (
-        <div className="h-[80vh] flex items-center">
-            <div className='mx-auto w-fit max-w-[700px] bg-white shadow-xl flex justify-center items-center rounded-xl overflow-hidden'>
+        <div className="flex mt-10 items-center">
+            <div className='mx-auto w-fit p-4 md:p-0 max-w-[700px] bg-white shadow-xl flex justify-center items-center rounded-xl overflow-hidden'>
                 <div className="flex">
-                    <div className="flex-1 h-[600px] overflow-hidden relative">
+                    <div className="flex-1 hidden md:block h-[600px] overflow-hidden relative">
                         <img
                             src={SideImage}
                             alt=""

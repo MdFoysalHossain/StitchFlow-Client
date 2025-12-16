@@ -9,7 +9,7 @@ function AboutUs() {
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
             About Our Platform
           </h1>
-          <p className="max-w-3xl mx-auto text-lg text-indigo-100">
+          <p className="max-w-3xl mx-auto text-lg">
             A modern Garments Order & Production Tracker System built to simplify
             factory workflows, improve transparency, and ensure timely delivery.
           </p>
@@ -18,13 +18,13 @@ function AboutUs() {
 
       <section className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10 items-center">
         <div className="p-8 rounded-2xl bg-white  shadow h-full">
-          <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
-          <p className=" leading-relaxed mb-4">
+          <h2 className="text-3xl font-bold mb-4 text-black">Who We Are</h2>
+          <p className="text-black leading-relaxed mb-4">
             We focus on empowering small and medium-sized garment factories with a
             centralized system to manage orders, production stages, inventory, and
             delivery tracking — all in one place.
           </p>
-          <p className=" leading-relaxed">
+          <p className="text-black leading-relaxed">
             Our goal is to reduce manual effort, eliminate miscommunication, and
             provide real-time visibility for admins, managers, and buyers.
           </p>
