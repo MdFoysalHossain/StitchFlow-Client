@@ -18,9 +18,9 @@ const PendingApprove = () => {
         fetch(`${backServerUrl}/GetPendingStats?email=${userInfo?.email}&limit=8`, {
             method: "GET",
             headers: {
-                    "content-type": "application/json",
-                    authorization: `Bearer ${userInfo.accessToken}`,
-                },
+                "content-type": "application/json",
+                authorization: `Bearer ${userInfo.accessToken}`,
+            },
         })
             .then(res => res.json())
             .then(data => {
@@ -44,25 +44,26 @@ const PendingApprove = () => {
 
             <h2 className='text-left mb-5 font-semibold text-2xl'>Pending Orders ({products.length})</h2>
 
-            <table className="table w-full theme-div-white text-black">
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>User </th>
-                        <th>Product </th>
-                        <th>Quantity </th>
-                        <th>Order Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
+            <div className="overflow-x-auto xl:overflow-x-visible">
+                <table className="table w-full theme-div-white text-black">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>User </th>
+                            <th>Product </th>
+                            <th>Quantity </th>
+                            <th>Order Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    {
-                        products.map((item, index) => <SinglePending key={index} item={item} products={products} setProducts={setProducts} />)
-                    }
-                </tbody>
-
-            </table>
+                    <tbody>
+                        {
+                            products.map((item, index) => <SinglePending key={index} item={item} products={products} setProducts={setProducts} />)
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

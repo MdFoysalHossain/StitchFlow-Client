@@ -8,7 +8,7 @@ const SingleProduct = ({ item }) => {
     return (
 
 
-        <div className="card w-96 bg-white backdrop-blur-md shadow-xl hover:shadow-2xl rounded-2xl overflow-hidden border border-gray-200 transition-all duration-300">
+        <div className="card w-90 bg-white backdrop-blur-md shadow-xl hover:shadow-2xl rounded-2xl overflow-hidden border border-gray-200 transition-all duration-300">
             <figure className="overflow-hidden h-60 flex justify-center items-center bg-gray-100">
                 <img
                     className="bg-white  w-full object-cover transition-transform duration-500 hover:scale-105"

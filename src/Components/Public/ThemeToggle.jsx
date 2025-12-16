@@ -1,19 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, } from 'react';
 
-const ThemeToggle = ({theme, setTheme}) => {
+const ThemeToggle = ({ theme, setTheme }) => {
     // const [theme, setTheme] = useState("light");
 
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
+
+        document.documentElement.classList.toggle("dark", theme === "dark");
+
+        localStorage.setItem("theme", theme);
     }, [theme]);
+
 
     const handleToggle = (e) => {
         const isDark = e.target.checked;
-        const newTheme = isDark ? "dark" : "light"; 
+        const newTheme = isDark ? "dark" : "light";
+
         setTheme(newTheme);
 
-        document.documentElement.classList.toggle("dark", newTheme === "dark")
+        document.documentElement.classList.toggle("dark", newTheme === "dark");
+        localStorage.setItem("theme", newTheme);
     };
+
 
     return (
         <div className='relative'>
@@ -21,7 +29,7 @@ const ThemeToggle = ({theme, setTheme}) => {
                 <input
                     type="checkbox"
                     className="theme-controller"
-                    value={theme} 
+                    value={theme}
                     checked={theme !== "light"}
                     onChange={handleToggle}
                 />
@@ -49,4 +57,3 @@ const ThemeToggle = ({theme, setTheme}) => {
 };
 
 export default ThemeToggle;
- 

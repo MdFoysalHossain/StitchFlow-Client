@@ -45,7 +45,7 @@ const ManageProductsTable = ({ item, setProducts, products }) => {
     }
 
     return (
-        <tr key={item._id} className="">
+        <tr key={item._id} className="*:whitespace-nowrap">
             <td>
                 <img
                     src={item.images[0]}

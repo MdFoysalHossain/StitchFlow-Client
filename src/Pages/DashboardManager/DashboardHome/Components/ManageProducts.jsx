@@ -39,26 +39,29 @@ const ManageProducts = () => {
 
             <h2 className='text-left mb-5 font-semibold text-2xl'>All Products ({products.length})</h2>
 
-            <table className="table w-full theme-div-white text-black">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price Per Product</th>
-                        <th>Minimum Order</th>
-                        <th>Available Qualtity</th>
-                        <th>Payment Mode</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
+            <div className="overflow-x-auto xl:overflow-x-visible">
 
-                <tbody>
-                    {
-                        products.map((item, index) => <SingleManageProduct key={index} item={item} products={products} setProducts={setProducts} />)
-                    }
-                </tbody>
+                <table className="table w-full theme-div-white text-black">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price Per Product</th>
+                            <th>Minimum Order</th>
+                            <th>Available Qualtity</th>
+                            <th>Payment Mode</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
 
-            </table>
+                    <tbody>
+                        {
+                            products.map((item, index) => <SingleManageProduct key={index} item={item} products={products} setProducts={setProducts} />)
+                        }
+                    </tbody>
+
+                </table>
+            </div>
         </div>
     );
 };

@@ -33,29 +33,34 @@ const MyOrders = () => {
     }
 
     return (
-        <div className='mt-5 max-w-[1440px] mx-auto'>
+        <div className='mt-5 max-w-[1440px] md:mx-auto mx-4 p-0 md:p-4'>
 
             <h2 className='text-left mb-5 font-semibold text-2xl'>My Orders ({products.length})</h2>
 
-            <table className="table w-full theme-div-white text-black">
-                <thead>
-                    <tr>
-                        <th>Order Id</th>
-                        <th>Name</th>
-                        <th>Quantity</th>
-                        <th>Status</th>
-                        <th>Payment</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    {
-                        products.map((item, index) => <SingleOrder key={index} item={item} products={products} setProducts={setProducts} />)
-                    }
-                </tbody>
+            <div className="overflow-x-auto xl:overflow-x-visible">
 
-            </table>
+                <table className="table w-full theme-div-white text-black">
+                    <thead>
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                            <th>Payment</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {
+                            products?.map((item, index) => <SingleOrder key={index} item={item} products={products} setProducts={setProducts} />)
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
         </div>
     );
 

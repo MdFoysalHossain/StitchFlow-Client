@@ -28,6 +28,7 @@ import AdminRoute from "./AdminRoute";
 import AdminAllProducts from "../../Pages/DashboardAdmin/AdminAllProducts/AdminAllProducts";
 import AdminAllUsers from "../../Pages/DashboardAdmin/AdminAllUsers/AdminAllUsers";
 import AdminAllOrders from "../../Pages/DashboardAdmin/AdminAllOrders/AdminAllOrders";
+import NotFound from "../Public/NotFound";
 
 export const router = createBrowserRouter([
     {
@@ -86,14 +87,11 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: "/Dashboard",
+        path: "/Dashboard/Manager",
         element: <DashboardManagerRoot />,
         children: [
             {
                 index: true,
-                
-            },
-            {
                 path: "/Dashboard/Manager",
                 element: <PrivateRoute><ManagerRoute> <DashboardHome /></ManagerRoute></PrivateRoute>,
             },
@@ -116,13 +114,11 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path: "/Dashboard/",
+        path: "/Dashboard/Admin",
         element: <DashboardAdminRoot />,
         children: [
             {
                 index: true,
-            },
-            {
                 path: "/Dashboard/Admin",
                 element: <PrivateRoute><AdminRoute> <AdminHome /></AdminRoute></PrivateRoute>,
             },
@@ -139,6 +135,10 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute><AdminRoute> <AdminAllOrders /></AdminRoute></PrivateRoute>,
             },
         ]
+    },
+    {
+        path: "*",
+        element: <NotFound/>
     },
 ]);
 

@@ -45,7 +45,7 @@ const UpdateProduct = () => {
             });
             return;
         }
-        
+
 
         const imagePreviews = files.map((file) => URL.createObjectURL(file));
         setImages(imagePreviews);
@@ -155,7 +155,6 @@ const UpdateProduct = () => {
             createdAt: now.toISOString()
         };
 
-        // POST to backend
         try {
             const res = await fetch(`${backServerUrl}/UpdatePost`, {
                 method: "PATCH",
@@ -193,40 +192,40 @@ const UpdateProduct = () => {
 
 
     return (
+        <div className='max-w-[1440px] mx-auto flex items-center flex-col gap-4 mt-10 md:mt-16 lg:mt-20 relative px-4'>
 
-        <div className='max-w-[1440px] mx-auto flex items-center flex-col gap-2 mt-20 relative'>
-
-            <div className="flex justify-between w-[900px] items-center">
+            <div className="flex flex-col sm:flex-row justify-between w-full max-w-[900px] items-start sm:items-center gap-2">
                 <h1 className='text-2xl font-semibold'>Create Post</h1>
-                <span className='text-sm flex items-center bg-white theme-text-black p-2 rounded-md shadow'>Home <ChevronRight size={16} /> Create Post</span>
+                <span className='text-sm flex items-center bg-white theme-text-black p-2 rounded-md shadow'>
+                    Home <ChevronRight size={16} /> Create Post
+                </span>
             </div>
 
-            <div className="flex gap-3 flex-wrap">
+            <div className="flex gap-3 flex-wrap justify-start w-full max-w-[900px]">
                 <PhotoProvider>
                     {images.map((img, index) => (
                         <PhotoView src={img} key={index}>
-
                             <img
-                                key={index}
                                 src={img}
                                 alt="preview"
-                                className="w-24 h-24 object-cover rounded-md border"
+                                className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-md border"
                             />
                         </PhotoView>
-
                     ))}
                 </PhotoProvider>
             </div>
 
-            <div className="card-body bg-white w-fit rounded-lg shadow">
-                <form className=' text-left' onSubmit={handleSubmit}>
-                    <div className="flex gap-10">
-                        <fieldset className="fieldset">
+            <div className="card-body bg-white w-full max-w-[900px] rounded-lg shadow">
+                <form className='text-left' onSubmit={handleSubmit}>
+                    <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
+
+                        <fieldset className="fieldset w-full">
                             <label className="label">Banner Image*</label>
-                            <input required onChange={handleImageChange} name="images" type="file" multiple accept="image/*" className="file-input theme-text-black font-normal" />
+                            <input required onChange={handleImageChange} name="images" type="file" multiple accept="image/*"
+                                className="file-input theme-text-black font-normal w-full" />
 
                             <label className="label">Select Category*</label>
-                            <select name="type" className="select theme-text-black" required defaultValue={productData.category}>
+                            <select name="type"  className="select theme-text-black w-full"  required defaultValue={productData.category}>
                                 <option value="" disabled>Pick a Category</option>
                                 <option value="Shirt">Shirt</option>
                                 <option value="Pant">Pant</option>
@@ -238,65 +237,56 @@ const UpdateProduct = () => {
                                 <option value="Sweater">Sweater</option>
                             </select>
 
-
                             <label className="label">Price Per Item (USD)*</label>
-                            <input required name='PerPrice' type="number" className="input theme-text-black" placeholder="10$" defaultValue={productData.perPrice} />
+                            <input required name='PerPrice' type="number"  className="input theme-text-black w-full" placeholder="10$" defaultValue={productData.perPrice}/>
 
                             <label className="label">Avaiable Quantity*</label>
-                            <input required name='Available' type="number" className="input theme-text-black" placeholder="1000/5000/10000" defaultValue={productData.availableQuanity} />
+                            <input required  name='Available' type="number" className="input theme-text-black w-full" placeholder="1000/5000/10000" defaultValue={productData.availableQuanity}/>
 
                             <label className="label">Minimum Order Quantity*</label>
-                            <input required name='Minimum' type="number" className="input theme-text-black" placeholder="100/500/1000" defaultValue={productData.minimumOrder} />
-
+                            <input required name='Minimum' type="number" className="input theme-text-black w-full" placeholder="100/500/1000" defaultValue={productData.minimumOrder}/>
 
                             <label className="label mt-2">Allowed Payment Methode</label>
-                            <div className="flex gap-5">
-                                <div className="">
-                                    {
-                                        console.log("cod:", cod, "Online Pay:", onPay)
-                                    }
-                                    <label className="label">
-                                        <input name="CashOnDelivery" type="checkbox" defaultChecked={true} className="checkbox" />
-                                        Cash On Delivery
-                                    </label>
-                                </div>
-                                <div className="">
-                                    <label className="label">
-                                        <input name="OnlinePay" type="checkbox" defaultChecked={true} className="checkbox" />
-                                        Online Pay
-                                    </label>
-                                </div>
-
-                            </div>
-
-                            <div className="">
+                            <div className="flex gap-5 flex-wrap">
                                 <label className="label">
-                                    <input name="ShowHome" type="checkbox" defaultChecked={false} className="checkbox" />
-                                    Show on Home "/"
+                                    <input name="CashOnDelivery" type="checkbox" defaultChecked className="checkbox" />
+                                    Cash On Delivery
+                                </label>
+
+                                <label className="label">
+                                    <input name="OnlinePay" type="checkbox" defaultChecked className="checkbox" />
+                                    Online Pay
                                 </label>
                             </div>
 
+                            <label className="label">
+                                <input name="ShowHome" type="checkbox" defaultChecked={false} className="checkbox" />
+                                Show on Home "/"
+                            </label>
                         </fieldset>
 
-                        <fieldset className="fieldset">
-
+                        <fieldset className="fieldset w-full">
                             <label className="label">Title*</label>
-                            <input required name='Title' type="text" className="input w-[500px] theme-text-black" defaultValue={productData.title} placeholder="Title Text" />
-
+                            <input required name='Title' type="text" className="input w-full theme-text-black" defaultValue={productData.title} placeholder="Title Text"/>
 
                             <label className="label">Description*</label>
-                            <textarea required name='description' defaultValue={productData.description} className="textarea min-h-80 w-[500px]  theme-text-black" placeholder="Product Description"></textarea>
+                            <textarea  name='description' defaultValue={productData.description} className="textarea min-h-60 md:min-h-80 w-full theme-text-black" placeholder="Product Description"/>
                         </fieldset>
+
                     </div>
-                    <button className="btn theme-btn text-left mt-4 px-10">Submit</button>
+
+                    <button className="btn theme-btn mt-4 px-10 w-full sm:w-fit">
+                        Submit
+                    </button>
                 </form>
             </div>
 
-            <div className={` ${dataPosting ? "visible" : "hidden"} absolute inset-0 rounded-2xl bg-white/30 backdrop-blur-md flex justify-center items-center`}>
+            <div className={`${dataPosting ? "visible" : "hidden"} absolute inset-0 rounded-2xl bg-white/30 dark:bg-black/30 backdrop-blur-md flex justify-center items-center`}>
                 <span className="loading loading-spinner text-purple-600 scale-200"></span>
             </div>
 
         </div>
+
     );
 };
 

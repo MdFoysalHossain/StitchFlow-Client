@@ -60,14 +60,14 @@ const AllProducts = () => {
 
 
     return (
-        <div className='max-w-[1440px] mx-auto text-left'>
+        <div className='max-w-[1440px] mx-auto text-left '>
             <div className="my-5">
-                <h1 className='text-2xl font-semibold'>All Products</h1>
+                <h1 className='text-2xl font-semibold mx-4'>All Products</h1>
             </div>
 
             {
                 loading ? <div className='w-full h-[50vh] flex justify-center items-center'><span className="loading scale-150 loading-spinner text-purple-600"></span></div> :
-                    <div className="grid grid-cols-3 gap-5 justify-items-center items-center w-full">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 justify-items-center items-center w-full">
                         {
                             allPost.map((item, index) => <SingleProduct key={index} item={item} />)
                         }

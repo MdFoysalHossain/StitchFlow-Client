@@ -48,25 +48,28 @@ const ApprovedOrders = () => {
 
             <h2 className='text-left mb-5 font-semibold text-2xl'>Approved Orders ({products.length})</h2>
 
-            <table className="table w-full theme-div-white text-black">
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>User </th>
-                        <th>Product </th>
-                        <th>Quantity </th>
-                        <th>Approved Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
+            <div className="overflow-x-auto xl:overflow-x-visible">
 
-                <tbody>
-                    {
-                        products.map((item, index) => <SingleApproved key={index} setUpdateEffect={setUpdateEffect} item={item} products={products} setProducts={setProducts} />)
-                    }
-                </tbody>
+                <table className="table w-full theme-div-white text-black">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>User </th>
+                            <th>Product </th>
+                            <th>Quantity </th>
+                            <th>Approved Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
 
-            </table>
+                    <tbody>
+                        {
+                            products.map((item, index) => <SingleApproved key={index} setUpdateEffect={setUpdateEffect} item={item} products={products} setProducts={setProducts} />)
+                        }
+                    </tbody>
+
+                </table>
+            </div>
         </div>
     );
 };

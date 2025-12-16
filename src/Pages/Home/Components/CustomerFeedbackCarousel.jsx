@@ -66,10 +66,10 @@ function CustomerFeedbackCarousel() {
 
         </motion.div>
 
-        <button onClick={prev} className="absolute top-1/2 -left-4 md:-left-10 -translate-y-1/2 bg-white shadow p-2 rounded-full hover:bg-purple-600 hover:text-white transition">
+        <button onClick={prev} className="absolute top-1/2 -left-4 md:-left-0 -translate-y-1/2 bg-purple-600 shadow p-2 rounded-full hover:bg-purple-600 hover:text-white transition">
           <ChevronLeft />
         </button>
-        <button onClick={next} className="absolute top-1/2 -right-4 md:-right-10 -translate-y-1/2 bg-white shadow p-2 rounded-full hover:bg-purple-600 hover:text-white transition">
+        <button onClick={next} className="absolute top-1/2 -right-4 md:-right-0 -translate-y-1/2 bg-purple-600 shadow p-2 rounded-full hover:bg-purple-600 hover:text-white transition">
           <ChevronRight />
         </button>
       </div>

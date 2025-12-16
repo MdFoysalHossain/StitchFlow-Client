@@ -4,14 +4,17 @@ import { auth } from '../../Firebase/firebase.init';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { GoogleAuthProvider } from "firebase/auth";
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
     const provider = new GoogleAuthProvider();
     const [userInfo, setUserInfo] = useState(null)
     const [dbUserInfo, setDbUserInfo] = useState(null)
     const [loading, setLoading] = useState(true)
     const [loadingDbInfo, setLoadingDbInfo] = useState(true)
-    const [theme, setTheme] = useState("light");
-    const backServerUrl = "http://localhost:3000";
+    // const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState(() => {
+        return localStorage.getItem("theme") || "light";
+    });
+    const backServerUrl = "https://stitch-flow-server.vercel.app";
 
     const createEmailAccount = (email, password) => {
         setLoading(false)
@@ -27,7 +30,7 @@ const AuthProvider = ({children}) => {
 
 
     const userSignOut = () => {
-        
+
         return signOut(auth).then(res => {
             setUserInfo(null)
             setLoading(false)
@@ -45,20 +48,20 @@ const AuthProvider = ({children}) => {
                 console.log("Unsubscribe:", user)
                 setUserInfo(user)
                 setLoading(false)
-                
+
                 // console.log("==============",user.accessToken)
                 fetch(`${backServerUrl}/FindUser?email=${user.email}`, {
                     method: "GET",
                 })
-                .then(res => res.json())
-                .then(data => {
-                    console.log("DB User Data Loaded:", data)
-                    setDbUserInfo(data)
-                    setLoadingDbInfo(false)
-                })
-                
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log("DB User Data Loaded:", data)
+                        setDbUserInfo(data)
+                        setLoadingDbInfo(false)
+                    })
 
-            }else{
+
+            } else {
                 setUserInfo(null)
                 setLoading(false)
                 setLoadingDbInfo(false)
@@ -69,7 +72,7 @@ const AuthProvider = ({children}) => {
 
         return unsubscribe
     }, [])
-    
+
 
     const allValue = {
         loading,

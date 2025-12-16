@@ -39,7 +39,7 @@ const OurProducts = () => {
 
             {
                 loading ? <div className='w-full h-[50vh] flex justify-center items-center'><span className="loading scale-150 loading-spinner text-purple-600"></span></div> :
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center items-center w-full">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 justify-items-center items-center w-full">
                         {
                             allPost.map((item, index) => <SingleOurProduct key={index} item={item} />)
                         }

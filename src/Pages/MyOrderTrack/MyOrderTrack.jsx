@@ -26,7 +26,7 @@ const MyOrderTrack = () => {
             })
     }, [backServerUrl, id])
 
-    if (userInfo && product && userInfo?.email !== product?.email) {
+    if (userInfo?.email && product?.email && userInfo?.email !== product?.email) {
         return (
             <div className={`h-[80vh] flex items-center justify-center p-6`}>
                 <div className="max-w-md w-full  theme-div rounded-2xl shadow-xl p-8 text-center">
@@ -72,15 +72,15 @@ const MyOrderTrack = () => {
 
 
     return (
-        <div className="max-w-[1440px] mx-auto">
-
+        <div className="max-w-[1440px] mx-auto p-4 rounded-2xl overflow-hidden">
+ 
             {/* <h2 className='text-2xl font-bold'></h2> */}
 
-            <div className='max-w-[1440px] mx-auto theme-div text-left p-4 py-20 mt-20'>
+            <div className='max-w-[1440px] mx-auto theme-div text-left p-4 py-20 mt-20 '>
 
                 <div className="mx-auto w-fit">
                     <h1 className='text-left font-semibold text-2xl mb-5'>Track Order - <span className='theme-text'>{product.title}</span></h1>
-                    <div className="flex  gap-10 justify-between items-start">
+                    <div className="flex flex-col md:flex-row gap-2 md:gap-10 md:justify-between md:items-start">
                         <div className="mb-6">
 
                             <h3 className="text-xl font-semibold mb-2">Order Details</h3>
@@ -149,7 +149,7 @@ const MyOrderTrack = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className="timeline-end timeline-box  text-center">Preparing </div>
+                                <div className="timeline-end timeline-box  text-center text-black">Preparing </div>
                                 <hr className={product.cuttingTime && "bg-purple-600"} />
                             </li>
                             <li>
@@ -172,7 +172,7 @@ const MyOrderTrack = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className="timeline-end timeline-box text-center">Cutting Completed
+                                <div className="timeline-end timeline-box text-center text-black">Cutting Completed
                                     {product.cuttingLocation && <p>({product.cuttingLocation})</p>}
                                 </div>
                                 <hr className={product.sewingTime && "bg-purple-600"} />
@@ -197,7 +197,7 @@ const MyOrderTrack = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className="timeline-end timeline-box  text-center">Sewing Started
+                                <div className="timeline-end timeline-box  text-center text-black">Sewing Started
                                     {product.sewingLocation && <p>({product.sewingLocation})</p>}
                                 </div>
                                 <hr className={product.finishingTime && "bg-purple-600"} />
@@ -222,7 +222,7 @@ const MyOrderTrack = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className="timeline-end timeline-box text-center">Finishing
+                                <div className="timeline-end timeline-box text-center text-black">Finishing
                                     {product.finishingLocation && <p>({product.finishingLocation})</p>}
                                 </div>
                                 <hr className={product.qcTime && "bg-purple-600"} />
@@ -247,7 +247,7 @@ const MyOrderTrack = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className="timeline-end timeline-box text-center">QC Checked
+                                <div className="timeline-end timeline-box text-center text-black">QC Checked
                                     {product.qcLocation && <p>({product.qcLocation})</p>}
                                 </div>
                                 <hr className={product.packedTime && "bg-purple-600"} />
@@ -272,7 +272,7 @@ const MyOrderTrack = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className="timeline-end timeline-box text-center">Packed
+                                <div className="timeline-end timeline-box text-center text-black">Packed
                                     {product.packedLocation && <p>({product.packedLocation})</p>}
                                 </div>
                                 <hr className={product.shippedTime && "bg-purple-600"} />
@@ -297,7 +297,7 @@ const MyOrderTrack = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className="timeline-end timeline-box text-center">Shipped
+                                <div className="timeline-end timeline-box text-center text-black">Shipped
                                     {product.shippedLocation && <p>({product.shippedLocation})</p>}
                                 </div>
                                 <hr className={product.deliveryTime && "bg-purple-600"} />
@@ -322,7 +322,7 @@ const MyOrderTrack = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div className="timeline-end timeline-box text-center">Out for Delivery
+                                <div className="timeline-end timeline-box text-center text-black">Out for Delivery
                                     {product.deliveryLocation && <p>({product.deliveryLocation})</p>}
                                 </div>
                             </li>

@@ -18,7 +18,9 @@
 
 .theme-text,
 .dark .theme-text {
-  @apply text-purple-600;
+  @apply text-purple-600 ;
+  /* @apply text-purple-600 mt-5; */
+  /* color: @apply text-purple-600; */
 }
 
 .theme-div-white{
@@ -92,6 +94,9 @@ body a {
   @apply text-white;
 }
 
+.dark .navLink {
+  @apply text-purple-600
+}
 
 footer .social-link, .dark footer .social-link{
   /* @apply text-purple-600 hover:text-white; */

@@ -45,7 +45,7 @@ const SingleOrder = ({ item, setProducts, products}) => {
     }
 
     return (
-        <tr key={item._id} className="">
+        <tr key={item._id} className="*:whitespace-nowrap">
             <td>{item._id}</td>
             <td>{item.title}</td>
             <td>{item.minimumOrder}</td>

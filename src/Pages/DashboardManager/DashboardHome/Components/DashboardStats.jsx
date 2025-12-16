@@ -5,6 +5,7 @@ import { AuthContext } from '../../../../Components/Context/AuthContext';
 const DashboardStats = ({ setAllProducts, allProducts }) => {
     const { userInfo, backServerUrl } = use(AuthContext)
     const [products, setProducts] = useState([])
+    const [productsTotal, setProductsTotal] = useState(0)
     const [pendingProducts, setPendingProducts] = useState([])
     const [confirmedProducts, setConfirmedProducts] = useState([])
 
@@ -18,7 +19,7 @@ const DashboardStats = ({ setAllProducts, allProducts }) => {
 
 
     useEffect(() => {
-        fetch(`${backServerUrl}/GetProductsStats?email=${userInfo?.email}&limit=8`, {
+        fetch(`${backServerUrl}/GetProductsStats?email=${userInfo?.email}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json",
@@ -27,11 +28,11 @@ const DashboardStats = ({ setAllProducts, allProducts }) => {
         }).then(res => res.json()).then(data => {
             setAllProducts(data)
             setProducts(data)
+            setProductsTotal(data.length)
             console.log("userInfo?.email:", userInfo?.email)
-            // console.log("Got Data:", data.length)
         })
 
-        fetch(`${backServerUrl}/GetPendingStats?email=${userInfo?.email}&limit=8`, {
+        fetch(`${backServerUrl}/GetPendingStats?email=${userInfo?.email}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json",
@@ -42,7 +43,7 @@ const DashboardStats = ({ setAllProducts, allProducts }) => {
         })
 
 
-        fetch(`${backServerUrl}/GetApprovedStats?email=${userInfo?.email}&limit=8`, {
+        fetch(`${backServerUrl}/GetApprovedStats?email=${userInfo?.email}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json",
@@ -76,7 +77,7 @@ const DashboardStats = ({ setAllProducts, allProducts }) => {
 
                     <div className="flex flex-col">
                         <p className="text-sm font-medium text-left">Total Products</p>
-                        <p className="text-3xl font-bold mt-1 text-left">{products.length}</p>
+                        <p className="text-3xl font-bold mt-1 text-left">{productsTotal}</p>
                     </div>
                 </div>
 

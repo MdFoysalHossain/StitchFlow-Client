@@ -47,7 +47,7 @@ const AdminSingleRecentPost = ({ item, allProducts, index, setAllProducts }) => 
     }
 
     return (
-        <tr key={item._id} className="">
+        <tr key={item._id} className="*:whitespace-nowrap">
             <td>
                 <img
                     src={item.images[0]}

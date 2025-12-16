@@ -5,6 +5,7 @@ import Logo from '/Logo2.png';
 import Logo2 from '/Logo3.png';
 import { AuthContext } from '../Context/AuthContext';
 import "./DashboardSidebar.css"
+import Footer from "./Footer"
 
 const DashboardSidebar = () => {
     const { theme, setTheme } = use(AuthContext)
@@ -64,7 +65,7 @@ const DashboardSidebar = () => {
                 </>
             )}
 
-            
+
             {userInfo && dbUserInfo?.accountType === "Admin" && (
                 <>
 
@@ -140,7 +141,7 @@ const DashboardSidebar = () => {
                     </button>
                 </div>
 
-                <ul className="flex-1 p-4 space-y-2 text-gray-800 dark:text-gray-100 theme-div DasbhoardLinks">{links}</ul>
+                <ul className="flex-1 p-4 space-y-2 overflow-y-auto text-gray-800 dark:text-gray-100 theme-div DasbhoardLinks">{links}</ul>
 
                 <div className="p-4 border-t theme-div border-gray-200 dark:border-gray-700">
                     <ThemeToggle theme={theme} setTheme={setTheme} />
@@ -157,10 +158,10 @@ const DashboardSidebar = () => {
                 ></div>
             )}
 
-            <div className="flex-1 theme-div  ml-0 lg:ml-64  p-4 overflow-auto h-screen">
+            <div className="flex-1 theme-div  ml-0 lg:ml-64   overflow-auto h-screen">
 
                 {/* MOBILE SCREEN */}
-                <div className="border-b dark:border-gray-700   fixed lg:hidden -m-[5px] top-0 py-3 px-2 pt-4 left-1 z-1 w-full theme-div flex justify-left items-center">
+                <div className="border-b dark:border-gray-700 p-4  fixed lg:hidden -m-[5px] top-0 py-3 px-2 pt-4 left-1 z-1 w-full theme-div flex justify-left items-center">
 
 
                     <button
@@ -182,15 +183,19 @@ const DashboardSidebar = () => {
                             />
                         </svg>
                     </button>
-
-                    <img src={theme === "light" ? Logo : Logo2} alt="Logo" className="w-10 h-10 mr-2" />
-                    <span className="text-xl font-bold theme-text">StitchFlow</span>
+                    <div className="flex justify-center items-center">
+                        <img src={theme === "light" ? Logo : Logo2} alt="Logo" className="w-10 h-10 mr-2" />
+                        <span className="font-bold text-2xl theme-text">StitchFlow</span>
+                    </div>
                 </div>
 
 
                 <div className="mt-15 lg:mt-0">
 
-                    <Outlet />
+                    <div className={"p-4"}>
+                        <Outlet />
+                    </div>
+                    <Footer className={"mx-[-50px]"}/>
                 </div>
             </div>
         </div>

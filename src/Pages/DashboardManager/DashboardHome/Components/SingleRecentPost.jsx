@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const SingleRecentPost = ({ item }) => {
+const SingleRecentPost = ({ item, index }) => {
     const paymentMode = item.cod && item.onlinePay
         ? "COD & Online Pay"
         : item.cod
@@ -10,12 +10,15 @@ const SingleRecentPost = ({ item }) => {
                 ? "Online Pay"
                 : "N/A";
 
+    if(index >= 8){
+        return
+    }
 
     return (
-        <div className="w-full flex items-center justify-between p-4 theme-dashboard-card rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-5 lg:gap-2 p-4 theme-dashboard-card rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition">
 
             {/* Image */}
-            <div className="flex flex-row  items-center gap-4">
+            <div className="flex flex-row justify-start items-start md:items-center gap-4">
                 <img
                     src={item.images[0]}
                     alt={item.title}

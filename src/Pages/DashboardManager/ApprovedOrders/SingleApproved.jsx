@@ -100,7 +100,7 @@ const SingleApproved = ({ item, setProducts, products, setUpdateEffect }) => {
 
     return (
         <>
-            <tr key={item._id}>
+            <tr key={item._id} className='*:whitespace-nowrap'>
                 <td>{item._id}</td>
                 <td>{item.firstName} {item.lastName}</td>
                 <td>{item.title}</td>
@@ -241,7 +241,7 @@ const SingleApproved = ({ item, setProducts, products, setUpdateEffect }) => {
                                                 )}
                                             </div>
 
-                                            <div>
+                                            <div className='flex flex-col'>
                                                 <label className="label font-semibold mb-1">Select Stage</label>
                                                 <select className="select select-bordered w-full mb-4" onChange={hangleStageData}>
                                                     <option disabled selected>Select Stage</option>

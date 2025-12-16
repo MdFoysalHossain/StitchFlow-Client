@@ -7,7 +7,7 @@ const AdminRecentPost = ({ allProducts, setAllProducts }) => {
             <h2>Recent Post ({allProducts.length} / 8)</h2>
 
 
-            <div className="bg-white rounded-xl mt-5 overflow-hidden">
+            <div className="bg-white rounded-xl mt-5 overflow-x-auto xl:overflow-x-visible">
 
                 <table className="table w-full  text-black">
                     <thead>

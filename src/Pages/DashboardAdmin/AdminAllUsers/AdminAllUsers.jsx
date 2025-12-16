@@ -52,7 +52,7 @@ const AdminAllUsers = () => {
                 <h2>All Users ({allUsers.length})</h2>
 
 
-                <div className="w-40">
+                <div className="w-[150px]">
 
                     <p className='text-sm font-normal'>Filter By</p>
                     <select onChange={handleFilter} className="select font-normal text-black">
@@ -65,7 +65,7 @@ const AdminAllUsers = () => {
             </div>
 
 
-            <div className="bg-white rounded-xl mt-5 overflow-x-auto md:overflow-x-visible">
+            <div className="bg-white rounded-xl mt-5 overflow-x-auto xl:overflow-x-visible">
 
                 <table className="table w-full  text-black ">
                     <thead>

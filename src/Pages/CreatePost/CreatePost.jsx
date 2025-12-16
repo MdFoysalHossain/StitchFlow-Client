@@ -14,7 +14,7 @@ const CreatePost = () => {
     const [dataPosting, setDataPosting] = useState(false)
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
-        
+
         if (files.length > 4) {
             Swal.fire({
                 icon: "error",
@@ -166,106 +166,228 @@ const CreatePost = () => {
 
     return (
 
-        <div className='max-w-[1440px] mx-auto flex items-center flex-col gap-2 mt-20 relative'>
+        // <div className='max-w-[1440px] mx-auto flex items-center flex-col gap-2 mt-20 relative'>
 
-            <div className="flex justify-between w-[900px] items-center">
-                <h1 className='text-2xl font-semibold'>Create Post</h1>
-                <span className='text-sm flex items-center bg-white theme-text-black p-2 rounded-md shadow'>Home <ChevronRight size={16} /> Create Post</span>
+        //     <div className="flex justify-between w-[900px] items-center">
+        //         <h1 className='text-2xl font-semibold'>Create Post</h1>
+        //         <span className='text-sm flex items-center bg-white theme-text-black p-2 rounded-md shadow'>Home <ChevronRight size={16} /> Create Post</span>
+        //     </div>
+
+        //     <div className="flex gap-3 flex-wrap">
+        //         <PhotoProvider>
+        //             {images.map((img, index) => (
+        //                 <PhotoView src={img}>
+        //                     <img
+        //                         key={index}
+        //                         src={img}
+        //                         alt="preview"
+        //                         className="w-24 h-24 object-cover rounded-md border"
+        //                     />
+        //                 </PhotoView>
+
+        //             ))}
+        //         </PhotoProvider>
+        //     </div>
+
+        //     <div className="card-body bg-white w-fit rounded-lg shadow">
+        //         <form className=' text-left' onSubmit={handleSubmit}>
+        //             <div className="flex gap-10">
+        //                 <fieldset className="fieldset">
+        //                     <label className="label">Banner Image*</label>
+        //                     <input required onChange={handleImageChange} name="images" type="file" multiple accept="image/*" className="file-input theme-text-black font-normal" />
+
+        //                     <label className="label">Select Category*</label>
+        //                     <select name="type" className="select theme-text-black" required defaultValue="">
+        //                         <option value="" disabled>Pick a Category</option>
+        //                         <option value="Shirt">Shirt</option>
+        //                         <option value="Pant">Pant</option>
+        //                         <option value="T-Shirt">T-Shirt</option>
+        //                         <option value="Hoodie">Hoodie</option>
+        //                         <option value="Jacket">Jacket</option>
+        //                         <option value="Jeans">Jeans</option>
+        //                         <option value="Formal Shirt">Formal Shirt</option>
+        //                         <option value="Sweater">Sweater</option>
+        //                     </select>
+
+
+        //                     <label className="label">Price Per Item (USD)*</label>
+        //                     <input required name='PerPrice' type="number" className="input theme-text-black" placeholder="10$" />
+
+        //                     <label className="label">Avaiable Quantity*</label>
+        //                     <input required name='Available' type="number" className="input theme-text-black" placeholder="1000/5000/10000" />
+
+        //                     <label className="label">Minimum Order Quantity*</label>
+        //                     <input required name='Minimum' type="number" className="input theme-text-black" placeholder="100/500/1000" />
+
+
+        //                     <label className="label mt-2">Allowed Payment Methode</label>
+        //                     <div className="flex gap-5">
+        //                         <div className="">
+        //                             <label className="label">
+        //                                 <input name="CashOnDelivery" type="checkbox" defaultChecked className="checkbox" />
+        //                                 Cash On Delivery
+        //                             </label>
+        //                         </div>
+        //                         <div className="">
+        //                             <label className="label">
+        //                                 <input name="OnlinePay" type="checkbox" defaultChecked className="checkbox" />
+        //                                 Online Pay
+        //                             </label>
+        //                         </div>
+
+        //                     </div>
+
+        //                     <div className="">
+        //                         <label className="label">
+        //                             <input name="ShowHome" type="checkbox" defaultChecked={false} className="checkbox" />
+        //                             Show on Home "/"
+        //                         </label>
+        //                     </div>
+
+        //                 </fieldset>
+
+        //                 <fieldset className="fieldset">
+
+        //                     <label className="label">Title*</label>
+        //                     <input required name='Title' type="text" className="input w-[500px] theme-text-black" placeholder="Title Text" />
+
+
+        //                     <label className="label">Description*</label>
+        //                     <textarea required name='description' className="textarea min-h-80 w-[500px] theme-text-black" placeholder="Product Description"></textarea>
+        //                 </fieldset>
+        //             </div>
+        //             <button className="btn theme-btn text-left mt-4 px-10">Submit</button>
+        //         </form>
+        //     </div>
+
+        //     <div className={` ${dataPosting ? "visible" : "hidden"} absolute inset-0 rounded-2xl bg-white/30 backdrop-blur-md flex justify-center items-center`}>
+        //         <span className="loading loading-spinner text-purple-600 scale-200"></span>
+        //     </div>
+
+        // </div>
+
+
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4 mt-10 sm:mt-16 relative">
+
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
+                <h1 className="text-xl sm:text-2xl font-semibold">Create Post</h1>
+                <span className="text-xs sm:text-sm flex items-center bg-white theme-text-black px-3 py-2 rounded-md shadow w-fit">
+                    Home <ChevronRight size={16} /> Create Post
+                </span>
             </div>
 
+            {/* Image Preview */}
             <div className="flex gap-3 flex-wrap">
                 <PhotoProvider>
                     {images.map((img, index) => (
-                        <PhotoView src={img}>
+                        <PhotoView key={index} src={img}>
                             <img
-                                key={index}
                                 src={img}
                                 alt="preview"
-                                className="w-24 h-24 object-cover rounded-md border"
+                                className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-md border"
                             />
                         </PhotoView>
-
                     ))}
                 </PhotoProvider>
             </div>
 
-            <div className="card-body bg-white w-fit rounded-lg shadow">
-                <form className=' text-left' onSubmit={handleSubmit}>
-                    <div className="flex gap-10">
-                        <fieldset className="fieldset">
+            {/* Form Card */}
+            <div className="bg-white rounded-lg shadow p-4 sm:p-6 w-full">
+                <form onSubmit={handleSubmit} className="text-left">
+                    <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
+
+                        {/* Left Fieldset */}
+                        <fieldset className="fieldset w-full lg:w-1/2">
+
                             <label className="label">Banner Image*</label>
-                            <input required onChange={handleImageChange} name="images" type="file" multiple accept="image/*" className="file-input theme-text-black font-normal" />
+                            <input
+                                required
+                                onChange={handleImageChange}
+                                name="images"
+                                type="file"
+                                multiple
+                                accept="image/*"
+                                className="file-input w-full theme-text-black font-normal"
+                            />
 
                             <label className="label">Select Category*</label>
-                            <select name="type" className="select theme-text-black" required defaultValue="">
+                            <select name="type" className="select w-full theme-text-black" required defaultValue="">
                                 <option value="" disabled>Pick a Category</option>
-                                <option value="Shirt">Shirt</option>
-                                <option value="Pant">Pant</option>
-                                <option value="T-Shirt">T-Shirt</option>
-                                <option value="Hoodie">Hoodie</option>
-                                <option value="Jacket">Jacket</option>
-                                <option value="Jeans">Jeans</option>
-                                <option value="Formal Shirt">Formal Shirt</option>
-                                <option value="Sweater">Sweater</option>
+                                <option>Shirt</option>
+                                <option>Pant</option>
+                                <option>T-Shirt</option>
+                                <option>Hoodie</option>
+                                <option>Jacket</option>
+                                <option>Jeans</option>
+                                <option>Formal Shirt</option>
+                                <option>Sweater</option>
                             </select>
 
-
                             <label className="label">Price Per Item (USD)*</label>
-                            <input required name='PerPrice' type="number" className="input theme-text-black" placeholder="10$" />
+                            <input required name="PerPrice" type="number" placeholder='5/7/10/20' className="input w-full theme-text-black" />
 
-                            <label className="label">Avaiable Quantity*</label>
-                            <input required name='Available' type="number" className="input theme-text-black" placeholder="1000/5000/10000" />
+                            <label className="label">Available Quantity*</label>
+                            <input required name="Available" type="number" placeholder='500/700/1000/2000' className="input w-full theme-text-black" />
 
                             <label className="label">Minimum Order Quantity*</label>
-                            <input required name='Minimum' type="number" className="input theme-text-black" placeholder="100/500/1000" />
+                            <input required name="Minimum" type="number" placeholder='500/700/1000/2000' className="input w-full theme-text-black" />
 
-
-                            <label className="label mt-2">Allowed Payment Methode</label>
-                            <div className="flex gap-5">
-                                <div className="">
-                                    <label className="label">
-                                        <input name="CashOnDelivery" type="checkbox" defaultChecked className="checkbox" />
-                                        Cash On Delivery
-                                    </label>
-                                </div>
-                                <div className="">
-                                    <label className="label">
-                                        <input name="OnlinePay" type="checkbox" defaultChecked className="checkbox" />
-                                        Online Pay
-                                    </label>
-                                </div>
-
-                            </div>
-
-                            <div className="">
-                                <label className="label">
-                                    <input name="ShowHome" type="checkbox" defaultChecked={false} className="checkbox" />
-                                    Show on Home "/"
+                            <label className="label mt-2">Allowed Payment Method</label>
+                            <div className="flex flex-wrap gap-4">
+                                <label className="label gap-2">
+                                    <input type="checkbox" name="CashOnDelivery" className="checkbox" defaultChecked />
+                                    Cash On Delivery
+                                </label>
+                                <label className="label gap-2">
+                                    <input type="checkbox" name="OnlinePay" className="checkbox" defaultChecked />
+                                    Online Pay
                                 </label>
                             </div>
 
+                            <label className="label mt-2 gap-2">
+                                <input type="checkbox" name="ShowHome" className="checkbox" />
+                                Show on Home "/"
+                            </label>
                         </fieldset>
 
-                        <fieldset className="fieldset">
-
+                        {/* Right Fieldset */}
+                        <fieldset className="fieldset w-full lg:w-1/2">
                             <label className="label">Title*</label>
-                            <input required name='Title' type="text" className="input w-[500px] theme-text-black" placeholder="Title Text" />
-
+                            <input
+                                required
+                                name="Title"
+                                type="text"
+                                className="input w-full theme-text-black"
+                                placeholder="Title Text"
+                            />
 
                             <label className="label">Description*</label>
-                            <textarea required name='description' className="textarea min-h-80 w-[500px] theme-text-black" placeholder="Product Description"></textarea>
+                            <textarea
+                                required
+                                name="description"
+                                className="textarea min-h-[200px] sm:min-h-[320px] w-full theme-text-black"
+                                placeholder="Product Description"
+                            />
                         </fieldset>
                     </div>
-                    <button className="btn theme-btn text-left mt-4 px-10">Submit</button>
+
+                    <button className="btn theme-btn mt-6 px-10 w-full sm:w-fit">
+                        Submit
+                    </button>
                 </form>
             </div>
 
-            <div className={` ${dataPosting ? "visible" : "hidden"} absolute inset-0 rounded-2xl bg-white/30 backdrop-blur-md flex justify-center items-center`}>
-                <span className="loading loading-spinner text-purple-600 scale-200"></span>
+            {/* Loading Overlay */}
+            <div
+                className={`${dataPosting ? "visible" : "hidden"} absolute inset-0 bg-white/30 backdrop-blur-md flex justify-center items-center`}
+            >
+                <span className="loading loading-spinner text-purple-600 scale-150 sm:scale-200"></span>
             </div>
-
         </div>
+
     );
+
 };
 
 export default CreatePost;

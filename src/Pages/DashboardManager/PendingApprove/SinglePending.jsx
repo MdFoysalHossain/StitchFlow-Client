@@ -74,7 +74,7 @@ const SinglePending = ({ item, setProducts, products }) => {
 
     return (
         <>
-            <tr key={item._id}>
+            <tr key={item._id} className='*:whitespace-nowrap'>
                 <td>{item._id}</td>
                 <td>{item.firstName} {item.lastName}</td>
                 <td>{item.title}</td>
