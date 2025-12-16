@@ -54,8 +54,11 @@
 .gray-bg {
   @apply bg-[#f7f7f7];
 }
-.dark .gray-bg {
+/* .dark .gray-bg {
   @apply bg-[#242323];
+} */
+.dark .gray-bg {
+  @apply bg-[#1B1B1B];
 }
 
 /* ----------------------- */

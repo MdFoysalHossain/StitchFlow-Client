@@ -29,6 +29,7 @@ import AdminAllProducts from "../../Pages/DashboardAdmin/AdminAllProducts/AdminA
 import AdminAllUsers from "../../Pages/DashboardAdmin/AdminAllUsers/AdminAllUsers";
 import AdminAllOrders from "../../Pages/DashboardAdmin/AdminAllOrders/AdminAllOrders";
 import NotFound from "../Public/NotFound";
+import AboutUs from "../Public/AboutUs";
 
 export const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
                 index: true,
                 path: "/",
                 element: <Home />,
+            },
+            {
+                path: "/About",
+                element: <AboutUs />,
             },
             {
                 path: "/Login",

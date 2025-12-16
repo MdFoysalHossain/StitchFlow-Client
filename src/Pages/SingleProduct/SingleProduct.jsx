@@ -94,7 +94,7 @@ const SingleProduct = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center text-left justify-between bg-white backdrop-blur-md p-6 rounded-xl shadow">
+                    <div className="flex flex-col md:flex-row items-start gap-3 md:items-end text-left justify-between bg-white backdrop-blur-md p-6 rounded-xl shadow">
 
                         <div>
                             <span className="text-sm text-gray-600 font-medium">Available Payment Methods</span>
@@ -115,7 +115,7 @@ const SingleProduct = () => {
                         </div>
 
                         <Link to={`/OrderProduct/${id}`}
-                            className="theme-btn text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition-all duration-200"
+                            className="theme-btn btn"
                         >
                             Order Now
                         </Link>

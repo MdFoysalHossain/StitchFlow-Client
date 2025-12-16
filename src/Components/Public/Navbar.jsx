@@ -33,18 +33,15 @@ const Navbar = () => {
             </li>
 
             <li>
+                <NavLink className="navLink" to="/About">About Us</NavLink>
+            </li>
+            
+            <li>
                 <NavLink className="navLink" to="/AllProducts">All Product</NavLink>
             </li>
 
             {!userInfo && (
                 <>
-                    <li>
-                        <NavLink className="navLink" to="/About">About Us</NavLink>
-                    </li>
-
-                    <li>
-                        <NavLink className="navLink" to="/Contact">Contact</NavLink>
-                    </li>
 
                     <li className="w-full lg:w-auto">
                         <NavLink
