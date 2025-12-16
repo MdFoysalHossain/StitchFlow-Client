@@ -28,7 +28,6 @@ const Login = () => {
                         //console.log("Successfully Updated to DB:", data2)
                         navigate("/")
                     })
-                    .catch(err => //console.log("Server Store Error:", err))
             })
     }
 
@@ -42,7 +41,6 @@ const Login = () => {
                 //console.log("User Logged In:", res)
                 navigate("/")
             })
-            .catch(err => //console.log("Login Error:", err))
     }
 
     if(userInfo){

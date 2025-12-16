@@ -31,7 +31,6 @@ const Register = () => {
                         //console.log("Successfully Updated to DB:", data2)
                         navigate("/")
                     })
-                    .catch(err => //console.log("Server Store Error:", err))
             })
     }
 
@@ -91,7 +90,6 @@ const Register = () => {
                                 //console.log("Successfully Updated to DB:", data2)
                                 navigate("/")
                             })
-                            .catch(err => //console.log("Server Store Error:", err))
 
                     })
                     .catch(err => {

@@ -20,7 +20,7 @@ const AdminSingleProduct = ({ item, setAllProducts, allProducts }) => {
         });
 
         if (!result.isConfirmed) {
-            //console.log("User cancelled");
+            ////console.log("User cancelled");
             return;
         }
 
@@ -43,12 +43,12 @@ const AdminSingleProduct = ({ item, setAllProducts, allProducts }) => {
     }
 
     {
-        //console.log(item)
+        ////console.log(item)
     }
 
     const handleOnCheck = (e) => {
         const check = e.target.checked;
-        //console.log("Check:", check)
+        ////console.log("Check:", check)
 
         const productData = {
             id: item._id,
