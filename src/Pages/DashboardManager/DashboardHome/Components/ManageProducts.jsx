@@ -23,8 +23,8 @@ const ManageProducts = () => {
         }).then(res => res.json()).then(data => {
             setProducts(data)
             setProdLoad(false)
-            console.log("userInfo?.email:", userInfo?.email)
-            console.log("Product Data:", data)
+            //console.log("userInfo?.email:", userInfo?.email)
+            //console.log("Product Data:", data)
         })
     }, [backServerUrl, userInfo?.email])
 

@@ -28,7 +28,7 @@ const UpdateProduct = () => {
                 setImages([...data.images])
                 setCod(data.cod)
                 setOnPay(data.onlinePay)
-                console.log(data)
+                // console.log(data)
                 setProdLoaded(false)
             })
     }, [backServerUrl, id])
@@ -69,7 +69,7 @@ const UpdateProduct = () => {
                 );
 
                 const data = await res.json();
-                console.log("ImgBB response:", data);
+                // console.log("ImgBB response:", data);
 
                 if (data.success && data.data?.url) {
                     uploadedUrls.push(data.data.url);
@@ -108,7 +108,7 @@ const UpdateProduct = () => {
         });
 
         if (!result.isConfirmed) {
-            console.log("User cancelled");
+            // console.log("User cancelled");
             return;
         }
 
@@ -166,7 +166,7 @@ const UpdateProduct = () => {
             });
 
             const data = await res.json();
-            console.log("Data Posted:", data);
+            // console.log("Data Posted:", data);
             Swal.fire({
                 title: "Update!",
                 text: "Product has been successfully updated!",
@@ -177,11 +177,11 @@ const UpdateProduct = () => {
             navigate(backServerUrl?.accountType === "Manager" ? "/Dashboard/Manager" : "/Dashboard/Admin")
 
         } catch (err) {
-            console.log("Got Error While Posting:", err);
+            // console.log("Got Error While Posting:", err);
         }
 
         setDataPosting(false);
-        console.log("FINAL PRODUCT:", procductDetails);
+        // console.log("FINAL PRODUCT:", procductDetails);
     };
 
     if (prodLoaded) {

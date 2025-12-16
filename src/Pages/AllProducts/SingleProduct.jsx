@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const SingleProduct = ({ item }) => {
     {
-        console.log(item)
+        //console.log(item)
     }
     return (
 

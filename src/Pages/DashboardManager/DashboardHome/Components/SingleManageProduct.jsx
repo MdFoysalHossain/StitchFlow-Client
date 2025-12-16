@@ -8,7 +8,7 @@ const ManageProductsTable = ({ item, setProducts, products }) => {
     const { backServerUrl, userInfo } = use(AuthContext)
 
 
-    // console.log("Single Product:", item)
+    // //console.log("Single Product:", item)
 
     const handleOnDelete = async () => {
         const result = await Swal.fire({
@@ -22,7 +22,7 @@ const ManageProductsTable = ({ item, setProducts, products }) => {
         });
 
         if (!result.isConfirmed) {
-            console.log("User cancelled");
+            //console.log("User cancelled");
             return;
         }
 

@@ -14,7 +14,7 @@ const AdminSingleOrder = ({ item, setUpdateEffect }) => {
     const [sellerUpdate, setSellerUpdate] = useState(false);
     const [stageData, setStageData] = useState([{}])
 
-    console.log(item)
+    ////////console.log(item)
 
     const hangleStageData = (e) => {
         const stage = e.target.value;
@@ -77,7 +77,7 @@ const AdminSingleOrder = ({ item, setUpdateEffect }) => {
         }];
 
         // setDataUpdate(data);
-        console.log(data[0]);
+        ////////console.log(data[0]);
 
         fetch(`${backServerUrl}/ManagerUpdateApprovedProduct/${item._id}`, {
             method: "PATCH",

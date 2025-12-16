@@ -25,11 +25,11 @@ const ApprovedOrders = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    // console.log(data)
+                    // //console.log(data)
                     setProducts(data)
                     setProdLoad(false)
                     setUpdateEffect(false)
-                    console.log("Reloaded")
+                    //console.log("Reloaded")
                 })
         }
 

@@ -55,7 +55,7 @@ const CreatePost = () => {
                 );
 
                 const data = await res.json();
-                console.log("ImgBB response:", data);
+                //console.log("ImgBB response:", data);
 
                 if (data.success && data.data?.url) {
                     uploadedUrls.push(data.data.url);
@@ -95,7 +95,7 @@ const CreatePost = () => {
         });
 
         if (!result.isConfirmed) {
-            console.log("User cancelled");
+            //console.log("User cancelled");
             return;
         }
 
@@ -144,7 +144,7 @@ const CreatePost = () => {
             });
 
             const data = await res.json();
-            console.log("Data Posted:", data);
+            //console.log("Data Posted:", data);
             // 🟢 User confirmed → continue
             Swal.fire({
                 title: "Submitted!",
@@ -155,11 +155,11 @@ const CreatePost = () => {
             e.target.reset();
 
         } catch (err) {
-            console.log("Got Error While Posting:", err);
+            //console.log("Got Error While Posting:", err);
         }
 
         setDataPosting(false);
-        console.log("FINAL PRODUCT:", procductDetails);
+        //console.log("FINAL PRODUCT:", procductDetails);
     };
 
 

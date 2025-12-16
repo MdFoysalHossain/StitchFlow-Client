@@ -10,7 +10,7 @@ const Login = () => {
     const handleGoogleLogin = () => {
         googleLogin()
             .then(res => {
-                console.log("Google Res:", res.user)
+                //console.log("Google Res:", res.user)
                 const userData = {
                     name: res.user.displayName,
                     email: res.user.email,
@@ -25,10 +25,10 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data2 => {
-                        console.log("Successfully Updated to DB:", data2)
+                        //console.log("Successfully Updated to DB:", data2)
                         navigate("/")
                     })
-                    .catch(err => console.log("Server Store Error:", err))
+                    .catch(err => //console.log("Server Store Error:", err))
             })
     }
 
@@ -39,10 +39,10 @@ const Login = () => {
 
         signInEmail(email, password)
             .then(res => {
-                console.log("User Logged In:", res)
+                //console.log("User Logged In:", res)
                 navigate("/")
             })
-            .catch(err => console.log("Login Error:", err))
+            .catch(err => //console.log("Login Error:", err))
     }
 
     if(userInfo){

@@ -13,7 +13,7 @@ const Register = () => {
     const handleGoogleRegistration = () => {
         googleLogin()
             .then(res => {
-                console.log("Google Res:", res.user)
+                //console.log("Google Res:", res.user)
                 const userData = {
                     name: res.user.displayName,
                     email: res.user.email,
@@ -28,10 +28,10 @@ const Register = () => {
                 })
                     .then(res => res.json())
                     .then(data2 => {
-                        console.log("Successfully Updated to DB:", data2)
+                        //console.log("Successfully Updated to DB:", data2)
                         navigate("/")
                     })
-                    .catch(err => console.log("Server Store Error:", err))
+                    .catch(err => //console.log("Server Store Error:", err))
             })
     }
 
@@ -69,7 +69,7 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 const userData = {
                     name: name,
                     email: email,
@@ -79,7 +79,7 @@ const Register = () => {
 
                 createEmailAccount(email, password)
                     .then(data => {
-                        console.log("User Data:", data.user);
+                        //console.log("User Data:", data.user);
 
                         fetch(`${backServerUrl}/createUser`, {
                             method: "POST",
@@ -88,17 +88,17 @@ const Register = () => {
                         })
                             .then(res => res.json())
                             .then(data2 => {
-                                console.log("Successfully Updated to DB:", data2)
+                                //console.log("Successfully Updated to DB:", data2)
                                 navigate("/")
                             })
-                            .catch(err => console.log("Server Store Error:", err))
+                            .catch(err => //console.log("Server Store Error:", err))
 
                     })
                     .catch(err => {
-                        console.log("Register Error:", err);
+                        //console.log("Register Error:", err);
                     });
 
-                console.log(userData)
+                //console.log(userData)
             })
 
 

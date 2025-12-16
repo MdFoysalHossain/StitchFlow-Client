@@ -26,11 +26,11 @@ const AdminAllOrders = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(userInfo?.email)
+                    //console.log(userInfo?.email)
                     setProducts(data)
                     setProdLoad(false)
                     setUpdateEffect(false)
-                    console.log("Reloaded")
+                    //console.log("Reloaded")
                 })
         }
 
@@ -47,7 +47,7 @@ const AdminAllOrders = () => {
         e.preventDefault()
         const filterBy = e.target.value;
 
-        console.log("Filter:", filterBy)
+        //console.log("Filter:", filterBy)
 
         // setProdLoad(true)
         fetch(`${backServerUrl}/AdminAllOrders?filter=${filterBy}`, {
@@ -59,11 +59,11 @@ const AdminAllOrders = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(userInfo?.email)
+                // //console.log(userInfo?.email)
                 setProducts(data)
                 // setProdLoad(false)
                 // setUpdateEffect(false)
-                // console.log("Reloaded")
+                // //console.log("Reloaded")
             })
     }
 

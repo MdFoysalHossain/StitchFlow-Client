@@ -12,7 +12,7 @@ const Navbar = () => {
 
     const { userInfo, userSignOut, dbUserInfo } = use(AuthContext);
 
-    console.log(userInfo ? `Logged in as ${userInfo}` : "Not logged in")
+    //console.log(userInfo ? `Logged in as ${userInfo}` : "Not logged in")
     const allLinks = (
         <ul className="
     flex

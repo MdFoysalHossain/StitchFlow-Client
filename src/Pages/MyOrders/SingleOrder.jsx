@@ -22,7 +22,7 @@ const SingleOrder = ({ item, setProducts, products}) => {
         });
 
         if (!result.isConfirmed) {
-            console.log("User cancelled");
+            // console.log("User cancelled");
             return;
         }
 

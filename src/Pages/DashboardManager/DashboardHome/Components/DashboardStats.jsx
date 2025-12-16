@@ -29,7 +29,7 @@ const DashboardStats = ({ setAllProducts, allProducts }) => {
             setAllProducts(data)
             setProducts(data)
             setProductsTotal(data.length)
-            console.log("userInfo?.email:", userInfo?.email)
+            // console.log("userInfo?.email:", userInfo?.email)
         })
 
         fetch(`${backServerUrl}/GetPendingStats?email=${userInfo?.email}`, {

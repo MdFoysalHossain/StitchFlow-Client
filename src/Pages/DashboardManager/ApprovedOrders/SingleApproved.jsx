@@ -74,7 +74,7 @@ const SingleApproved = ({ item, setProducts, products, setUpdateEffect }) => {
         }];
 
         // setDataUpdate(data);
-        console.log(data[0]);
+        //console.log(data[0]);
 
         fetch(`${backServerUrl}/ManagerUpdateApprovedProduct/${item._id}`, {
             method: "PATCH",

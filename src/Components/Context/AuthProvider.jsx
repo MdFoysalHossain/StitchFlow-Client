@@ -45,17 +45,17 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log("Unsubscribe:", user)
+                //console.log("Unsubscribe:", user)
                 setUserInfo(user)
                 setLoading(false)
 
-                // console.log("==============",user.accessToken)
+                // //console.log("==============",user.accessToken)
                 fetch(`${backServerUrl}/FindUser?email=${user.email}`, {
                     method: "GET",
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log("DB User Data Loaded:", data)
+                        //console.log("DB User Data Loaded:", data)
                         setDbUserInfo(data)
                         setLoadingDbInfo(false)
                     })
@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
                 setLoading(false)
                 setLoadingDbInfo(false)
                 setDbUserInfo(null)
-                console.log("Unsubscribe: No User")
+                //console.log("Unsubscribe: No User")
             }
         })
 

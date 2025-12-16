@@ -20,7 +20,7 @@ const SingleProduct = () => {
                 setProductData(data)
                 setProductLoading(false)
 
-                console.log(data)
+                // console.log(data)
             })
     }, [backServerUrl, id])
 

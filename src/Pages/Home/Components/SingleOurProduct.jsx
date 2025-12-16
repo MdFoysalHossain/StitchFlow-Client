@@ -3,9 +3,6 @@ import { Link } from 'react-router';
 import { motion } from "framer-motion";
 
 const SingleOurProduct = ({ item }) => {
-    {
-        console.log(item)
-    }
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: "easeOut" }} whileHover={{ y: -6 }}

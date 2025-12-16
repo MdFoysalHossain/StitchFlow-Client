@@ -11,10 +11,6 @@ const SinglePending = ({ item, setProducts, products }) => {
     const postedAt = item.postedAt && item.postedAt.split("T")[0];
     const [selectedOrder, setSelectedOrder] = useState(null);
 
-    {
-        console.log(item)
-    }
-
     const approveOrder = () => {
         setSelectedOrder(null)
         fetch(`${backServerUrl}/ProductOrderApprove/${item._id}`, {
@@ -26,7 +22,7 @@ const SinglePending = ({ item, setProducts, products }) => {
         })
             .then(res => {
                 const newProducts = products.filter(item2 => item2._id !== item._id)
-                console.log([newProducts])
+                // console.log([newProducts])
                 setProducts([...newProducts])
 
                 const message = `Order  #${item.productId} was approved successfully`
@@ -50,7 +46,7 @@ const SinglePending = ({ item, setProducts, products }) => {
         })
             .then(res => {
                 const newProducts = products.filter(item2 => item2._id !== item._id)
-                console.log([newProducts])
+                // console.log([newProducts])
                 setProducts([...newProducts])
 
                 const message = `Order  #${item.productId} was rejected successfully`

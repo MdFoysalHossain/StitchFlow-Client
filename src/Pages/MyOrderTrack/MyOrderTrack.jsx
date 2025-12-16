@@ -9,7 +9,7 @@ const MyOrderTrack = () => {
     const { id } = useParams()
     const { backServerUrl, userInfo } = use(AuthContext)
     const [product, setProduct] = useState([])
-    console.log(id)
+    // console.log(id)
 
     useEffect(() => {
         fetch(`${backServerUrl}/GetSingleOrder/${id}`, { 
@@ -22,7 +22,7 @@ const MyOrderTrack = () => {
             .then(res => res.json())
             .then(data => {
                 setProduct(data)
-                console.log(data)
+                // console.log(data)
             })
     }, [backServerUrl, id])
 

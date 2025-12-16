@@ -16,11 +16,11 @@ const OurProducts = () => {
         fetch(`${backServerUrl}/AllProducts?limit=6&isHome=true`)
             .then(res => res.json())
             .then(data => {
-                console.log("Fetched:", data);
+                // console.log("Fetched:", data);
                 setAllPost(data.products);
                 setLoading(false)
 
-                console.log("Products", data.products)
+                // console.log("Products", data.products)
             })
             .catch(err => console.error(err));
 

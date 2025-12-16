@@ -22,14 +22,14 @@ const AllProducts = () => {
         fetch(`${backServerUrl}/AllProducts?limit=${limit}&skip=${skip}`)
             .then(res => res.json())
             .then(data => {
-                console.log("Fetched:", data);
+                //console.log("Fetched:", data);
                 setAllPost(data.products);
                 setProdTotal(data.total)
                 setLoading(false)
 
                 const totalPages = Math.ceil(data.total / limit);
                 setPages(totalPages)
-                console.log("Data Total",  data.products)
+                //console.log("Data Total",  data.products)
             })
             .catch(err => console.error(err));
 
@@ -38,7 +38,7 @@ const AllProducts = () => {
 
     const skipNext = () => {
         const skipTo = skip + skipBy
-        console.log("Skip:", skip, "\nProdTotal:", prodTotal)
+        //console.log("Skip:", skip, "\nProdTotal:", prodTotal)
         if(currentPages + 1  >= pages){
             return
         }else{
@@ -49,7 +49,7 @@ const AllProducts = () => {
 
     const skipPrev = () => {
         const skipTo = skip - skipBy
-        console.log("Skip:", skip, "\nProdTotal:", prodTotal)
+        //console.log("Skip:", skip, "\nProdTotal:", prodTotal)
         if(currentPages === 0){
             return
         }else{
@@ -83,7 +83,7 @@ const AllProducts = () => {
                     {currentPages + 1} / {pages}
                 </button>
                 {
-                    console.log(skip, prodTotal)
+                    //console.log(skip, prodTotal)
                 }
                 <button onClick={() => skipNext()} className="join-item btn  bg-white border shadow-none border-black text-black w-[125px]">Next</button>
             </div>

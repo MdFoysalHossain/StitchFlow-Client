@@ -23,7 +23,7 @@ const OrderPage = () => {
                 setProductData(data)
                 setProductLoading(false)
 
-                console.log("Got Data:", data)
+                // console.log("Got Data:", data)
             })
     }, [backServerUrl, id])
 
@@ -43,7 +43,7 @@ const OrderPage = () => {
         setTotalCounted(total)
         setQuantityErr(check)
 
-        console.log("Total quantity:", quantity, "\nPer Price:", productData?.perPrice, "\nTotal:", total, "\nTotal Counted", totalCounted)
+        // console.log("Total quantity:", quantity, "\nPer Price:", productData?.perPrice, "\nTotal:", total, "\nTotal Counted", totalCounted)
     }
 
     const handleCodChange = () => {
@@ -103,7 +103,7 @@ const OrderPage = () => {
             status: "pending",
             sellerEmail: sellerEmail
         }
-        console.log(allData)
+        // console.log(allData)
 
         if (!paymentType) {
             Swal.fire({
@@ -126,12 +126,12 @@ const OrderPage = () => {
         });
 
         if (!result.isConfirmed) {
-            console.log("User cancelled");
+            // console.log("User cancelled");
             return;
         }
 
         if (paymentType === "cod") {
-            console.log("Entered COD")
+            // console.log("Entered COD")
             fetch(`${backServerUrl}/create-checkout-session`, {
                 method: "POST",
                 headers: { "content-type": "application/json" },
@@ -148,7 +148,7 @@ const OrderPage = () => {
 
 
         if (paymentType === "stripe") {
-            console.log("Stripe Pay Started");
+            // console.log("Stripe Pay Started");
 
             fetch(`${backServerUrl}/create-checkout-session`, {
                 method: "POST",
@@ -158,7 +158,7 @@ const OrderPage = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.url) {
-                        console.log(data.url)
+                        // console.log(data.url)
                         window.location.href = data.url;
                     } else {
                         console.error("Stripe session creation failed:", data);

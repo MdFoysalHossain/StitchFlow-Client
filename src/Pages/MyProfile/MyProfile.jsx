@@ -4,8 +4,8 @@ import { useContext } from 'react';
 
 const MyProfile = () => {
     const { userInfo, dbUserInfo, userSignOut } = useContext(AuthContext);
-    console.log("User Info", userInfo)
-    console.log("DB User Info", dbUserInfo)
+    // console.log("User Info", userInfo)
+    // console.log("DB User Info", dbUserInfo)
 
 
     if (!dbUserInfo) {
