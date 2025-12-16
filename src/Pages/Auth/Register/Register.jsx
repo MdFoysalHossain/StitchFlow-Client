@@ -2,6 +2,7 @@ import React, { use, useState } from 'react';
 import SideImage from "/Login.avif"
 import { Link, useNavigate, } from 'react-router';
 import { AuthContext } from '../../../Components/Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const { createEmailAccount, backServerUrl, googleLogin, userInfo } = use(AuthContext)
@@ -93,7 +94,11 @@ const Register = () => {
 
                     })
                     .catch(err => {
-                        //console.log("Register Error:", err);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Registration Error",
+                            text: "Please Try Again",
+                        });
                     });
 
                 //console.log(userData)
@@ -102,7 +107,7 @@ const Register = () => {
 
     }
 
-    if(userInfo){
+    if (userInfo) {
         navigate("/")
     }
 

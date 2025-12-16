@@ -25,7 +25,6 @@ const ManageProducts = () => {
             .then(data => {
                 setProducts(data || []);    
                 setProdLoad(false);
-                console.log((data))
             })
             .catch(() => setProdLoad(false));
     }, [backServerUrl, userInfo?.email]);

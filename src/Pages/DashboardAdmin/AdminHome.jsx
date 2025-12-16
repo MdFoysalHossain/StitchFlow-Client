@@ -58,7 +58,7 @@ const AdminHome = () => {
         <div className='mx-auto max-w-[1440px]'>
             <title>Admin Dashboard</title>
             <AdminDashboardStats usersLoading={usersLoading} orderLoading={orderLoading} prodLoading={prodLoading} allUsers={allUsers} allOrders={allOrders} allProducts={allProducts} />
-            <DashboardCharts/>
+            <DashboardCharts  allUsers={allUsers} allOrders={allOrders} allProducts={allProducts}/>
             <AdminRecentPost allProducts={allProducts} setAllProducts={setAllProducts}/>
         </div>
     );

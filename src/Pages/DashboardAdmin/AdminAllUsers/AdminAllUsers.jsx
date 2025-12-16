@@ -20,7 +20,6 @@ const AdminAllUsers = () => {
             .then(data => {
                 setAllUsers(data)
                 setProdLoading(false)
-                console.log("All Users:", data)
             })
     }, [])
 

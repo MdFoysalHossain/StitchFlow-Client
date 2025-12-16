@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import SideImage from "/Login.avif"
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../../Components/Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const { backServerUrl, googleLogin, signInEmail, userInfo } = use(AuthContext)
@@ -41,9 +42,16 @@ const Login = () => {
                 //console.log("User Logged In:", res)
                 navigate("/")
             })
+            .catch(err => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Login Error",
+                    text: "Please use correct email and Password, and Try Again",
+                });
+            })
     }
 
-    if(userInfo){
+    if (userInfo) {
         navigate("/")
     }
 
@@ -70,13 +78,13 @@ const Login = () => {
                                 <form onSubmit={handleEmailLogin}>
                                     <fieldset className="fieldset gap-2">
                                         <label className="label">Email</label>
-                                        <input name='email' type="email" className="input theme-text-black" placeholder="Email" required/>
+                                        <input name='email' type="email" className="input theme-text-black" placeholder="Email" required />
                                         <label className="label">Password</label>
-                                        <input name='password' type="password" className="input theme-text-black" placeholder="Password" required/>
+                                        <input name='password' type="password" className="input theme-text-black" placeholder="Password" required />
                                         <button className="btn theme-btn mt-0">Login</button>
                                     </fieldset>
                                 </form>
-                                    <div><Link className="link link-hover theme-text text-md" to={"/Register"}>Create An New Account?</Link></div>
+                                <div><Link className="link link-hover theme-text text-md" to={"/Register"}>Create An New Account?</Link></div>
                             </div>
 
                             <div className="">
