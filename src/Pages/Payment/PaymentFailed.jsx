@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 const PaymentFailed = () => {
     return (
         <div className="flex items-center justify-center min-h-[80vh] px-4">
+            <title>Order Placement Failed</title>
             <div className="card w-full max-w-md bg-base-100 shadow-xl rounded-2xl p-6 text-center text-white">
 
                 <div className="flex justify-center mb-4">

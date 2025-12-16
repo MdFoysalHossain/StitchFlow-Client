@@ -48,6 +48,7 @@ const AdminAllUsers = () => {
 
     return (
         <div className='text-2xl text-left font-semibold mt-10'>
+            <title>Admin - All Users</title>
             <div className="flex justify-between items-center">
                 <h2>All Users ({allUsers.length})</h2>
 

@@ -193,7 +193,7 @@ const UpdateProduct = () => {
 
     return (
         <div className='max-w-[1440px] mx-auto flex items-center flex-col gap-4 mt-10 md:mt-16 lg:mt-20 relative px-4'>
-
+            <title>Update Product - {productData.title}</title>
             <div className="flex flex-col sm:flex-row justify-between w-full max-w-[900px] items-start sm:items-center gap-2">
                 <h1 className='text-2xl font-semibold'>Create Post</h1>
                 <span className='text-sm flex items-center bg-white theme-text-black p-2 rounded-md shadow'>

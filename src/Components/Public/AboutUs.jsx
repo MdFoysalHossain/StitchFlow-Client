@@ -4,6 +4,7 @@ import Garments from "/Garments.jpg"
 function AboutUs() {
   return (
     <div className="gray-bg mb-[-80px]">
+      <title>About Us</title>
       <section className="bg-gradient-to-r from-purple-400 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">

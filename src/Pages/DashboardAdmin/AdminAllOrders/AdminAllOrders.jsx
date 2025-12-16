@@ -74,7 +74,7 @@ const AdminAllOrders = () => {
         <div className='mt-5 '>
             <div className=" flex justify-between items-center mb-5">
                 <h2 className='text-left  font-semibold text-2xl'>All Orders ({products.length})</h2>
-
+                <title>Admin - All Orders</title>
                 <div className=" text-left w-[150px]">
                     <p className='text-sm'>Filter By</p>
                     <select onChange={handleFilter} defaultValue="all" className="select text-black">

@@ -63,6 +63,7 @@ const AllProducts = () => {
         <div className='max-w-[1440px] mx-auto text-left '>
             <div className="my-5">
                 <h1 className='text-2xl font-semibold mx-4'>All Products</h1>
+                <title>All Products</title>
             </div>
 
             {

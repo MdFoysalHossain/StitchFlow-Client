@@ -25,7 +25,7 @@ const AdminAllProducts = () => {
     return (
         <div className='text-2xl text-left font-semibold mt-10'>
             <h2>All Products ({allProducts.length})</h2>
-
+            <title>Admin - All Products</title>
 
             <div className="bg-white rounded-xl mt-5 overflow-x-auto xl:overflow-x-visible">
 

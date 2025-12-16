@@ -45,7 +45,7 @@ const ApprovedOrders = () => {
 
     return (
         <div className='mt-5'>
-
+            <title>Manager - Approved Orders</title>
             <h2 className='text-left mb-5 font-semibold text-2xl'>Approved Orders ({products.length})</h2>
 
             <div className="overflow-x-auto xl:overflow-x-visible">

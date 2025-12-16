@@ -181,7 +181,7 @@ const OrderPage = () => {
 
     return (
         <div className='max-w-[1440px] mx-auto flex items-center flex-col gap-4 mt-10 md:mt-16 lg:mt-20 relative px-4'>
-
+            <title>Order - {productData?.title}</title>
             <div className="flex flex-col md:flex-row justify-between w-full max-w-[900px] items-start md:items-center gap-3">
                 <h1 className='text-2xl font-semibold max-w-full md:max-w-[500px] text-left'>
                     <span className='theme-text'>Order</span> - {productData?.title} Black & Gray Leather Women's Jacket

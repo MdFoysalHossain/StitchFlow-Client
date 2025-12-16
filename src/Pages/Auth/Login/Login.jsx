@@ -51,6 +51,7 @@ const Login = () => {
 
     return (
         <div className="flex mt-10 items-center">
+            <title>User Login</title>
             <div className='mx-auto w-fit p-4 md:p-0 max-w-[700px] bg-white shadow-xl flex justify-center items-center rounded-xl overflow-hidden'>
                 <div className="flex">
                     <div className="flex-1 hidden md:block h-[600px] overflow-hidden relative">

@@ -27,6 +27,7 @@ const PaymentSuccess = () => {
 
     return (
         <div className="flex items-center justify-center min-h-[80vh]  px-4">
+            <title>{sessionId !== null? "Payment" : "Order"} Successful!</title>
             <div className="card w-full max-w-md bg-base-100 shadow-xl rounded-2xl p-6 text-center">
 
                 <div className="flex justify-center mb-4">

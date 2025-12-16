@@ -29,6 +29,7 @@ const MyOrderTrack = () => {
     if (userInfo?.email && product?.email && userInfo?.email !== product?.email) {
         return (
             <div className={`h-[80vh] flex items-center justify-center p-6`}>
+                <title>Track Order</title>
                 <div className="max-w-md w-full  theme-div rounded-2xl shadow-xl p-8 text-center">
                     <div className="mx-auto mb-4">
                         <svg
@@ -73,7 +74,7 @@ const MyOrderTrack = () => {
 
     return (
         <div className="max-w-[1440px] mx-auto p-4 rounded-2xl overflow-hidden">
- 
+            <title>Track Order - {product.title}</title>
             {/* <h2 className='text-2xl font-bold'></h2> */}
 
             <div className='max-w-[1440px] mx-auto theme-div text-left p-4 py-20 mt-20 '>

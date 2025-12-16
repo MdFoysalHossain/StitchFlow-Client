@@ -7,6 +7,7 @@ const DashboardHome = () => {
 
     return (
         <div className='max-w-[1440px] mx-auto'>
+            <title>Manager Dashboard</title>
             <DashboardStats setAllProducts={setAllProducts}/>
 
             <RecentPosts allProducts={allProducts}/>

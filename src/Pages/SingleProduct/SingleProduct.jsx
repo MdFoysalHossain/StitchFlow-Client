@@ -32,7 +32,7 @@ const SingleProduct = () => {
 
     return (
         <div className="max-w-[1440px] mx-auto mt-12 px-6">
-
+            <title>{productData.title}</title>
             <div className="flex flex-col lg:flex-row gap-12">
 
                 <div className="lg:w-[45%] h-fit bg-white backdrop-blur-md rounded-2xl p-6 shadow-md">

@@ -16,6 +16,7 @@ const MyProfile = () => {
 
     return (
         <div className="w-full  max-w-lg mx-auto mt-10 p-4">
+            <title>My Profile</title>
             <div className="rounded-2xl theme-div shadow-md border border-gray-200 dark:border-gray-800 p-6">
                 <div className="flex flex-col items-center text-center gap-4">
                     <img

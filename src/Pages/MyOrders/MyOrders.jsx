@@ -34,7 +34,7 @@ const MyOrders = () => {
 
     return (
         <div className='mt-5 max-w-[1440px] md:mx-auto mx-4 p-0 md:p-4'>
-
+            <title>My Orders</title>
             <h2 className='text-left mb-5 font-semibold text-2xl'>My Orders ({products.length})</h2>
 
 

@@ -45,6 +45,7 @@ const PendingApprove = () => {
             <h2 className='text-left mb-5 font-semibold text-2xl'>Pending Orders ({products.length})</h2>
 
             <div className="overflow-x-auto xl:overflow-x-visible">
+                <title>Manager - Pending Orders</title>
                 <table className="table w-full theme-div-white text-black">
                     <thead>
                         <tr>

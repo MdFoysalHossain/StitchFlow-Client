@@ -110,6 +110,7 @@ const Register = () => {
 
     return (
         <div className="flex items-center">
+            <title>User Register</title>
             <div className='mx-auto w-fit p-4 md:p-0 mt-10  max-w-[700px] bg-white shadow-xl flex justify-center items-center rounded-xl overflow-hidden'>
                 <div className="flex">
                     <div className="flex-1 hidden md:block  h-[700px] overflow-hidden relative">
